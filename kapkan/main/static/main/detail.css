@@ -1,0 +1,20 @@
+.content-detail {
+	width: 1000px;
+	margin: auto;
+	background-color: #FFF;
+
+}
+
+.image-div-detail {
+	margin: 20px;
+}
+
+.image-detail {
+  width: 500px;
+  height: 300px; 
+  object-fit: cover;
+}
+
+.container-detail {
+	display: inline-block;
+}

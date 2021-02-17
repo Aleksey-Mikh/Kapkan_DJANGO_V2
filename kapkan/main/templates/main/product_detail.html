@@ -1,0 +1,31 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}{{ product.name }} | {{ block.super }}{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static 'main/detail.css' %}?" ?>
+{% endblock %}
+
+{% block content %}
+<section class="content-detail">
+    <div class="container-detail">
+        <div class="image-div-detail">
+            <img src="{{ product.image.url }}" class="image-detail" alt="картинка {{ product.title }}">
+        </div>
+        <div class="title">
+            {{ product.title }}
+        </div>
+        <table style="">
+            <tr>
+                <th>Описание</th>
+                <th>{{ product.description }}</th>
+            </tr>
+            <tr>
+                <td>Цена</td>
+                <td>{{ product.price }}</td>
+            </tr>
+        </table>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,39 @@
+.content-category {
+  font-size: 0;
+  width: 1020px;
+  margin: auto;
+  padding-bottom: 100px;
+  padding-top: 100px;
+}
+
+.card-category {
+  width: 320px;
+  height: 400px;
+  margin: 0 10px 40px 10px;
+  padding: 45px 45px 0px;
+  display: inline-block;
+  background-color: rgba(240,242,245,1);
+}
+
+.Price {
+  color: #444;
+  margin: 0 0 10px;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.Price p {
+  background: #ffe400;
+  display: inline-block;
+  font-size: 20px;
+  padding: 7px 15px;
+  margin-top: 20px;
+}
+
+.card-title-category {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  padding-top: 0px;
+  text-align: center;
+}

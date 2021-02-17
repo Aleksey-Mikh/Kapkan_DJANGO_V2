@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}kapkan-bel{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image" href="https://code.s3.yandex.net/web-code/playlist-favicon.ico">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'main/main.css' %}?" ?>
+    {% block style %}{% endblock %}
+</head>
+<body>
+<header class="header">
+    <div class="overlay"></div>
+</header>
+<div class="scroll">
+
+    <div class="menu">
+        <div class="dropdown">
+            <div class="menu-katalog">
+                <p>Каталог</p>
+            </div>
+            <div class="dropdown-content">
+                <a href="{% url 'home' %}">Главная</a>
+                {% load tags %}
+                {% get_categories as categories %}
+                {% for category in categories %}
+                <a href="{{ category.get_absolute_url }}">
+                    {{ category.name }} ({{ category.product.count }})
+                </a>
+                {% endfor %}
+                <a href="">Видео</a>
+                <a href="">Контакты</a>
+            </div>
+        </div>
+        <div class="second-menu">
+            <a href="" class="menu-link">Проходные капканы</a>
+            <a href="" class="menu-link">Следовые капканы</a>
+            <a href="" class="menu-link">Видео</a>
+            <a href="" class="menu-link">Контакты</a>
+        </div>
+        <a href="">
+            <div class="basket">
+                <img src="{% static 'main/images/basket.png' %}" alt="картинка корзины">
+                <div class="basket-text">
+                    <p> Корзина</p>
+                </div>
+                <div class="basket-text">
+                    <p style="color: red;">0</p>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="background">
+    {% block content %}
+    {% endblock %}
+</div>
+
+<div class="footer-under">
+</div>
+<footer class="footer">
+    <div class="footer-description">
+        <p>123</p>
+    </div>
+    <!--<div class="map">
+      <div id="yandexmap" style="width: ; height: 246px"> 
+
+      <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+      <script src="js/main.js"></script>
+    </div>-->
+</footer>
+</body>
+</html>

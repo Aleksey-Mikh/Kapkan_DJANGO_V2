@@ -1,0 +1,23 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}{{ category.name }} | {{ block.super }}{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static 'main/category.css' %}?" ?>
+{% endblock %}
+
+{% block content %}
+
+<section class="content-category">
+    {% for product in products %}
+    <div class="card-category">
+        <a href="{{ product.get_absolute_url }}">
+            <img src="{{ product.image.url }}" class="card-image" alt="картинка {{ product.title }}">
+        </a>
+        <h2 class="card-title-category">{{ product.title }}</h2>
+        <div class="Price"><p>{{ product.price }}</p></div>
+    </div>
+    {% endfor %}
+</section>
+{% endblock %}

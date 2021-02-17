@@ -1,0 +1,37 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %}Главная | {{ block.super }}{% endblock %}
+
+{% block content %}
+
+<section class="content">
+
+    <div class="card">
+        <h2 class="card-title">Следовые капканы</h2>
+        <img src="{% static 'main/images/следовой капкан.jpg' %}" class="card-image"
+             alt="картинка следового капкана">
+        <div class="card-visibility">
+            <h2>Пример</h2>
+            Пример блока, при наведении на который появляется другой блок.
+        </div>
+    </div>
+
+    <div class="card no-right-margin">
+        <h2 class="card-title">Проходные капканы</h2>
+        <a href="">
+            <img src="{% static 'main/images/проходные капканы.png' %}" class="card-image"
+                 alt="картинка следового капкана">
+        </a>
+    </div>
+
+    <div class="card center-margin">
+        <h2 class="card-title">Видео</h2>
+        <a href="">
+            <img src="{% static 'main/images/видео.png' %}" class="card-image" alt="картинка следового капкана">
+        </a>
+    </div>
+
+</section>
+
+{% endblock %}
