@@ -1,6 +1,6 @@
 from django import template
 
-from ..models import Category
+from shop.models import Category
 
 register = template.Library()
 
