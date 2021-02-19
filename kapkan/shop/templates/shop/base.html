@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image" href="https://code.s3.yandex.net/web-code/playlist-favicon.ico">
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'main/main.css' %}"?>
+    <link rel="stylesheet" type="text/css" href="{% static 'shop/css/main.css' %}?" ?>
     {% block style %}{% endblock %}
 </head>
 <body>
@@ -39,17 +39,33 @@
             <a href="" class="menu-link">Видео</a>
             <a href="" class="menu-link">Контакты</a>
         </div>
-        <a href="">
-            <div class="basket">
-                <img src="{% static 'main/images/basket.png' %}" alt="картинка корзины">
-                <div class="basket-text">
-                    <p> Корзина</p>
-                </div>
-                <div class="basket-text">
-                    <p style="color: red;">0</p>
-                </div>
-            </div>
-        </a>
+        {% with total_items=cart|length %}
+            {% if cart|length > 0 %}
+                <a href="{% url 'cart:cart_detail' %}">
+                    <div class="basket">
+                        <img src="{% static 'shop/images/basket.png' %}" alt="картинка корзины">
+                        <div class="basket-text">
+                            <p> Корзина</p>
+                        </div>
+                        <div class="basket-text">
+                            <p style="color: red;">{{ total_items }}</p>
+                        </div>
+                    </div>
+                </a>
+            {% else %}
+                <a href="">
+                    <div class="basket">
+                        <img src="{% static 'shop/images/basket.png' %}" alt="картинка корзины">
+                        <div class="basket-text">
+                            <p> Корзина</p>
+                        </div>
+                        <div class="basket-text">
+                            <p style="color: red;">0</p>
+                        </div>
+                    </div>
+                </a>
+            {% endif %}
+        {% endwith %}
     </div>
 </div>
 
@@ -68,7 +84,7 @@
       <div id="yandexmap" style="width: ; height: 246px"> 
 
       <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
-      <script src="js/main.js"></script>
+      <script src="js/shop.js"></script>
     </div>-->
 </footer>
 </body>

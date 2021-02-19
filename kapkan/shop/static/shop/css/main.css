@@ -13,7 +13,7 @@ body {
 }
 
 .background {
-  background: #ffffff url("images/задник body.jpg") no-repeat;
+  background: #ffffff url("../images/задник body.jpg") no-repeat;
   background-size: cover;
   background-attachment: fixed;
 }

@@ -1,5 +1,5 @@
 from django.db import models
-from django.urls import reverse_lazy
+from django.urls import reverse
 
 
 class Product(models.Model):
@@ -13,7 +13,7 @@ class Product(models.Model):
     is_published = models.BooleanField(default=True, verbose_name='Статус публикации')
 
     def get_absolute_url(self):
-        return reverse_lazy('product_detail', kwargs={'slug': self.slug})
+        return reverse('product_detail', kwargs={'slug': self.slug})
 
     def __str__(self):
         return self.title
@@ -30,7 +30,7 @@ class Category(models.Model):
     slug = models.SlugField(unique=True)
 
     def get_absolute_url(self):
-        return reverse_lazy('category', kwargs={'slug': self.slug})
+        return reverse('category', kwargs={'slug': self.slug})
 
     def __str__(self):
         return self.name

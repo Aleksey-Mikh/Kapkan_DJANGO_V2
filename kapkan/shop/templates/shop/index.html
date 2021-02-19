@@ -1,4 +1,4 @@
-{% extends 'main/base.html' %}
+{% extends 'shop/base.html' %}
 {% load static %}
 
 {% block title %}Главная | {{ block.super }}{% endblock %}
@@ -9,7 +9,7 @@
 
     <div class="card">
         <h2 class="card-title">Следовые капканы</h2>
-        <img src="{% static 'main/images/следовой капкан.jpg' %}" class="card-image"
+        <img src="{% static 'shop/images/следовой капкан.jpg' %}" class="card-image"
              alt="картинка следового капкана">
         <div class="card-visibility">
             <h2>Пример</h2>
@@ -20,7 +20,7 @@
     <div class="card no-right-margin">
         <h2 class="card-title">Проходные капканы</h2>
         <a href="">
-            <img src="{% static 'main/images/проходные капканы.png' %}" class="card-image"
+            <img src="{% static 'shop/images/проходные капканы.png' %}" class="card-image"
                  alt="картинка следового капкана">
         </a>
     </div>
@@ -28,7 +28,7 @@
     <div class="card center-margin">
         <h2 class="card-title">Видео</h2>
         <a href="">
-            <img src="{% static 'main/images/видео.png' %}" class="card-image" alt="картинка следового капкана">
+            <img src="{% static 'shop/images/видео.png' %}" class="card-image" alt="картинка следового капкана">
         </a>
     </div>
 
