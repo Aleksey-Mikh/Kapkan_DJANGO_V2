@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block style %}
-<link rel="stylesheet" type="text/css" href="{% static 'shop/css/cart.css' %}?" ?>
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/cart.css' %}" ?>
 {% endblock style %}
 
 {% block title %}
@@ -11,58 +11,71 @@ Your shopping cart
 
 {% block content %}
 <section class="content-detail">
-    <h1>Your shopping cart</h1>
-    <table class="table-cart">
-        <tr>
-            <th>Фото</th>
-            <th>Товар</th>
-            <th>Изменить количество</th>
-            <th>Удалить</th>
-            <th>Количество</th>
-            <th>Цена за штуку</th>
-            <th>Общая стоймость</th>
-        </tr>
-        {% for item in cart %}
-        {% with product=item.product %}
-        <tr>
-            <td>
-                <a href="{{ product.get_absolute_url }}">
-                    <img src="{{ product.image.url }}" class="cart-image">
-                </a>
-            </td>
-            <td>{{ product.name }}</td>
-            <form action="{% url 'cart:cart_add' product.id %}" method="post">
-                {{ item.update_quantity_form.quantity }}
-                {{ item.update_quantity_form.update }}
-                <input type="submit" value="Обновить" class="button-check">
-                {% csrf_token %}
-            </form>
-            <td>
-                <a href="{% url 'cart:cart_remove' product.id%}">
-                    <button class="button-danger">Удалить</button>
-                </a>
-            </td>
-            <td>{{ item.quantity }}</td>
-            <td class="num">{{ item.price }}</td>
-            <td class="num">{{ item.total_price }}</td>
-        </tr>
-        {% endwith %}
-        {% endfor %}
-        <tr class="total">
-            <th colspan="6" class="total-price">Общая цена</th>
-            <th>{{ cart.get_total_price }}</th>
-        </tr>
-        <tr>
-            <td colspan="7" class="footer-cart">
+    {% if cart|length > 0 %}
+    <h1>Ваша корзина</h1>
+    <div class="table-cart">
+        <table class="table-cart">
+            <tr>
+                <th>Фото</th>
+                <th>Товар</th>
+                <th>Изменить количество</th>
+                <th>Удалить</th>
+                <th>Количество</th>
+                <th>Цена за штуку</th>
+                <th>Общая стоймость</th>
+            </tr>
+            {% for item in cart %}
+            {% with product=item.product %}
+            <tr>
+                <td>
+                    <a href="{{ product.get_absolute_url }}">
+                        <img src="{{ product.image.url }}" class="cart-image">
+                    </a>
+                </td>
+                <td>{{ product.title }}</td>
+                <td>
+                    <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                        {{ item.update_quantity_form.quantity }}
+                        {{ item.update_quantity_form.update }}
+                        <input type="submit" value="Обновить" class="button-check">
+                        {% csrf_token %}
+                    </form>
+                </td>
+                <td>
+                    <a href="{% url 'cart:cart_remove' product.id%}">
+                        <div>
+                            <button class="button-danger">Удалить</button>
+                        </div>
+                    </a>
+                </td>
+                <td>{{ item.quantity }}</td>
+                <td class="num">{{ item.price }} руб.</td>
+                <td class="num">{{ item.total_price }} руб.</td>
+            </tr>
+            {% endwith %}
+            {% endfor %}
+            <tr class="total">
+                <th colspan="6" class="total-price">Общая цена</th>
+                <th>{{ cart.get_total_price }} руб.</th>
+            </tr>
+        </table>
+
+        <div class="footer-cart">
+            <div class="button-footer-cart">
                 <a href="{% url 'home' %}" class="button light">
                     <button class="button-check">В магазин</button>
                 </a>
+            </div>
+            <div class="button-footer-cart">
                 <a href="#" class="button">
                     <button class="button-check">Оформить заказ</button>
                 </a>
-            </td>
-        </tr>
-    </table>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <h2>Ваша корзина пуста</h2>
+    {% endif %}
 
 </section>
 {% endblock %}

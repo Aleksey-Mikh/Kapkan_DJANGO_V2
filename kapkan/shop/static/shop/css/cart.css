@@ -25,7 +25,7 @@ button {
 }
 
 .content-detail {
-	width: 1000px;
+	width: 1200px;
 	margin: auto;
 	background-color: #FFF;
 }
@@ -37,7 +37,7 @@ button {
 
 .cart-image {
 	width: 200px;
-	height: 150px; 
+	height: 150px;
 	object-fit: cover;
 }
 
@@ -45,15 +45,26 @@ button {
 	text-align: left;
 }
 
-.footer-cart {
-	text-align: right;
-	border-bottom: none;
-}
-
 .button-check {
+	border-radius: 4px;
+	padding: 10px 24px;
+	color: #FFF;
+	font-size: 16px;
+	text-align: center;
+	border: none;
 	background-color: #4169E1;
 }
 
 .button-danger {
 	background-color: #FF0000;
+}
+
+.footer-cart {
+	text-align: right;
+	border-bottom: none;
+}
+
+.button-footer-cart {
+	margin: 15px 0 0 15px;
+	display: inline-block;
 }
