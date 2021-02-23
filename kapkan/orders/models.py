@@ -20,7 +20,6 @@ class Order(models.Model):
     city = models.CharField(max_length=100, verbose_name='Город')
     created = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     updated = models.DateTimeField(auto_now=True, verbose_name='Дата измения')
-    # paid = models.BooleanField(default=False)
     status = models.CharField(
         max_length=100, verbose_name='Статус заказа', choices=STATUS_CHOICES, default=STATUS_NEW
     )
@@ -50,7 +49,8 @@ class OrderItem(models.Model):
         related_name='order_items',
         on_delete=models.PROTECT,
         verbose_name='Товар')
-    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена')
+    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена', default=0)
+    total_price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Общая цена', default=0)
     quantity = models.PositiveIntegerField(default=0, verbose_name='Кол-во')
 
     def __str__(self):
@@ -58,3 +58,17 @@ class OrderItem(models.Model):
 
     def get_cost(self):
         return self.price * self.quantity
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        ord = self.order.pk
+        order = Order.objects.get(pk=ord)
+        order_item_base = order.items.last()
+        print(order_item_base.total_price)
+        if order_item_base.total_price == 0:
+            print('/////////////////////////////')
+            print(self.price, self.product.price, self.order.pk)
+            self.price = self.product.price
+            print(order_item_base.total_price)
+            print('/////////////////////////////')
+            super().save(*args, **kwargs)
