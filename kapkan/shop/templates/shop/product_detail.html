@@ -1,7 +1,7 @@
 {% extends 'shop/base.html' %}
 {% load static %}
 
-{% block title %}{{ product.name }} | {{ block.super }}{% endblock %}
+{% block title %}{{ title }} | {{ block.super }}{% endblock %}
 
 {% block style %}
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/detail.css' %}?" ?>
