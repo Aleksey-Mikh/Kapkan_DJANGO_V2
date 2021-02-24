@@ -61,14 +61,11 @@ class OrderItem(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        ord = self.order.pk
-        order = Order.objects.get(pk=ord)
-        order_item_base = order.items.last()
-        print(order_item_base.total_price)
-        if order_item_base.total_price == 0:
-            print('/////////////////////////////')
-            print(self.price, self.product.price, self.order.pk)
+        order = Order.objects.get(pk=self.order.pk)
+        order_item_last = order.items.last()
+        if order_item_last.total_price == 0:
             self.price = self.product.price
-            print(order_item_base.total_price)
-            print('/////////////////////////////')
+            order_len = order.items.all()
+            order_item_base = order_len[len(order_len) - 2]
+            self.total_price = self.quantity * self.price + order_item_base.total_price
             super().save(*args, **kwargs)

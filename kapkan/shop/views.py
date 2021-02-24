@@ -10,7 +10,7 @@ def index(request):
 
 def category_detail(request, slug):
     category = get_object_or_404(Category, slug=slug)
-    products = category.product.filter(is_published=True)
+    products = category.product.filter(is_published=True).select_related('category')
     cart_product_form = CartAddProductForm()
     context = {
         'products': products,
