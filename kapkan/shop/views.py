@@ -23,6 +23,7 @@ class CategoryDetailView(ListView):
     template_name = 'shop/category_product.html'
     context_object_name = 'products'
     allow_empty = False
+    paginate_by = 9
 
     def get_queryset(self):
         category = get_object_or_404(Category, slug=self.kwargs['slug'])

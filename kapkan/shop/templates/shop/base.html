@@ -34,42 +34,50 @@
             </div>
         </div>
         <div class="second-menu">
-            <a href="" class="menu-link">Проходные капканы</a>
-            <a href="" class="menu-link">Следовые капканы</a>
+            <a href="{% url 'register' %}" class="menu-link">Регистрация</a>
+            <a href="{% url 'login' %}" class="menu-link">Авторизация</a>
             <a href="" class="menu-link">Видео</a>
             <a href="" class="menu-link">Контакты</a>
         </div>
         {% with total_items=cart|length %}
-            {% if cart|length > 0 %}
-                <a href="{% url 'cart:cart_detail' %}">
-                    <div class="basket">
-                        <img src="{% static 'shop/images/basket.png' %}" alt="картинка корзины">
-                        <div class="basket-text">
-                            <p> Корзина</p>
-                        </div>
-                        <div class="basket-text">
-                            <p style="color: red;">{{ total_items }}</p>
-                        </div>
-                    </div>
-                </a>
-            {% else %}
-                <a href="">
-                    <div class="basket">
-                        <img src="{% static 'shop/images/basket.png' %}" alt="картинка корзины">
-                        <div class="basket-text">
-                            <p> Корзина</p>
-                        </div>
-                        <div class="basket-text">
-                            <p style="color: red;">0</p>
-                        </div>
-                    </div>
-                </a>
-            {% endif %}
+        {% if cart|length > 0 %}
+        <a href="{% url 'cart:cart_detail' %}">
+            <div class="basket">
+                <img src="{% static 'shop/images/basket.png' %}" alt="картинка корзины">
+                <div class="basket-text">
+                    <p> Корзина</p>
+                </div>
+                <div class="basket-text">
+                    <p style="color: red;">{{ total_items }}</p>
+                </div>
+            </div>
+        </a>
+        {% else %}
+        <a href="">
+            <div class="basket">
+                <img src="{% static 'shop/images/basket.png' %}" alt="картинка корзины">
+                <div class="basket-text">
+                    <p> Корзина</p>
+                </div>
+                <div class="basket-text">
+                    <p style="color: red;">0</p>
+                </div>
+            </div>
+        </a>
+        {% endif %}
         {% endwith %}
     </div>
 </div>
 
 <div class="background">
+    {% if messages %}
+
+    {% for message in messages %}
+        <p>{{ message }}</p>
+    {% endfor %}
+
+    {% endif %}
+
     {% block content %}
     {% endblock %}
 </div>

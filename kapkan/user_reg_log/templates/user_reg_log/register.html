@@ -1,0 +1,21 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}{{ title }} | {{ block.super }}{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/detail.css' %}?" ?>
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/cart.css' %}" ?>
+{% endblock %}
+
+{% block content %}
+<section class="content-detail">
+    <h1>Регестрация</h1>
+    <br>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="button-check">Регестрация</button>
+    </form>
+</section>
+{% endblock %}
