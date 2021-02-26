@@ -34,10 +34,14 @@
             </div>
         </div>
         <div class="second-menu">
-            <a href="{% url 'register' %}" class="menu-link">Регистрация</a>
-            <a href="{% url 'login' %}" class="menu-link">Авторизация</a>
             <a href="" class="menu-link">Видео</a>
             <a href="" class="menu-link">Контакты</a>
+            {% if request.user.is_authenticated %}
+            Добро пожаловать, {{ user.username }} | <a href="{% url 'logout' %}" class="menu-link">Выход</a>
+            {% else %}
+            <a href="{% url 'register' %}" class="menu-link">Регистрация</a>
+            <a href="{% url 'login' %}" class="menu-link">Авторизация</a>
+            {% endif %}
         </div>
         {% with total_items=cart|length %}
         {% if cart|length > 0 %}

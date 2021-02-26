@@ -1,0 +1,1 @@
+SECRET_KEY_CONFED = '$qbqm^=s20l&0ux2&f%t96bq63tac0e&$c5@*3vox9y6x205k0'

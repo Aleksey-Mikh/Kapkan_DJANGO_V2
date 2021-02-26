@@ -1,7 +1,7 @@
 {% extends 'shop/base.html' %}
 {% load static %}
 
-{% block title %}{{ title }} | {{ block.super }}{% endblock %}
+{% block title %}Регистрация | {{ block.super }}{% endblock %}
 
 {% block style %}
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/detail.css' %}?" ?>
@@ -10,12 +10,12 @@
 
 {% block content %}
 <section class="content-detail">
-    <h1>Регестрация</h1>
+    <h1>Регистрация</h1>
     <br>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="button-check">Регестрация</button>
+        <button type="submit" class="button-check">Регистрация</button>
     </form>
 </section>
 {% endblock %}
