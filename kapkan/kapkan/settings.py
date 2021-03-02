@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 
-from confedencial import SECRET_KEY_CONFED
+from confedencial import SECRET_KEY_CONFED, EMAIL_USER_PASSWORD_CONFED, EMAIL_USER_CONFED
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
+    'captcha',
     'shop.apps.ShopConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
@@ -138,3 +139,10 @@ CART_SESSION_ID = 'cart'
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = f'{EMAIL_USER_CONFED}'
+EMAIL_HOST_PASSWORD = f'{EMAIL_USER_PASSWORD_CONFED}'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False

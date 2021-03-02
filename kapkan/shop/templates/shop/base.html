@@ -26,7 +26,7 @@
                 {% get_categories as categories %}
                 {% for category in categories %}
                 <a href="{{ category.get_absolute_url }}">
-                    {{ category.name }} ({{ category.product.count }})
+                    {{ category.name }} ({{ category.cnt }})
                 </a>
                 {% endfor %}
                 <a href="">Видео</a>
@@ -77,7 +77,7 @@
     {% if messages %}
 
     {% for message in messages %}
-        <p>{{ message }}</p>
+    <p>{{ message }}</p>
     {% endfor %}
 
     {% endif %}
@@ -92,12 +92,12 @@
     <div class="footer-description">
         <p>123</p>
     </div>
-    <!--<div class="map">
-      <div id="yandexmap" style="width: ; height: 246px"> 
-
-      <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
-      <script src="js/shop.js"></script>
-    </div>-->
+    <div class="map">
+        <div id="yandexmap" style="width: ; height: 246px">
+            <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+            <script type="text/javascript" src="{% static 'shop/main.js' %}"></script>
+        </div>
+    </div>
 </footer>
 </body>
 </html>
