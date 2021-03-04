@@ -17,5 +17,6 @@
         {{ form.as_p }}
         <button type="submit" class="button-check">Авторизация</button>
     </form>
+    <a href="{% url 'password_reset' %}"><button class="button-check">Забыли пароль?</button></a>
 </section>
 {% endblock %}

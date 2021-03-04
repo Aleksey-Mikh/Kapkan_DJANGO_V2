@@ -65,7 +65,7 @@ ROOT_URLCONF = 'kapkan.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [str(BASE_DIR.joinpath('templates'))],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -146,3 +146,6 @@ EMAIL_HOST_USER = f'{EMAIL_USER_CONFED}'
 EMAIL_HOST_PASSWORD = f'{EMAIL_USER_PASSWORD_CONFED}'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+
+#EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = str(BASE_DIR . joinpath('sent_emails'))
