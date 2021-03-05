@@ -18,7 +18,7 @@ class Order(models.Model):
     last_name = models.CharField(max_length=50, verbose_name='Фамилия')
     email = models.EmailField(verbose_name='E-mail')
     address = models.CharField(max_length=250, verbose_name='Адрес')
-    city = models.CharField(max_length=100, verbose_name='Город')
+    phone = models.CharField(max_length=250, verbose_name='Номер телефона')
     created = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     updated = models.DateTimeField(auto_now=True, verbose_name='Дата измения')
     status = models.CharField(
