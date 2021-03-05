@@ -27,9 +27,9 @@ def order_create(request):
             result = '; \n'.join([f'{key.capitalize()}: x{value}' for key, value in dictionary.items()])
             cd = form.cleaned_data
             subject = 'Спасибо за заказ {}'.format(cd['first_name'])
-            message = '{} {}, вами был произведён заказ на сайте kapkan.bel\n' \
+            message = '{} {}, вами был произведён заказ на сайте kapkan.bel, номер заказа {}\n' \
                       'Состав заказа: {}.\nОбщей стоймостью: {} \nКомментарий к заказу: {}'.format(
-                cd['last_name'], cd['first_name'], result, cart.get_total_price(), cd['comment_for_order']
+                cd['last_name'], cd['first_name'], order.id, result, cart.get_total_price(), cd['comment_for_order']
             )
             send_mail(subject, message, f'{EMAIL_USER_CONFED}', [f'lehado67@gmail.com'], fail_silently=False)
             return render(request, 'orders/created.html',

@@ -1,0 +1,16 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %} Профиль {{ user.username }} | {{ block.super }}{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/detail.css' %}?" ?>
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/cart.css' %}" ?>
+{% endblock %}
+
+{% block content %}
+<section class="content-detail">
+    {{ user.username }}
+
+</section>
+{% endblock %}

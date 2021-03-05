@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
-from .forms import UserRegisterForm, UserLoginForm
 from django.contrib import messages
 from django.contrib.auth import login, logout
+from django.contrib.auth.models import User
+
+from .forms import UserRegisterForm, UserLoginForm
 
 
 def register_view(request):
@@ -34,3 +36,10 @@ def user_login_view(request):
 def user_logout_view(request):
     logout(request)
     return redirect('login')
+
+def user_profile(request, username):
+    user = User.objects.get(username=username)
+    context = {
+        "user": user
+    }
+    return render(request, 'user_reg_log/user_profile.html', context)
