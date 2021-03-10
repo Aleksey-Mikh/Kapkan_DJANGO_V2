@@ -15,8 +15,8 @@ class CustomUser(AbstractUser):
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
-    date_of_birth = models.DateField(blank=True, null=True)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, related_name='profile')
+    date_of_birth = models.DateField(blank=True, null=True, verbose_name='Дата рождения')
     orders = models.ManyToManyField(Order, verbose_name='Заказы покупателя')
 
     def __str__(self):

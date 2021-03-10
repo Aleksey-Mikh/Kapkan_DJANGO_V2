@@ -11,7 +11,8 @@ from user_reg_log.models import Profile
 def order_create(request):
     dictionary = {}
     cart = Cart(request)
-    customer = Profile.objects.get(user=request.user)
+    if request.user.is_authenticated:
+        customer = Profile.objects.get(user=request.user)
     if request.method == 'POST':
         form = OrderCreateForm(request.POST)
         if form.is_valid():
@@ -20,10 +21,12 @@ def order_create(request):
                 OrderItem.objects.create(order=order,
                                          product=item['product'],
                                          price=item['price'],
+                                         price_x_items=item['total_price'],
                                          quantity=item['quantity'],
                                          total_price=cart.get_total_price(), )
                 dictionary[str(item['product'])] = item['quantity']
-            customer.orders.add(order)
+            if request.user.is_authenticated:
+                customer.orders.add(order)
             # очистка корзины
             cart.clear()
             # отправка сообщения

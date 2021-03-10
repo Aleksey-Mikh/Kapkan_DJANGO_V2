@@ -52,6 +52,7 @@ class OrderItem(models.Model):
         on_delete=models.PROTECT,
         verbose_name='Товар')
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена', default=0)
+    price_x_items = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена', default=0)
     total_price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Общая цена', default=0)
     quantity = models.PositiveIntegerField(default=0, verbose_name='Кол-во')
 
