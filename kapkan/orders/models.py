@@ -16,6 +16,7 @@ class Order(models.Model):
 
     first_name = models.CharField(max_length=50, verbose_name='Имя')
     last_name = models.CharField(max_length=50, verbose_name='Фамилия')
+    middle_name = models.CharField(max_length=255, verbose_name="Отчество")
     email = models.EmailField(verbose_name='E-mail')
     address = models.CharField(max_length=250, verbose_name='Адрес')
     phone = models.CharField(max_length=250, verbose_name='Номер телефона')
