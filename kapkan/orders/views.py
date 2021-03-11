@@ -25,8 +25,8 @@ def order_create(request):
                                          quantity=item['quantity'],
                                          total_price=cart.get_total_price(), )
                 dictionary[str(item['product'])] = item['quantity']
-            if request.user.is_authenticated:
-                customer.orders.add(order)
+            # if request.user.is_authenticated:
+            #     customer.orders.add(order)
             # очистка корзины
             cart.clear()
             # отправка сообщения

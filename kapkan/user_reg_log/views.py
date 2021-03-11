@@ -43,7 +43,7 @@ def user_logout_view(request):
 @login_required
 def edit(request):
     customer = Profile.objects.get(user=request.user)
-    customer = customer.orders.all()
+    customer = customer.orders
     if request.method == 'POST':
         user_form = UserEditForm(instance=request.user, data=request.POST)
         profile_form = ProfileEditForm(instance=request.user.profile, data=request.POST, files=request.FILES)
