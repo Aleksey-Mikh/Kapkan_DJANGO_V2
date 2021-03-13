@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import OrderItem, Order
+from .models import OrderItem, Order, OrderTotalPrice
 from .forms import OrderCreateForm
 from django.core.mail import send_mail
 
@@ -17,13 +17,13 @@ def order_create(request):
         form = OrderCreateForm(request.POST)
         if form.is_valid():
             order = form.save()
+            OrderTotalPrice.objects.create(order_id=order)
             for item in cart:
                 OrderItem.objects.create(order=order,
                                          product=item['product'],
                                          price=item['price'],
                                          price_x_items=item['total_price'],
-                                         quantity=item['quantity'],
-                                         total_price=cart.get_total_price(), )
+                                         quantity=item['quantity'],)
                 dictionary[str(item['product'])] = item['quantity']
             if request.user.is_authenticated:
                 customer.orders.add(order)

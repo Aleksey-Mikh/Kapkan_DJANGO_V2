@@ -5,11 +5,6 @@ from .forms import UserEditForm, UserRegisterForm
 from .models import CustomUser, Profile
 
 
-class CustomProfile(admin.TabularInline):
-    model = Profile
-    extra = 0
-
-
 class CustomUserAdmin(UserAdmin):
     add_form = UserRegisterForm
     form = UserEditForm
@@ -23,8 +18,6 @@ class CustomUserAdmin(UserAdmin):
     )
     list_display = ('username', 'first_name', 'last_name', 'email', 'phone',)
     search_fields = ('title',)
-    inlines = [CustomProfile]
 
 
 admin.site.register(CustomUser, CustomUserAdmin)
-admin.site.register(Profile)

@@ -52,8 +52,7 @@ class OrderItem(models.Model):
         on_delete=models.PROTECT,
         verbose_name='Товар')
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена', default=0)
-    price_x_items = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена', default=0)
-    total_price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Общая цена', default=0)
+    price_x_items = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Количество х цена', default=0)
     quantity = models.PositiveIntegerField(default=0, verbose_name='Кол-во')
 
     def __str__(self):
@@ -63,12 +62,26 @@ class OrderItem(models.Model):
         return self.price * self.quantity
 
     def save(self, *args, **kwargs):
+        self.price = self.product.price
+        self.price_x_items = self.quantity * self.product.price
         super().save(*args, **kwargs)
-        order = Order.objects.get(pk=self.order.pk)
-        order_item_last = order.items.last()
-        if order_item_last.total_price == 0:
-            self.price = self.product.price
-            order_len = order.items.all()
-            order_item_base = order_len[len(order_len) - 2]
-            self.total_price = self.quantity * self.price + order_item_base.total_price
-            super().save(*args, **kwargs)
+        # вызов изменения общей цены
+        oder_total = self.order.order_total_price.all()
+        oder_total[0].save()
+
+    def delete(self, *args, **kwargs):
+        # вызов изменения общей цены
+        super().delete(*args, **kwargs)
+        oder_total = self.order.order_total_price.all()
+        oder_total[0].save()
+
+
+class OrderTotalPrice(models.Model):
+
+    order_id = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='order_total_price',)
+    total_price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Общая цена', default=0)
+
+    def save(self, *args, **kwargs):
+        order = Order.objects.get(pk=self.order_id.pk)
+        self.total_price = order.get_total_cost()
+        super().save(*args, **kwargs)
