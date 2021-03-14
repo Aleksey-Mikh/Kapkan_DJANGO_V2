@@ -25,8 +25,21 @@
 
     <div class="table-cart">
         <h2>Номер заказа: {{ order.pk }}</h2>
-        <h2>Коментарий: {{ order.comment_for_order }}</h2>
-        <h2>Статус: {{ order.status }}</h2>
+        <h2>Коментарий: {% if order.comment_for_order %}
+            {{ order.comment_for_order }}
+            {% else %}
+            Нет коменнтария к заказу
+            {% endif %}</h2>
+        <h2>Статус:
+            {% if "new" in order.status %}
+            Новый заказ
+            {% else %}
+            {% if "in_progress" in order.status %}
+            Заказ в обработке
+            {% else %}
+            Заказ готов
+            {% endif %}
+            {% endif %}</h2>
         <table>
             <tr>
                 <th>Фото</th>

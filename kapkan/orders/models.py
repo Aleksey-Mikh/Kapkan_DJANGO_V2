@@ -75,6 +75,10 @@ class OrderItem(models.Model):
         oder_total = self.order.order_total_price.all()
         oder_total[0].save()
 
+    class Meta:
+        verbose_name = 'Элемент заказа'
+        verbose_name_plural = 'Элементы заказа'
+
 
 class OrderTotalPrice(models.Model):
 
@@ -85,3 +89,9 @@ class OrderTotalPrice(models.Model):
         order = Order.objects.get(pk=self.order_id.pk)
         self.total_price = order.get_total_cost()
         super().save(*args, **kwargs)
+
+    def __str__(self):
+        return 'Общая цена заказа'
+
+    class Meta:
+        verbose_name = 'Общая цена заказа'
