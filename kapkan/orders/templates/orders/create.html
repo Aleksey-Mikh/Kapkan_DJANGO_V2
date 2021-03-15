@@ -4,14 +4,15 @@
 {% block title %}Checkout{% endblock %}
 
 {% block style %}
-<link rel="stylesheet" type="text/css" href="{% static 'shop/css/cart.css' %}" ?>
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/cart.css' %}?" ?>
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/form.css' %}?" ?>
 {% endblock style %}
 
 {% block content %}
 <section class="content-detail">
 
     <div class="table-cart">
-        <h2>Оформление заказа</h2>
+        <h1 class="h1-form">Оформление заказа</h1>
         <table>
             <tr>
                 <th>Фото</th>
@@ -34,11 +35,24 @@
         </table>
     </div>
 
-    <form action="." method="post" class="order-form">
-        {{ form.as_p }}
-        {% csrf_token %}
-        <p><input type="submit" value="Place order" class="button-check"></p>
-    </form>
+    <div class="div-form-60">
+        <form action="." method="post" class="order-form">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="div-form-label">{{ field.label_tag }}</div>
+            <p>{{ field }}</p>
+            {% if field.errors%}
+            {% for error in field.errors %}
+            <div class="alert">
+                {{error}}
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endfor %}
+            <br>
+            <p><input type="submit" value="Оформить заказ" class="button-check"></p>
+        </form>
+    </div>
 </section>
 {% endblock %}
 

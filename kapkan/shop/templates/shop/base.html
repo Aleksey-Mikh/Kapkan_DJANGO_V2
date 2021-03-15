@@ -13,6 +13,7 @@
 <header class="header">
     <div class="overlay">
         {% if request.user.is_authenticated %}
+        <img src="{% static 'shop/images/user_icon.png' %}" >
         <a href="{% url 'profile' %}">Личный кабинет</a>
         {% endif %}
     </div>
@@ -61,7 +62,7 @@
             </div>
         </a>
         {% else %}
-        <a href="">
+        <a href="{% url 'empty_cart' %}">
             <div class="basket">
                 <img src="{% static 'shop/images/basket.png' %}" alt="картинка корзины">
                 <div class="basket-text">

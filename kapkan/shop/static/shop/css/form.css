@@ -1,0 +1,46 @@
+.content-form {
+	width: 800px;
+
+	margin: auto;
+}
+
+.div-form {
+    margin: 40px;
+    padding: 20px;
+    background-color: #FFF;
+}
+
+.div-form-60 {
+    width: 60%;
+    padding: 20px;
+    background-color: #FFF;
+}
+
+.h1-form {
+    margin: 15px;
+    text-align: center;
+    font-weight: 600;
+    font-size:20px;
+}
+
+.my-field-form {
+	border:1px solid #808080;
+    border-radius:5px;
+    width:100%;
+    height: 40px;
+    margin: 10px 10px 10px 0;
+    font-size:18px;
+}
+
+.comment {
+	height: 160px;
+}
+
+.alert {
+    color:red;
+}
+
+.div-form-label {
+    width: 100%;
+    font-size: 16px;
+}

@@ -5,31 +5,56 @@
 
 {% block style %}
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/detail.css' %}?" ?>
-<link rel="stylesheet" type="text/css" href="{% static 'shop/css/cart.css' %}" ?>
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/cart.css' %}?" ?>
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/form.css' %}?" ?>
 {% endblock %}
 
 {% block content %}
 <section class="content-detail">
-    <h1>Личный кабинет</h1>
-    <p>Вы можете изменить ваши данные при помощи этой формы:</p>
-    <form action="." method="post" enctype="multipart/form-data">
-        {{ user_form.as_p }}
-        {{ profile_form.as_p }}
-        {% csrf_token %}
-        <p><input type="submit" value="Сохранить изменения"></p>
-    </form>
+    <h1 class="h1-form">Личный кабинет</h1>
+    <div class="div-form-60">
+        <p>Вы можете изменить ваши данные при помощи этой формы:</p>
+        <br>
+        <form action="." method="post" enctype="multipart/form-data">
+            {% for field in user_form %}
+            <div class="div-form-label">{{ field.label_tag }}</div>
+            <p>{{ field }}</p>
+            {% if field.errors%}
+            {% for error in field.errors %}
+            <div class="alert">
+                {{error}}
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endfor %}
+            {% for field in profile_form %}
+            <div class="div-form-label">{{ field.label_tag }}</div>
+            <p>{{ field }}</p>
+            {% if field.errors%}
+            {% for error in field.errors %}
+            <div class="alert">
+                {{error}}
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endfor %}
+            {% csrf_token %}
+            <p><input type="submit" class="button-check" value="Сохранить изменения"></p>
+        </form>
+    </div>
     <br>
     <br>
 
     {% for order in customer %}
 
     <div class="table-cart">
-        <h2>Номер заказа: {{ order.pk }}</h2>
+        <h2 class="h1-form">Номер заказа: {{ order.pk }}</h2>
         <h2>Коментарий: {% if order.comment_for_order %}
             {{ order.comment_for_order }}
             {% else %}
             Нет коменнтария к заказу
             {% endif %}</h2>
+        <br>
         <h2>Статус:
             {% if "new" in order.status %}
             Новый заказ
@@ -40,6 +65,7 @@
             Заказ готов
             {% endif %}
             {% endif %}</h2>
+        <br>
         <table>
             <tr>
                 <th>Фото</th>

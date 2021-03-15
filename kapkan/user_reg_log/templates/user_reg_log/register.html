@@ -4,18 +4,31 @@
 {% block title %}Регистрация | {{ block.super }}{% endblock %}
 
 {% block style %}
-<link rel="stylesheet" type="text/css" href="{% static 'shop/css/detail.css' %}?" ?>
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/cart.css' %}" ?>
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/form.css' %}?" ?>
 {% endblock %}
 
 {% block content %}
-<section class="content-detail">
-    <h1>Регистрация</h1>
-    <br>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="button-check">Регистрация</button>
-    </form>
+<section class="content-form">
+    <div class="div-form">
+        <h1 class="h1-form">Регистрация</h1>
+        <br>
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="div-form-label">{{ field.label_tag }}</div>
+            <p>{{ field }}</p>
+            {% if field.errors%}
+            {% for error in field.errors %}
+            <div class="alert">
+                {{error}}
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endfor %}
+            <br>
+            <button type="submit" class="button-check">Регистрация</button>
+        </form>
+    </div>
 </section>
 {% endblock %}

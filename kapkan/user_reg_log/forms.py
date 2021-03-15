@@ -10,6 +10,13 @@ class UserEditForm(forms.ModelForm):
     class Meta:
         model = CustomUser
         fields = ('first_name', 'last_name', 'middle_name', 'email', 'phone')
+        widgets = {
+            'first_name': forms.TextInput(attrs={'class': 'my-field-form'}),
+            'last_name': forms.TextInput(attrs={'class': 'my-field-form'}),
+            'middle_name': forms.TextInput(attrs={'class': 'my-field-form'}),
+            'email': forms.TextInput(attrs={'class': 'my-field-form'}),
+            'phone': forms.TextInput(attrs={'class': 'my-field-form'}),
+        }
 
 
 class ProfileEditForm(forms.ModelForm):
@@ -17,44 +24,51 @@ class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('date_of_birth', )
+        widgets = {
+            'date_of_birth': forms.TextInput(attrs={'class': 'my-field-form'}),
+        }
 
 
 class UserLoginForm(AuthenticationForm):
     username = forms.CharField(label='Имя пользователя', widget=forms.TextInput(
-        attrs={'class': 'form-control'}
+        attrs={'class': 'my-field-form'}
     ))
     password = forms.CharField(label='Пароль', widget=forms.PasswordInput(
-        attrs={'class': 'form-control'}
+        attrs={'class': 'my-field-form'}
     ))
     captcha = CaptchaField()
+
+    error_css_class = "error"
 
 
 class UserRegisterForm(UserCreationForm):
     username = forms.CharField(label='Имя пользователя', widget=forms.TextInput(
-        attrs={'class': 'form-control'}
+        attrs={'class': 'my-field-form'}
     ))
     first_name = forms.CharField(label='Имя', widget=forms.TextInput(
-        attrs={'class': 'form-control'}
+        attrs={'class': 'my-field-form'}
     ))
     last_name = forms.CharField(label='Фамилия', widget=forms.TextInput(
-        attrs={'class': 'form-control'}
+        attrs={'class': 'my-field-form'}
     ))
     middle_name = forms.CharField(label='Отчество', widget=forms.TextInput(
-        attrs={'class': 'form-control'}
+        attrs={'class': 'my-field-form'}
     ))
     email = forms.EmailField(label='E-mail', widget=forms.TextInput(
-        attrs={'class': 'form-control'}
+        attrs={'class': 'my-field-form'}
     ))
     phone = forms.CharField(label='Номер телефона', widget=forms.TextInput(
-        attrs={'class': 'form-control'}
+        attrs={'class': 'my-field-form'}
     ))
     password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput(
-        attrs={'class': 'form-control'}
+        attrs={'class': 'my-field-form'}
     ))
     password2 = forms.CharField(label='Подтверждение пароля', widget=forms.PasswordInput(
-        attrs={'class': 'form-control'}
+        attrs={'class': 'my-field-form'}
     ))
     captcha = CaptchaField()
+
+    error_css_class = "error"
 
     class Meta:
         model = CustomUser
@@ -68,3 +82,6 @@ class UserRegisterForm(UserCreationForm):
             'password1',
             'password2',
         )
+        # widgets = {
+        #     'captcha': forms.TextInput(attrs={'class': 'my-field-form'}),
+        # }
