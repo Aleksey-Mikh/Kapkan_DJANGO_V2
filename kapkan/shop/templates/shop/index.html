@@ -6,24 +6,15 @@
 {% block content %}
 
 <section class="content">
-
-    <div class="card">
-        <h2 class="card-title">Следовые капканы</h2>
-        <img src="{% static 'shop/images/следовой капкан.jpg' %}" class="card-image"
-             alt="картинка следового капкана">
-        <div class="card-visibility">
-            <h2>Пример</h2>
-            Пример блока, при наведении на который появляется другой блок.
-        </div>
-    </div>
-
+    {% for category in categories %}
     <div class="card no-right-margin">
-        <h2 class="card-title">Проходные капканы</h2>
-        <a href="">
-            <img src="{% static 'shop/images/проходные капканы.png' %}" class="card-image"
-                 alt="картинка следового капкана">
+        <h2 class="card-title">{{ category.name }}</h2>
+        <a href="{{ category.get_absolute_url }}">
+            <img src="{{ category.image.url }}" class="card-image"
+                 alt="картинка {{ category.name }}">
         </a>
     </div>
+    {% endfor %}
 
     <div class="card center-margin">
         <h2 class="card-title">Видео</h2>

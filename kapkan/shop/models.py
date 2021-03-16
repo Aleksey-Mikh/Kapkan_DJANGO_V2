@@ -27,6 +27,7 @@ class Product(models.Model):
 class Category(models.Model):
 
     name = models.CharField(max_length=255, verbose_name='Имя категории')
+    image = models.ImageField(upload_to='photos/%Y/%m', verbose_name='Изображение')
     slug = models.SlugField(unique=True)
 
     def get_absolute_url(self):

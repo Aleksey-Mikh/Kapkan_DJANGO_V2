@@ -16,6 +16,7 @@ body {
   background: #ffffff url("../images/задник body.jpg") no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  padding: 10px;
 }
 
 .header {
@@ -168,17 +169,13 @@ body {
   padding-top: 100px;
 }
 
-
 .card {
   width: 350px;
   height: 400px;
-  margin-bottom: 80px;
-  margin-right: 90px;
+  margin: 0 22.5px 70px;
   padding: 45px 45px 70px;
   display: inline-block;
   background-color: #FFF;
-
-
 }
 
 .card-category {

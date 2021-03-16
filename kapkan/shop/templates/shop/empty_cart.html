@@ -5,20 +5,18 @@
 {% block title %}Спасибо за заказ | {{ block.super }}{% endblock %}
 
 {% block style %}
-<link rel="stylesheet" type="text/css" href="{% static 'shop/css/cart.css' %}" ?>
-<link rel="stylesheet" type="text/css" href="{% static 'shop/css/form.css' %}" ?>
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/ordered.css' %}" ?>
 {% endblock %}
 
 {% block content %}
 <section class="content-detail">
-
-    <div class="div-empty-cart">
-        <p class="title-empty-cart">Ваша корзина пуста</p>
+    <div class="div-content">
+        <div class="div-empty-cart">
+            <p class="title-empty-cart">Ваша корзина пуста</p>
+        </div>
+        <div class="div-basket-empty">
+            <img src="{% static 'shop/images/basket_05.png' %}" alt="" class="image-basket-empty">
+        </div>
     </div>
-    <div class="div-basket-empty">
-        <img src="{% static 'shop/images/basket.png' %}" alt="" class="image-basket-empty">
-    </div>
-
 </section>
 {% endblock %}

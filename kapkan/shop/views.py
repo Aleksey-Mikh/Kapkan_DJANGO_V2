@@ -7,9 +7,9 @@ from cart.forms import CartAddProductForm
 
 class IndexView(ListView):
 
-    # потом добавить на главный экран вывод категорий в 'картах', а не статичные заглушки
     model = Category
     template_name = 'shop/index.html'
+    context_object_name = 'categories'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)

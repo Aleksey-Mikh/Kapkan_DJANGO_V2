@@ -1,10 +1,11 @@
 .content-detail {
-	width: 1200px;
+	width: 1000px;
 	margin: auto;
+
 }
 
 .div-content {
-	margin: 20px;
+	margin: 40px;
 	background-color: #FFF;
 }
 
@@ -32,5 +33,4 @@
 	width: 400px;
 	height: 250px;
 	object-fit: cover;
-	opacity: 0.4;
 }
