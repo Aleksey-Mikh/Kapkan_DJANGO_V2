@@ -13,9 +13,16 @@
 <header class="header">
     <div class="overlay">
         {% if request.user.is_authenticated %}
-        <img src="{% static 'shop/images/user_icon.png' %}" >
+        <!-- <img src="{% static 'shop/images/user_icon.png' %}"> -->
         <a href="{% url 'profile' %}">Личный кабинет</a>
         {% endif %}
+    </div>
+    <div class="search">
+        <h2>Search</h2>
+        <form action="{% url 'search' %}" method="get">
+            <input type="text" name="s" placeholder="Search...">
+            <input type="submit" value="Search">
+        </form>
     </div>
 </header>
 <div class="scroll">

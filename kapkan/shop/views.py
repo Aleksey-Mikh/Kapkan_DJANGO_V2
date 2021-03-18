@@ -53,3 +53,20 @@ class ProductDetailView(DetailView):
 
 def empty_cart(request):
     return render(request, 'shop/empty_cart.html')
+
+
+class SearchView(ListView):
+    template_name = 'shop/search.html'
+    context_object_name = 'products'
+    #paginate_by = 4
+
+    def get_queryset(self):
+        return Product.objects.filter(title__icontains=self.request.GET.get('s'))
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        cart_product_form = CartAddProductForm()
+        context['cart_product_form'] = cart_product_form
+        context['s'] = f"s={self.request.GET.get('s')}&"
+        context['search'] = self.request.GET.get('s')
+        return context

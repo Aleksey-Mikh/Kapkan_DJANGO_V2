@@ -1,0 +1,35 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}Поиск | {{ block.super }}{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/category.css' %}?" ?>
+{% endblock %}
+
+{% block content %}
+
+<section class="content-category">
+    <div class="result-search">
+        <p class="p-search-result">Результат поиска по запросу «{{ search }}»</p>
+    </div>
+    {% for product in products %}
+    <div class="card-category">
+        <a href="{{ product.get_absolute_url }}">
+            <img src="{{ product.image.url }}" class="card-image" alt="картинка {{ product.title }}">
+        </a>
+        <h2 class="card-title-category">{{ product.title }}</h2>
+        <div class="Price"><p>{{ product.price }} руб.</p></div>
+        <form action="{% url 'cart:cart_add' product.id %}" method="post">
+            {{ cart_product_form }}
+            {% csrf_token %}
+            <input type="submit" value="Добавить в корзину">
+        </form>
+    </div>
+    {% empty %}
+    <div class="div-search">
+        <p class="p-search">По вашему запросу ничего не найденно...</p>
+    </div>
+    {% endfor %}
+</section>
+{% endblock %}
