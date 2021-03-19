@@ -9,12 +9,15 @@ class IndexView(ListView):
 
     model = Category
     template_name = 'shop/index.html'
-    context_object_name = 'categories'
+    context_object_name = 'categori'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
         context['title'] = 'Главная'
         return context
+
+    def get_queryset(self):
+        return super(IndexView, self).get_queryset().order_by('name')
 
 
 class CategoryDetailView(ListView):

@@ -7,4 +7,5 @@ register = template.Library()
 
 @register.simple_tag()
 def get_categories():
-    return Category.objects.annotate(cnt=Count('product', filter=F('product__is_published'))).filter(cnt__gt=0)
+    return Category.objects.annotate(
+        cnt=Count('product', filter=F('product__is_published'))).filter(cnt__gt=0).order_by('name')

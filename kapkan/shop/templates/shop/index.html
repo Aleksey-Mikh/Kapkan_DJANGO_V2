@@ -6,8 +6,8 @@
 {% block content %}
 
 <section class="content">
-    {% for category in categories %}
-    <div class="card no-right-margin">
+    {% for category in categori %}
+    <div class="card">
         <h2 class="card-title">{{ category.name }}</h2>
         <a href="{{ category.get_absolute_url }}">
             <img src="{{ category.image.url }}" class="card-image"
