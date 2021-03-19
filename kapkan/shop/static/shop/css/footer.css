@@ -1,0 +1,123 @@
+.footer-under {
+  height: 40px;
+  background-color: #DCDCDC;
+}
+
+.footer {
+   
+}
+
+.footer-div-info {
+  height: 250px;
+  width: 100%;
+  background-color: #FFF;
+  font-size: 0;
+  border-bottom: 1px solid #D3D3D3;
+}
+
+.footer-div {
+  width: 20%;
+  height: 100%;
+  display: inline-block;
+  padding: 15px;
+  vertical-align: top;
+}
+
+.footer-image {
+  text-align: center;
+}
+
+.footer-image-logo {
+  height: 220px;
+  object-fit: contain;
+}
+
+.footer-shop-contact {
+  height: 50%;
+}
+
+.footer-icon {
+  height: 23px;
+  width: 22px;
+  object-fit: contain;
+}
+
+.wh-25 {
+  width: 25px;
+}
+
+.h-text {
+  font-size: 19px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.p-text {
+  color: #696969;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.ul-footer {
+  padding-left: 0;
+  list-style: none;
+}
+
+.li-footer {
+  margin-bottom: 5px;
+}
+
+.footer-a {
+  color: #696969;
+  font-size: 14px;
+  text-align: left;
+  text-decoration: none;
+  margin: 0 0 5px 0;
+}
+
+.footer-a:hover, .footer-a:active {
+  color: #4CAF50;
+}
+
+.map {
+  width: 804px;
+  height: 254px;
+  text-align: center;
+  border: 2px solid #00BFFF;
+  margin: 25px auto;
+}
+
+.footer-nav {
+  width: 100%;
+  height: 55px;
+  background-color: #4CAF50;
+}
+
+.nav-contain {
+  width: 80%;
+  padding: 10px 0 0 10px;
+  margin: auto;
+}
+
+.nav-info {
+  width: 600px;
+  color: #FFF;
+  font-size: 14px;
+  font-weight: 400;
+  display: inline-block;
+}
+
+.nav-div-image {
+  width: 200px;
+  height: 100%;
+  padding: 5px;
+  display: inline-block;
+}
+
+.nav-img {
+  width: 200px;
+  height: 100%;
+  object-fit: contain;
+}

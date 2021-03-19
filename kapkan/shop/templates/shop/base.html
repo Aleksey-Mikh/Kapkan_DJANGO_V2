@@ -6,23 +6,119 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image" href="https://code.s3.yandex.net/web-code/playlist-favicon.ico">
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'shop/css/main.css' %}" ?>
+    <link rel="stylesheet" type="text/css" href="{% static 'shop/css/header.css' %}?" ?>
+    <link rel="stylesheet" type="text/css" href="{% static 'shop/css/main.css' %}?" ?>
+    <link rel="stylesheet" type="text/css" href="{% static 'shop/css/footer.css' %}?" ?>
     {% block style %}{% endblock %}
 </head>
 <body>
 <header class="header">
-    <div class="overlay">
-        {% if request.user.is_authenticated %}
-        <!-- <img src="{% static 'shop/images/user_icon.png' %}"> -->
-        <a href="{% url 'profile' %}">Личный кабинет</a>
-        {% endif %}
+    <div class="top-line">
+        <div class="div-top-line">
+            <div class="top-line-text-line"></div>
+
+            <div class="top-line-icon-line">
+
+                <div class="top-line-dropdown">
+                    <img src="{% static 'shop/images/icon-email.png' %}" class="top-line-icon" alt="">
+                    <div class="top-line-dropdown-content">
+                        <p class="top-line-p">lehado67@gmail.com</p>
+                    </div>
+                </div>
+
+                <div class="top-line-dropdown">
+                    <img src="{% static 'shop/images/icon-clock.png' %}" class="top-line-icon" alt="">
+                    <div class="top-line-dropdown-content">
+                        <p class="top-line-p">Пн-Пт: 10:00-18:00</p>
+                        <p class="top-line-p">Сб-Вс: Выходной</p>
+                    </div>
+                </div>
+
+                <div class="top-line-dropdown">
+                    <img src="{% static 'shop/images/icon-geo-position.png' %}" class="top-line-icon" alt="">
+                    <div class="top-line-dropdown-content">
+                        <p class="top-line-p">г. Минск, пр. Пушкина 33-61</p>
+                    </div>
+                </div>
+
+                <div class="top-line-dropdown">
+                    <img src="{% static 'shop/images/icon-phone.png' %}" class="top-line-icon" alt="">
+                    <div class="top-line-dropdown-content">
+                        <p class="top-line-p">+375 29 383-45-45</p>
+                        <p class="top-line-p">+375 33 383-45-45</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
-    <div class="search">
-        <h2>Search</h2>
-        <form action="{% url 'search' %}" method="get">
-            <input type="text" name="s" placeholder="Search...">
-            <input type="submit" value="Search">
-        </form>
+
+    <div class="overlay">
+
+        <div class="logo">
+            <img src="{% static 'shop/images/LOGO.png' %}" class="logo-img" alt="logo">
+        </div>
+
+        <div class="div-header-middle">
+            <div class="div-header-info">
+
+                <div class="header-info">
+                    <h2>
+                        <img src="{% static 'shop/images/icon-geo-position.png' %}" class="footer-icon" alt=""> Адрес:
+                    </h2>
+                    <p>г. Минск, пр. Пушкина 33-61</p>
+                </div>
+
+                <div class="header-info">
+                    <h2>
+                        <img src="{% static 'shop/images/icon-phone.png' %}" class="footer-icon" alt=""> Контактные телефоны:
+                    </h2>
+                    <p>+375 29 383-45-45</p>
+                    <p>+375 33 383-45-45</p>
+                </div>
+
+                <div class="header-info">
+                    <h2>
+                        <img src="{% static 'shop/images/icon-clock.png' %}" class="footer-icon wh-25" alt=""> Время работы:
+                    </h2>
+                    <p>Пн-Пт: 10:00-18:00</p>
+                    <p>Сб-Вс: Выходной</p>
+                </div>
+
+            </div>
+
+            <div class="div-header-search">
+
+                <form action="{% url 'search' %}" method="get" class="my-field-form-search">
+                    <input type="text" name="s" placeholder="Поиск по каталогу">
+                    <button type="submit">
+                        <img src="{% static 'shop/images/лупа.png' %}" class='search-icon' alt=''>
+                    </button>
+                </form>
+
+            </div>
+        </div>
+
+        <div class="div-header-right">
+
+            <div class="div-header-over-profile"></div>
+
+            <div class="div-header-profile">
+                <div class="personal-account">
+                    {% if request.user.is_authenticated %}
+                    <a href="{% url 'profile' %}" class="personal-account-a">
+                        {% else %}
+                        <a href="{% url 'login' %}" class="personal-account-a">
+                            {% endif %}
+                            <div class="account-img-div">
+                                <img src="{% static 'shop/images/user_icon.png' %}" class="header-img">
+                            </div>
+                            <div class="account-p-div"><p>Личный кабинет</p></div>
+                        </a>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </header>
 <div class="scroll">
@@ -102,13 +198,85 @@
 <div class="footer-under">
 </div>
 <footer class="footer">
-    <div class="footer-description">
-        <p>123</p>
+
+    <div class="footer-div-info">
+
+        <div class="footer-div footer-image">
+            <img src="{% static 'shop/images/LOGO.png' %}" class="footer-image-logo" alt="logo">
+        </div>
+
+        <div class="footer-div">
+            <h2 class="h-text">
+                <img src="{% static 'shop/images/icon-info-book.png' %}" class="footer-icon wh-25" alt="">
+                О НАШЕМ МАГАЗИНЕ
+            </h2>
+            <p class="p-text">Уважаемые покупатели на нашем сайте Вы можете найти проходные и следовые капканы.</p>
+            <p class="p-text">Информация о компании: ООО "Лаки Стрим"</p>
+            <p class="p-text">УНП 192191978</p>
+        </div>
+
+        <div class="footer-div">
+            <h2 class="h-text">
+                <img src="{% static 'shop/images/icon-geo-position.png' %}" class="footer-icon" alt=""> АДРЕС
+            </h2>
+            <p class="p-text">г. Минск, пр. Пушкина 33-61</p>
+        </div>
+
+        <div class="footer-div">
+            <div class="footer-shop-contact">
+                <h2 class="h-text">
+                    <img src="{% static 'shop/images/icon-phone.png' %}" class="footer-icon" alt=""> КОНТАКТЫ
+                </h2>
+                <p class="p-text">+375 29 383-45-45</p>
+                <p class="p-text">+375 33 383-45-45</p>
+            </div>
+
+            <div>
+                <h2 class="h-text">
+                    <img src="{% static 'shop/images/icon-clock.png' %}" class="footer-icon wh-25" alt=""> ВРЕМЯ РАБОТЫ
+                </h2>
+                <p class="p-text">Пн-Пт: 10:00-18:00</p>
+                <p class="p-text">Сб-Вс: Выходной</p>
+            </div>
+        </div>
+
+        <div class="footer-div">
+            <h2 class="h-text">
+                <img src="{% static 'shop/images/icon_home.png' %}" class="footer-icon" alt=""> РАЗДЕЛЫ САЙТА
+            </h2>
+            <ul class="ul-footer">
+                <li class="li-footer">
+                    <a href="" class="footer-a">Личный кабинет</a>
+                </li>
+                <li class="li-footer">
+                    <a href="" class="footer-a">О магазине</a>
+                </li>
+                <li class="li-footer">
+                    <a href="" class="footer-a">Контакты</a>
+                </li>
+                <li class="li-footer">
+                    <a href="" class="footer-a">Главная</a>
+                </li>
+                <li class="li-footer">
+                    <a href="" class="footer-a">Видео</a>
+                </li>
+            </ul>
+        </div>
+
     </div>
     <div class="map">
-        <div id="yandexmap" style="width: ; height: 246px">
-            <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
-            <script type="text/javascript" src="{% static 'shop/main.js' %}"></script>
+        <iframe src="https://www.google.com/maps/d/embed?mid=1tyPkEGZxcK1j0rkcP6pGtoKNQddfnCzh" width="800"
+                height="250"></iframe>
+    </div>
+    <div class="footer-nav">
+        <div class="nav-contain">
+            <div class="nav-info">
+                <p>© 2021, ООО "Лаки Стрим" зарегистрировано 13.01.2014г Минским Горисполкомом</p>
+                <p>Зарегистрирован в торговом реестре РБ 08.04.2015 № 211130</p>
+            </div>
+            <div class="nav-div-image">
+                <img src="{% static 'shop/images/pay-system.png' %}" class="nav-image" alt="">
+            </div>
         </div>
     </div>
 </footer>
