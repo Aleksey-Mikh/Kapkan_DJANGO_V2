@@ -9,6 +9,13 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ('is_published', 'category')
     prepopulated_fields = {'slug': ('title',)}
 
+    fieldsets = (
+        (None, {'fields': ('category', 'title', 'slug', 'image', 'description', 'price', 'is_published', 'status')}),
+        (('Ярлыки'), {
+            'fields': ('is_new', 'is_recommend',),
+        }),
+    )
+
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name',)

@@ -1,8 +1,14 @@
+from datetime import datetime, timezone
+
+from django.db.models import Count, F
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView
 
 from .models import Product, Category
 from cart.forms import CartAddProductForm
+
+
+TIME_IS_NEW = 20
 
 
 class IndexView(ListView):
@@ -17,7 +23,8 @@ class IndexView(ListView):
         return context
 
     def get_queryset(self):
-        return super(IndexView, self).get_queryset().order_by('name')
+        return super(IndexView, self).get_queryset().annotate(cnt=Count(
+            'product', filter=F('product__is_published'))).filter(cnt__gt=0).order_by('name')
 
 
 class CategoryDetailView(ListView):
@@ -29,6 +36,17 @@ class CategoryDetailView(ListView):
     paginate_by = 9
 
     def get_queryset(self):
+        products = Product.objects.all()
+        time_now = datetime.now(timezone.utc)
+        for product in products:
+            time_then = product.created
+            time_delta = time_now - time_then
+            if (time_delta.total_seconds() // 3600) < TIME_IS_NEW:
+                product.is_new = True
+                product.save()
+            else:
+                product.is_new = False
+                product.save()
         category = get_object_or_404(Category, slug=self.kwargs['slug'])
         return category.product.filter(is_published=True).select_related('category')
 
