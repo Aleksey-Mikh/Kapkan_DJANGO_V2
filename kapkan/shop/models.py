@@ -25,8 +25,9 @@ class Product(models.Model):
         max_length=100, verbose_name='Статус заказа', choices=STATUS_CHOICES, default=STATUS_AVAILABLE
     )
     created = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
-    is_new = models.BooleanField(default=True, verbose_name='Новый товар или нет')
-    is_recommend = models.BooleanField(default=False, verbose_name='Рекомендую')
+    is_new = models.BooleanField(default=True, verbose_name='NEW')
+    is_hit = models.BooleanField(default=False, verbose_name='ХИТ')
+    is_recommend = models.BooleanField(default=False, verbose_name='Рекомендованно')
 
     def get_absolute_url(self):
         return reverse('product_detail', kwargs={'slug': self.slug})
@@ -38,6 +39,27 @@ class Product(models.Model):
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
         ordering = ['title']
+
+
+class RecommendProduct(models.Model):
+
+    main_product = models.ForeignKey(
+        Product,
+        related_name='main_product',
+        on_delete=models.CASCADE,
+        verbose_name='Основной товар')
+    recommend_product = models.ForeignKey(
+        Product,
+        related_name='recommend_product',
+        on_delete=models.PROTECT,
+        verbose_name='Рекомендованный товар')
+
+    def __str__(self):
+        return 'Рекомендованный товар'
+
+    class Meta:
+        verbose_name = 'Рекомендованный товар'
+        verbose_name_plural = 'Рекомендованные товары'
 
 
 class Category(models.Model):

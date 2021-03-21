@@ -1,5 +1,15 @@
 from django.contrib import admin
-from .models import Product, Category
+from .models import Product, Category, RecommendProduct
+
+
+class RecommendProductItemInline(admin.TabularInline):
+    model = RecommendProduct
+    fieldsets = (
+        (None, {'fields': ('recommend_product',)}),
+    )
+    raw_id_fields = ['recommend_product']
+    extra = 0
+    fk_name = "main_product"
 
 
 class ProductAdmin(admin.ModelAdmin):
@@ -12,9 +22,10 @@ class ProductAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {'fields': ('category', 'title', 'slug', 'image', 'description', 'price', 'is_published', 'status')}),
         (('Ярлыки'), {
-            'fields': ('is_new', 'is_recommend',),
+            'fields': ('is_new', 'is_hit', 'is_recommend'),
         }),
     )
+    inlines = [RecommendProductItemInline, ]
 
 
 class CategoryAdmin(admin.ModelAdmin):

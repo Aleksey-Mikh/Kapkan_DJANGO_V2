@@ -8,6 +8,7 @@ from .models import Product, Category
 from cart.forms import CartAddProductForm
 
 
+# Время (в часах) сколько товар будет стоять с ярлыком NEW
 TIME_IS_NEW = 20
 
 
@@ -82,6 +83,17 @@ class SearchView(ListView):
     #paginate_by = 4
 
     def get_queryset(self):
+        products = Product.objects.all()
+        time_now = datetime.now(timezone.utc)
+        for product in products:
+            time_then = product.created
+            time_delta = time_now - time_then
+            if (time_delta.total_seconds() // 3600) < TIME_IS_NEW:
+                product.is_new = True
+                product.save()
+            else:
+                product.is_new = False
+                product.save()
         return Product.objects.filter(title__icontains=self.request.GET.get('s'))
 
     def get_context_data(self, *, object_list=None, **kwargs):

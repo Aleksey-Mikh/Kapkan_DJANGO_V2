@@ -5,6 +5,7 @@
 
 {% block style %}
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/detail.css' %}?" ?>
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/category.css' %}?" ?>
 {% endblock %}
 
 {% block content %}
@@ -32,5 +33,32 @@
             <input type="submit" value="Add to cart">
         </form>
     </div>
-</section>
+    </section>
+    {% if product.main_product.all %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h2 class="card-title-category">C этим товаром также покупают:</h2>
+    <section class="content-category">
+        {% for product_rec in product.main_product.all %}
+        <div class="card-category">
+            <a href="{{ product_rec.recommend_product.get_absolute_url }}">
+                <img src="{{ product_rec.recommend_product.image.url }}"
+                     class="card-image" alt="картинка {{ product_rec.recommend_product.title }}">
+            </a>
+            <h2 class="card-title-category">{{ product_rec.recommend_product.title }}</h2>
+            <div class="Price"><p>{{ product_rec.recommend_product.price }} руб.</p></div>
+            <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                {{ cart_product_form }}
+                {% csrf_token %}
+                <input type="submit" value="Добавить в корзину">
+            </form>
+        </div>
+        {% endfor %}
+    </section>
+    {% endif %}
+
 {% endblock %}
