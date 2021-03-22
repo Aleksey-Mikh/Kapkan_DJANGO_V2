@@ -26,12 +26,9 @@
   }
 
 .position-sticker {
-    position: absolute;
-    z-index: 1;
     width: 38px;
     height: 38px;
     vertical-align: top;
-    text-align: left;
 }
 
 .stickers-top {
