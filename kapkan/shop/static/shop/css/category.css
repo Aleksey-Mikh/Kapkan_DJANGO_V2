@@ -26,9 +26,12 @@
   }
 
 .position-sticker {
+    position: absolute;
+    z-index: 1;
     width: 38px;
     height: 38px;
     vertical-align: top;
+    text-align: left;
 }
 
 .stickers-top {
@@ -112,5 +115,16 @@
   font-size: 22px;
   font-weight: 700;
   color: #FFF;
+}
+
+.center {
+    text-align: center;
+}
+
+.carousel {
+    width: 1024px;
+    height: 410px;
+    margin: auto;
+    margin-bottom: 160px;
 }
 

@@ -22,6 +22,8 @@ class IndexView(ListView):
         context = super(IndexView, self).get_context_data(**kwargs)
         context['products'] = Product.objects.filter(is_recommend=True)
         context['title'] = 'Главная'
+        cart_product_form = CartAddProductForm()
+        context['cart_product_form'] = cart_product_form
         return context
 
     def get_queryset(self):

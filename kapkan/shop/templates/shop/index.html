@@ -5,7 +5,8 @@
 
 {% block style %}
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/category.css' %}" ?>
-<link rel="stylesheet" type="text/css" href="{% static 'shop/css/carousel.css' %}" ?>
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/owl.carousel.min.css' %}?" ?>
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/owl.theme.default.min.css' %}?" ?>
 {% endblock %}
 
 {% block content %}
@@ -29,43 +30,43 @@
     </div>
 
 </section>
+
 {% if products %}
-<div class="ant-carousel" id="first">
-    <div class="ant-carousel-hider">
-        <ul class="ant-carousel-list">
-            {% for product in products %}
-            <li class="ant-carousel-element">
-                <div class="card-category-recommend">
-                    <div class="card-div">
-                        <div class="position-sticker">
-                            <div class="stickers-top"><span class="diamont_st">хит</span></div>
-                        </div>
-                        <div class="card-div-image">
-                            <a href="{{ product.get_absolute_url }}">
-                                <img src="{{ product.image.url }}" class="card-image"
-                                     alt="картинка {{ product.title }}">
-                            </a>
-                        </div>
-                        <h2 class="card-title-category">{{ product.title }}</h2>
-                        <div class="Price"><p>{{ product.price }} руб.</p></div>
-                    </div>
-                </div>
-            </li>
-            {% endfor %}
-        </ul>
+<div class="carousel">
+    <div class="result-search">
+        <p class="p-search-result center">Рекомендуемые товары</p>
     </div>
-    <div class="ant-carousel-arrow-left"></div>
-    <div class="ant-carousel-arrow-right"></div>
-    <div class="ant-carousel-dots"></div>
+    <div class="owl-carousel owl-theme owl-loaded owl-nav">
+        {% for product in products %}
+        <div class="card-category">
+            <div class="card-div">
+                <div class="position-sticker">
+                    <div class="stickers-top"><span class="diamont_st">хит</span></div>
+                </div>
+                <div class="card-div-image">
+                    <a href="{{ product.get_absolute_url }}">
+                        <img src="{{ product.image.url }}" class="card-image"
+                             alt="картинка {{ product.title }}">
+                    </a>
+                </div>
+                <h2 class="card-title-category">{{ product.title }}</h2>
+                <div class="Price"><p>{{ product.price }} руб.</p></div>
+                <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                    {{ cart_product_form }}
+                    {% csrf_token %}
+                    <input type="submit" value="Добавить в корзину">
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 {% endif %}
 
-<br>
-<br>
 
 {% endblock %}
 
 {% block js %}
-<script src="{% static 'shop/js/ant-carousel.js' %}"></script>
-<script>new Ant("first"); new Ant("second");</script>
+<script src="{% static 'shop/js/owl.carousel.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'shop/js/script.js' %}" type="text/javascript"></script>
 {% endblock %}
