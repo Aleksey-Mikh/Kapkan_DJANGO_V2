@@ -273,6 +273,34 @@ body {
   margin: auto;
 }
 
+.pagination {
+  height: 30px;
+  width: 60%;
+  margin: 25px auto;
+  font-size: 0;
+}
+
+.pagination-div {
+  height: 100%;
+  text-align: center;
+  margin: auto;s
+}
+
+.pagination-item {
+  height: 30px;
+  width: 30px;
+  border: 1px solid #C0C0C0;
+  display: inline-block;
+}
+
+.pagination-item a {
+  font-size: 14px;
+  color: #4169E1;
+  padding-top: 6px;
+  text-align: center;
+  text-decoration: none;
+}
+
 @media screen and (min-width: 900px) and (max-width: 1024px) {
 
 }

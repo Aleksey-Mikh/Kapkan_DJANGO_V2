@@ -37,7 +37,7 @@ class CategoryDetailView(ListView):
     template_name = 'shop/category_product.html'
     context_object_name = 'products'
     allow_empty = False
-    paginate_by = 9
+    paginate_by = 1
 
     def get_queryset(self):
         products = Product.objects.all()
@@ -83,7 +83,7 @@ def empty_cart(request):
 class SearchView(ListView):
     template_name = 'shop/search.html'
     context_object_name = 'products'
-    #paginate_by = 4
+    paginate_by = 4
 
     def get_queryset(self):
         products = Product.objects.all()

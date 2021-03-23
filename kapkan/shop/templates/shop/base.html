@@ -7,9 +7,9 @@
     <link rel="icon" type="image" href="https://code.s3.yandex.net/web-code/playlist-favicon.ico">
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'shop/css/header.css' %}?" ?>
-    <link rel="stylesheet" type="text/css" href="{% static 'shop/css/main.css' %}" >
+    <link rel="stylesheet" type="text/css" href="{% static 'shop/css/main.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'shop/css/footer.css' %}?" ?>
-    <link rel="stylesheet" media="screen,projection" href="{% static 'shop/css/ui.totop.css' %}?" />
+    <link rel="stylesheet" media="screen,projection" href="{% static 'shop/css/ui.totop.css' %}?"/>
     {% block style %}{% endblock %}
 </head>
 <body>
@@ -198,6 +198,16 @@
 
 </div>
 
+<div class="pagination">
+    <div class="pagination-div">
+        {% for p in page_obj.paginator.page_range %}
+        <div class="pagination-item">
+            <a href="?page={{ p }}">{{ p }}</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
 <div class="footer-under">
 </div>
 <footer class="footer">
@@ -251,9 +261,9 @@
                 <li class="li-footer">
                     {% if request.user.is_authenticated %}
                     <a href="{% url 'profile' %}" class="footer-a">Личный кабинет</a>
-                        {% else %}
-                        <a href="{% url 'login' %}" class="footer-a">Личный кабинет</a>
-                            {% endif %}
+                    {% else %}
+                    <a href="{% url 'login' %}" class="footer-a">Личный кабинет</a>
+                    {% endif %}
                 </li>
                 <li class="li-footer">
                     <a href="" class="footer-a">О магазине</a>
@@ -310,6 +320,7 @@
   $().UItoTop({ easingType: 'easeOutQuart' });
 
   });
+
 </script>
 </body>
 </html>
