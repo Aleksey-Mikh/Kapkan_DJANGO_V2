@@ -35,10 +35,10 @@
             <h2 class="card-title-category">{{ product.title }}</h2>
             <div class="Price"><p>{{ product.price }} руб.</p></div>
             <form action="{% url 'cart:cart_add' product.id %}" method="post">
-            {{ cart_product_form }}
-            {% csrf_token %}
-            <input type="submit" value="Добавить в корзину">
-        </form>
+                {{ cart_product_form }}
+                {% csrf_token %}
+                <input type="submit" value="Добавить в корзину">
+            </form>
         </div>
     </div>
     {% empty %}
@@ -47,4 +47,35 @@
     </div>
     {% endfor %}
 </section>
+
+{% endblock %}
+
+{% block pagination %}
+
+<div class="pagination">
+    <ul class="pagination-div">
+        {% if page_obj.has_previous %}
+        <a href="?{{ s }}page={{ page_obj.previous_page_number }}" class="active" tabindex="-1">
+            <li class="pagination-item active previous">Предыдущая</li>
+        </a>
+        {% endif %}
+        {% for p in page_obj.paginator.page_range %}
+        {% if page_obj.number == p %}
+        <a href="?{{ s }}page={{ p }}" class="active">
+            <li class="pagination-item active">{{ p }}</li>
+        </a>
+        {% elif p > page_obj.number|add:-3 and p < page_obj.number|add:3 %}
+        <a href="?{{ s }}page={{ p }}">
+            <li class="pagination-item">{{ p }}</li>
+        </a>
+        {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+        <a href="?{{ s }}page={{ page_obj.next_page_number }}" class="active">
+            <li class="pagination-item active next">Следующая</li>
+        </a>
+        {% endif %}
+    </ul>
+</div>
+
 {% endblock %}

@@ -1,6 +1,6 @@
 from datetime import datetime, timezone
 
-from django.db.models import Count, F
+from django.db.models import Count, F, Q
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView
 
@@ -40,18 +40,19 @@ class CategoryDetailView(ListView):
     paginate_by = 1
 
     def get_queryset(self):
-        products = Product.objects.all()
-        time_now = datetime.now(timezone.utc)
-        for product in products:
-            time_then = product.created
-            time_delta = time_now - time_then
-            if (time_delta.total_seconds() // 3600) < TIME_IS_NEW:
-                product.is_new = True
-                product.save()
-            else:
-                product.is_new = False
-                product.save()
         category = get_object_or_404(Category, slug=self.kwargs['slug'])
+        products = Product.objects.filter(Q(is_hit=True) & Q(category=category))
+        if products:
+            time_now = datetime.now(timezone.utc)
+            for product in products:
+                time_then = product.created
+                time_delta = time_now - time_then
+                if (time_delta.total_seconds() // 3600) < TIME_IS_NEW:
+                    product.is_new = True
+                    product.save()
+                else:
+                    product.is_new = False
+                    product.save()
         return category.product.filter(is_published=True).select_related('category')
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -83,20 +84,21 @@ def empty_cart(request):
 class SearchView(ListView):
     template_name = 'shop/search.html'
     context_object_name = 'products'
-    paginate_by = 4
+    paginate_by = 1
 
     def get_queryset(self):
-        products = Product.objects.all()
-        time_now = datetime.now(timezone.utc)
-        for product in products:
-            time_then = product.created
-            time_delta = time_now - time_then
-            if (time_delta.total_seconds() // 3600) < TIME_IS_NEW:
-                product.is_new = True
-                product.save()
-            else:
-                product.is_new = False
-                product.save()
+        products = Product.objects.filter(Q(is_hit=True) & Q(title__icontains=self.request.GET.get('s')))
+        if products:
+            time_now = datetime.now(timezone.utc)
+            for product in products:
+                time_then = product.created
+                time_delta = time_now - time_then
+                if (time_delta.total_seconds() // 3600) < TIME_IS_NEW:
+                    product.is_new = True
+                    product.save()
+                else:
+                    product.is_new = False
+                    product.save()
         return Product.objects.filter(title__icontains=self.request.GET.get('s'))
 
     def get_context_data(self, *, object_list=None, **kwargs):

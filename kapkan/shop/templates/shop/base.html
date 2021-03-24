@@ -195,17 +195,33 @@
 
     {% block content %}
     {% endblock %}
-
-</div>
-
-<div class="pagination">
-    <div class="pagination-div">
-        {% for p in page_obj.paginator.page_range %}
-        <div class="pagination-item">
-            <a href="?page={{ p }}">{{ p }}</a>
-        </div>
-        {% endfor %}
+    {% block pagination %}
+    <div class="pagination">
+        <ul class="pagination-div">
+            {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}" class="active" tabindex="-1">
+                <li class="pagination-item active previous">Предыдущая</li>
+            </a>
+            {% endif %}
+            {% for p in page_obj.paginator.page_range %}
+            {% if page_obj.number == p %}
+            <a href="?page={{ p }}" class="active">
+                <li class="pagination-item active">{{ p }}</li>
+            </a>
+            {% elif p > page_obj.number|add:-3 and p < page_obj.number|add:3 %}
+            <a href="?page={{ p }}">
+                <li class="pagination-item">{{ p }}</li>
+            </a>
+            {% endif %}
+            {% endfor %}
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="active">
+                <li class="pagination-item active next">Следующая</li>
+            </a>
+            {% endif %}
+        </ul>
     </div>
+    {% endblock %}
 </div>
 
 <div class="footer-under">
@@ -320,6 +336,12 @@
   $().UItoTop({ easingType: 'easeOutQuart' });
 
   });
+
+
+
+
+
+
 
 </script>
 </body>
