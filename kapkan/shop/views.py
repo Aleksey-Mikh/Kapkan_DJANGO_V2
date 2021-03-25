@@ -37,20 +37,17 @@ class CategoryDetailView(ListView):
     template_name = 'shop/category_product.html'
     context_object_name = 'products'
     allow_empty = False
-    paginate_by = 1
+    paginate_by = 9
 
     def get_queryset(self):
         category = get_object_or_404(Category, slug=self.kwargs['slug'])
-        products = Product.objects.filter(Q(is_hit=True) & Q(category=category))
+        products = Product.objects.filter(Q(is_new=True) & Q(category=category))
         if products:
             time_now = datetime.now(timezone.utc)
             for product in products:
                 time_then = product.created
                 time_delta = time_now - time_then
-                if (time_delta.total_seconds() // 3600) < TIME_IS_NEW:
-                    product.is_new = True
-                    product.save()
-                else:
+                if (time_delta.total_seconds() // 3600) > TIME_IS_NEW:
                     product.is_new = False
                     product.save()
         return category.product.filter(is_published=True).select_related('category')
@@ -84,19 +81,16 @@ def empty_cart(request):
 class SearchView(ListView):
     template_name = 'shop/search.html'
     context_object_name = 'products'
-    paginate_by = 1
+    paginate_by = 9
 
     def get_queryset(self):
-        products = Product.objects.filter(Q(is_hit=True) & Q(title__icontains=self.request.GET.get('s')))
+        products = Product.objects.filter(Q(is_new=True) & Q(title__icontains=self.request.GET.get('s')))
         if products:
             time_now = datetime.now(timezone.utc)
             for product in products:
                 time_then = product.created
                 time_delta = time_now - time_then
-                if (time_delta.total_seconds() // 3600) < TIME_IS_NEW:
-                    product.is_new = True
-                    product.save()
-                else:
+                if (time_delta.total_seconds() // 3600) > TIME_IS_NEW:
                     product.is_new = False
                     product.save()
         return Product.objects.filter(title__icontains=self.request.GET.get('s'))

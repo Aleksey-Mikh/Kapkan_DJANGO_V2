@@ -7,7 +7,7 @@
     <link rel="icon" type="image" href="https://code.s3.yandex.net/web-code/playlist-favicon.ico">
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'shop/css/header.css' %}?" ?>
-    <link rel="stylesheet" type="text/css" href="{% static 'shop/css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'shop/css/main.css' %}?">
     <link rel="stylesheet" type="text/css" href="{% static 'shop/css/footer.css' %}?" ?>
     <link rel="stylesheet" media="screen,projection" href="{% static 'shop/css/ui.totop.css' %}?"/>
     {% block style %}{% endblock %}
@@ -199,14 +199,14 @@
     <div class="pagination">
         <ul class="pagination-div">
             {% if page_obj.has_previous %}
-            <a href="?page={{ page_obj.previous_page_number }}" class="active" tabindex="-1">
-                <li class="pagination-item active previous">Предыдущая</li>
+            <a href="?page={{ page_obj.previous_page_number }}" class="active-pagination" tabindex="-1">
+                <li class="pagination-item active-pagination previous">Предыдущая</li>
             </a>
             {% endif %}
             {% for p in page_obj.paginator.page_range %}
             {% if page_obj.number == p %}
-            <a href="?page={{ p }}" class="active">
-                <li class="pagination-item active">{{ p }}</li>
+            <a href="?page={{ p }}" class="active-pagination">
+                <li class="pagination-item active-pagination">{{ p }}</li>
             </a>
             {% elif p > page_obj.number|add:-3 and p < page_obj.number|add:3 %}
             <a href="?page={{ p }}">
@@ -215,8 +215,8 @@
             {% endif %}
             {% endfor %}
             {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}" class="active">
-                <li class="pagination-item active next">Следующая</li>
+            <a href="?page={{ page_obj.next_page_number }}" class="active-pagination">
+                <li class="pagination-item active-pagination next">Следующая</li>
             </a>
             {% endif %}
         </ul>
