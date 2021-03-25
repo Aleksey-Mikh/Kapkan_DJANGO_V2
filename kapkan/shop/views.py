@@ -6,6 +6,7 @@ from django.views.generic import ListView, DetailView
 
 from .models import Product, Category
 from cart.forms import CartAddProductForm
+from .forms import ProductFilterForm
 
 
 # Время (в часах) сколько товар будет стоять с ярлыком NEW
@@ -102,3 +103,24 @@ class SearchView(ListView):
         context['s'] = f"s={self.request.GET.get('s')}&"
         context['search'] = self.request.GET.get('s')
         return context
+
+
+def filter_product_list(request):
+    products = Product.objects.all()
+    form = ProductFilterForm(request.GET)
+    if form.is_valid():
+        if form.cleaned_data['min_price']:
+            products = products.filter(price__gte=form.cleaned_data['min_price'])
+        if form.cleaned_data['max_price']:
+            products = products.filter(price__lte=form.cleaned_data['max_price'])
+        if form.cleaned_data['is_new']:
+            products = products.filter(is_new=form.cleaned_data['is_new'])
+        if form.cleaned_data['is_hit']:
+            products = products.filter(is_hit=form.cleaned_data['is_hit'])
+        if form.cleaned_data['is_recommend']:
+            products = products.filter(is_recommend=form.cleaned_data['is_recommend'])
+    context = {
+        'products': products,
+        'form': form,
+    }
+    return render(request, 'shop/filter.html', context)

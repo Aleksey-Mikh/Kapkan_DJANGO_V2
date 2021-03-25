@@ -5,14 +5,30 @@
 
 {% block style %}
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/category.css' %}" ?>
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/form.css' %}" ?>
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/cart.css' %}" ?>
 {% endblock %}
 
 {% block content %}
 
 <section class="content-category">
-    <div class="result-search">
-        <p class="p-search-result">Результат поиска по запросу «{{ search }}»</p>
-    </div>
+    <form action="" method="get">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="div-form-label">{{ field.label_tag }}</div>
+        <p>{{ field }}</p>
+        {% if field.errors%}
+        {% for error in field.errors %}
+        <div class="alert">
+            {{error}}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endfor %}
+        <br>
+        <p><input type="submit" value="Перейти к товарам" class="button-check"></p>
+    </form>
+
     {% for product in products %}
     <div class="card-category">
         <div class="card-div">
@@ -46,6 +62,7 @@
         <p class="p-search">По вашему запросу ничего не найденно...</p>
     </div>
     {% endfor %}
+
 </section>
 
 {% endblock %}
@@ -55,14 +72,14 @@
 <div class="pagination">
     <ul class="pagination-div">
         {% if page_obj.has_previous %}
-        <a href="?{{ s }}page={{ page_obj.previous_page_number }}" class="active-pagination" tabindex="-1">
-            <li class="pagination-item active-pagination previous">Предыдущая</li>
+        <a href="?{{ s }}page={{ page_obj.previous_page_number }}" class="active" tabindex="-1">
+            <li class="pagination-item active previous">Предыдущая</li>
         </a>
         {% endif %}
         {% for p in page_obj.paginator.page_range %}
         {% if page_obj.number == p %}
-        <a href="?{{ s }}page={{ p }}" class="active-pagination">
-            <li class="pagination-item active-pagination">{{ p }}</li>
+        <a href="?{{ s }}page={{ p }}" class="active">
+            <li class="pagination-item active">{{ p }}</li>
         </a>
         {% elif p > page_obj.number|add:-3 and p < page_obj.number|add:3 %}
         <a href="?{{ s }}page={{ p }}">
@@ -71,8 +88,8 @@
         {% endif %}
         {% endfor %}
         {% if page_obj.has_next %}
-        <a href="?{{ s }}page={{ page_obj.next_page_number }}" class="active-pagination">
-            <li class="pagination-item active-pagination next">Следующая</li>
+        <a href="?{{ s }}page={{ page_obj.next_page_number }}" class="active">
+            <li class="pagination-item active next">Следующая</li>
         </a>
         {% endif %}
     </ul>

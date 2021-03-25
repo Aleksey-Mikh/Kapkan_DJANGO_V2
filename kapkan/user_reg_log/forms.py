@@ -82,6 +82,4 @@ class UserRegisterForm(UserCreationForm):
             'password1',
             'password2',
         )
-        # widgets = {
-        #     'captcha': forms.TextInput(attrs={'class': 'my-field-form'}),
-        # }
+
