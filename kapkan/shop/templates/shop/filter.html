@@ -5,7 +5,7 @@
 
 {% block style %}
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/category.css' %}" ?>
-<link rel="stylesheet" type="text/css" href="{% static 'shop/css/form.css' %}" ?>
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/form.css' %}?" ?>
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/cart.css' %}" ?>
 {% endblock %}
 
@@ -13,18 +13,41 @@
 
 <section class="content-category">
     <form action="" method="get">
-        {% csrf_token %}
-        {% for field in form %}
-        <div class="div-form-label">{{ field.label_tag }}</div>
-        <p>{{ field }}</p>
-        {% if field.errors%}
-        {% for error in field.errors %}
-        <div class="alert">
-            {{error}}
+        <div class="filter-div">
+            <div class="filter-label">
+                <p>Фильтр</p>
+            </div>
+            <div class="filter-price">
+                <div class="filter-p-price">
+                    <p>Минимальная цена </p>
+                    <p class="p-kursiv">(BYN)</p>
+                </div>
+                <div class="global-div-filter-form-price">
+                    <div class="div-filter-form-price">
+                        {{ form.min_price }}
+                    </div>
+                    <div class="div-separator"></div>
+                    <div class="div-filter-form-price">
+                        {{ form.max_price }}
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="filter-mark">
+                <div class="filter-mark-p">
+                    <p>Специальные предложения</p>
+                </div>
+
+                <div class="div-filter-checkbox">
+                    <div class="div-filter-checkbox-in">
+                        {{ form.is_new }}
+                        <p>NEW</p>
+                    </div>
+
+                </div>
+            </div>
         </div>
-        {% endfor %}
-        {% endif %}
-        {% endfor %}
         <br>
         <p><input type="submit" value="Перейти к товарам" class="button-check"></p>
     </form>
