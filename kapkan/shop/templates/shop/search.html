@@ -5,11 +5,12 @@
 
 {% block style %}
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/category.css' %}" ?>
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/cart.css' %}" ?>
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/form.css' %}" ?>
 {% endblock %}
 
 {% block content %}
-
-<section class="content-category">
+<section class="content-category mg-auto">
     <div class="result-search">
         <p class="p-search-result">Результат поиска по запросу «{{ search }}»</p>
     </div>

@@ -6,6 +6,6 @@ class ProductFilterForm(forms.Form):
         attrs={'class': 'my-filter-field-form'}))
     max_price = forms.IntegerField(label="to", required=False, widget=forms.TextInput(
         attrs={'class': 'my-filter-field-form'}))
-    is_new = forms.BooleanField(label='NEW', required=False)
+    is_new = forms.BooleanField(label='NEW', required=False,)
     is_hit = forms.BooleanField(label='ХИТ', required=False)
     is_recommend = forms.BooleanField(label='Рекомендованно', required=False)
