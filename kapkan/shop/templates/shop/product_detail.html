@@ -6,14 +6,23 @@
 {% block style %}
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/detail.css' %}?" ?>
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/category.css' %}?" ?>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"/>
 {% endblock %}
 
 {% block content %}
 <section class="content-detail">
     <div class="container-detail">
         <div class="image-div-detail">
-            <img src="{{ product.image.url }}" class="image-detail" alt="картинка {{ product.title }}">
+            <a data-fancybox="images" href="{{ product.image.url }}" data-caption="fox1">
+                <img src="{{ product.image.url }}" class="image-detail" alt="картинка {{ product.title }}">
+            </a>
+
         </div>
+        {% for image in product.images.all %}
+        <a data-fancybox="images" href="{{ image.image_gallery.url }}" data-caption="fox1">
+            <img src="{{ image.image_gallery.url }}" class="image-detail" alt="картинка {{ product.title }}">
+        </a>
+        {% endfor %}
         <div class="title">
             {{ product.title }}
         </div>
@@ -57,4 +66,44 @@
 </section>
 {% endif %}
 
+{% endblock %}
+{% block js %}
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script type="text/javascript">
+$('[data-fancybox="images"]').fancybox({
+  buttons : [
+    'slideShow',
+    'zoom',
+    'fullScreen',
+    'close'
+  ],
+  loop: true,
+  gutter : 10,
+  keyboard: true,
+  arrows: true,
+  infobar: true,
+  smallBtn: true,
+  toolbar: true,
+  protect: true,
+  modal: false,
+  idleTime: 3,
+  animationEffect: "zoom-in-out",
+  animationDuration: 500,
+  transitionEffect: "slide",
+  transitionDuration: 1500,
+  slideClass: "myClass",
+  baseClass: "myclass",
+   slideShow: {
+    autoStart: false,
+    speed: 6000
+  },
+youtube : {
+  controls : 0,
+  showinfo : 0
+},
+  thumbs : {
+    autoStart : false
+  }
+});
+</script>
 {% endblock %}

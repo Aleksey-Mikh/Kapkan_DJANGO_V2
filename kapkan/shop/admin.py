@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Category, RecommendProduct
+from .models import Product, Category, RecommendProduct, ProductGallery
 
 
 class RecommendProductItemInline(admin.TabularInline):
@@ -10,6 +10,11 @@ class RecommendProductItemInline(admin.TabularInline):
     raw_id_fields = ['recommend_product']
     extra = 0
     fk_name = "main_product"
+
+
+class GalleryProductInline(admin.TabularInline):
+    model = ProductGallery
+    extra = 0
 
 
 class ProductAdmin(admin.ModelAdmin):
@@ -25,7 +30,7 @@ class ProductAdmin(admin.ModelAdmin):
             'fields': ('is_new', 'is_hit', 'is_recommend'),
         }),
     )
-    inlines = [RecommendProductItemInline, ]
+    inlines = [RecommendProductItemInline, GalleryProductInline, ]
 
 
 class CategoryAdmin(admin.ModelAdmin):

@@ -17,7 +17,7 @@ class Product(models.Model):
     category = models.ForeignKey('Category', verbose_name='Категория', on_delete=models.PROTECT, related_name='product')
     title = models.CharField(max_length=255, verbose_name="Наименование")
     slug = models.SlugField(unique=True)
-    image = models.ImageField(upload_to='photos/%Y/%m', verbose_name='Изображение')
+    image = models.ImageField(upload_to='photos/%Y/%m', verbose_name='Основное изображение')
     description = models.TextField(verbose_name='Описание', null=True)
     price = models.DecimalField(max_digits=9, decimal_places=2, verbose_name='Цена')
     is_published = models.BooleanField(default=True, verbose_name='Статус публикации')
@@ -39,6 +39,18 @@ class Product(models.Model):
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
         ordering = ['title']
+
+
+class ProductGallery(models.Model):
+    image_gallery = models.ImageField(upload_to='photos/%Y/%m', verbose_name='Дополнительные изображения')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
+
+    def __str__(self):
+        return 'Дополнительные изображения'
+
+    class Meta:
+        verbose_name = 'Дополнительное изображение'
+        verbose_name_plural = 'Дополнительные изображения'
 
 
 class RecommendProduct(models.Model):

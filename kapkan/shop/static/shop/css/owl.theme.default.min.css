@@ -14,16 +14,16 @@
 
 .owl-theme .owl-nav [class*=owl-]{
 	color:#FFF;
-	font-size:14px;
+	font-size:18px;
 	margin:5px;
 	padding:4px 7px;
-	background:#D6D6D6;
+	background:#888;
 	display:inline-block;
 	cursor:pointer;
 	border-radius:3px}
 
-.owl-theme .owl-nav [class*=owl-]:hover{
-	background:#869791;
+.owl-theme .owl-nav [class*=owl-]:hover, .owl-theme .owl-nav [class*=owl-]:link{
+	background:#4169E1;
 	color:#FFF;
 	text-decoration:none
 }
@@ -35,7 +35,7 @@
 
 .owl-theme .owl-nav.disabled+.owl-dots{margin-top:10px}
 
-.owl-theme .owl-dots .owl-dot{display:inline-block;zoom:1.2}
+.owl-theme .owl-dots .owl-dot{display:inline-block;zoom:1}
 
 .owl-theme .owl-dots .owl-dot span{
 	width:10px;
@@ -47,5 +47,5 @@
 	transition:opacity .2s ease;border-radius:30px
 }
 
-.owl-theme .owl-dots .owl-dot.active span,.owl-theme .owl-dots .owl-dot:hover span{background:#4169E1}
+.owl-theme .owl-dots .owl-dot.active span,.owl-theme .owl-dots .owl-dot:hover span{background:#869791}
 
