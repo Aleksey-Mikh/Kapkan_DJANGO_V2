@@ -14,7 +14,7 @@ from .forms import ProductFilterForm
 TIME_IS_NEW = 20
 
 
-def filter_product_list(request, products):
+def filter_product(request, products, **kwargs):
     if request.method == 'GET':
         form = ProductFilterForm(request.GET)
         if form.is_valid():
@@ -30,11 +30,12 @@ def filter_product_list(request, products):
                 products = products.filter(is_recommend=form.cleaned_data['is_recommend'])
     else:
         form = ProductFilterForm()
-
     context = {
         'products': products,
         'form': form,
     }
+    # if kwargs['s']:
+    #     context['s'] = kwargs['s']
     return context
 
 
@@ -85,7 +86,7 @@ class CategoryDetailView(ListView):
         context['cart_product_form'] = cart_product_form
         category = get_object_or_404(Category, slug=self.kwargs['slug'])
         products = category.product.filter(is_published=True).select_related('category')
-        context_2 = filter_product_list(self.request, products)
+        context_2 = filter_product(self.request, products)
         context.update(context_2)
         return context
 

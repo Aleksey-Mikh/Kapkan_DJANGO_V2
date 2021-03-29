@@ -5,6 +5,7 @@ button {
 	font-size: 16px;
 	text-align: center;
 	border: none;
+	outline: none;
 }
 
 .button-check {
@@ -24,4 +25,8 @@ button {
 .button-footer-cart {
 	margin: 15px 0 0 15px;
 	display: inline-block;
+}
+
+input {
+    outline: none;
 }

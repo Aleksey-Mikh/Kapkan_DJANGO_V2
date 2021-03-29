@@ -329,6 +329,10 @@ body {
   background-color: #dee2e6;
 }
 
+.hidden-block {
+    display: none;
+}
+
 @media screen and (min-width: 900px) and (max-width: 1024px) {
 
 }

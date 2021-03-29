@@ -148,3 +148,8 @@
   text-align: center;
   margin-bottom: 10px;
 }
+
+.mg-auto {
+    margin: auto;
+    display: block;
+}

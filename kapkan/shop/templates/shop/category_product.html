@@ -7,12 +7,59 @@
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/category.css' %}" ?>
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/cart.css' %}" ?>
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/form.css' %}?" ?>
-<link rel="stylesheet" type="text/css" href="{% static 'shop/css/button.css' %}?" ?>
+
 {% endblock %}
 
 {% block content %}
 
-{% include 'shop/filter.html'  %}
+<div class="filter-div">
+    <form action="" method="get">
+
+        <div class="filter-label">
+            <p>Фильтр</p>
+        </div>
+        <div class="filter-price">
+            <div class="filter-p-price">
+                <p>Минимальная цена </p>
+                <p class="p-kursiv">(BYN)</p>
+            </div>
+            <div class="global-div-filter-form-price">
+                <div class="div-filter-form-price">
+                    <label for="{{ form.is_new.id_for_label }}">От </label>
+                    {{ form.min_price }}
+                </div>
+                <div class="div-separator"></div>
+                <div class="div-filter-form-price">
+                    <label for="{{ form.is_new.id_for_label }}">До </label>
+                    {{ form.max_price }}
+                </div>
+            </div>
+        </div>
+        <div class="filter-mark">
+            <div class="filter-mark-p">
+                <p>Специальные предложения</p>
+            </div>
+
+            <div class="div-filter-checkbox">
+                <div class="div-filter-checkbox-in">
+                    {{ form.is_new }}
+                    <label for="{{ form.is_new.id_for_label }}">NEW</label>
+                </div>
+                <div class="div-filter-checkbox-in">
+                    {{ form.is_hit }}
+                    <label for="{{ form.is_hit.id_for_label }}">ХИТ</label>
+                </div>
+                <div class="div-filter-checkbox-in">
+                    {{ form.is_recommend }}
+                    <label for="{{ form.is_recommend.id_for_label }}">Рекомендованно</label>
+                </div>
+            </div>
+        </div>
+        <br>
+        <p><input type="submit" value="Перейти к товарам" class="button-check"></p>
+
+    </form>
+</div>
 
 <div class="content-category">
     {% for product in products %}

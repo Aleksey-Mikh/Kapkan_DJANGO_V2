@@ -160,14 +160,16 @@
 /* Style the submit button */
 .my-field-form-search button {
   	float: left;
-  	width: 12%;
-  	padding: 6.5px;
-  	background: #4169E1;
-  	color: white;
-  	border: none;
-  	cursor: pointer;
-  	border-top-right-radius: 25px;
-  	border-bottom-right-radius: 25px;
+    width: 12%;
+    padding: 6px;
+    background: #4169E1;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
 }
 
 .my-field-form-search button:hover {
