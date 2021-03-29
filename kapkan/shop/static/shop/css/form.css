@@ -214,7 +214,7 @@ input {
 }
 
 .filter-mark {
-    margin-bottom: 25px;
+    margin-bottom: 5px;
     padding-bottom: 10px;
     border-bottom: 1px solid #e7e7e7;
 }
@@ -239,5 +239,8 @@ input {
 	margin-bottom: 15px;
 }
 
+.hidden-block {
+    display: none;
+}
 
 

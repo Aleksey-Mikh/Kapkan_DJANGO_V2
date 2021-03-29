@@ -4,9 +4,10 @@
 {% block title %}{{ title }} | {{ block.super }}{% endblock %}
 
 {% block style %}
-<link rel="stylesheet" type="text/css" href="{% static 'shop/css/category.css' %}?" ?>
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/category.css' %}" ?>
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/cart.css' %}" ?>
-<link rel="stylesheet" type="text/css" href="{% static 'shop/css/form.css' %}" ?>
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/form.css' %}?" ?>
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/button.css' %}?" ?>
 {% endblock %}
 
 {% block content %}
@@ -37,9 +38,9 @@
             <h2 class="card-title-category">{{ product.title }}</h2>
             <div class="Price"><p>{{ product.price }} руб.</p></div>
             <form action="{% url 'cart:cart_add' product.id %}" method="post">
-                {{ cart_product_form }}
+                <div class="hidden-block">{{ cart_product_form }}</div>
                 {% csrf_token %}
-                <input type="submit" value="Добавить в корзину">
+                <input type="submit" value="Добавить в корзину" class="button-check">
             </form>
         </div>
     </div>

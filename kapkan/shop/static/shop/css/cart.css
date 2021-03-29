@@ -5,7 +5,7 @@ table {
 }
 
 td {
-    padding: 15px;
+    padding: 10px;
     border-bottom: 1px solid #000;
 }
 
@@ -67,4 +67,9 @@ button {
 .button-footer-cart {
 	margin: 15px 0 0 15px;
 	display: inline-block;
+}
+
+.quantity-cart {
+    width: 40px;
+    margin-right: 5px;
 }
