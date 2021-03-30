@@ -11,6 +11,12 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
 {% endblock %}
 
+{% block breadcrumbs %}
+<div class=""><a href="{% url 'home' %}">Главная »</a></div>
+<div class=""><a href="{% url 'category' slug=product.category.slug %}">{{ product.category.name }}</a></div>
+<div class="">{{ title }}</div>
+{% endblock %}
+
 {% block content %}
 <div class="content-detail">
     <div class="detail-gl-content-div">

@@ -10,6 +10,11 @@
 
 {% endblock %}
 
+{% block breadcrumbs %}
+<div class=""><a href="{% url 'home' %}">Главная »</a></div>
+<div class="">{{ title }}</div>
+{% endblock %}
+
 {% block content %}
 
 <div class="filter-div">
