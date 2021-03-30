@@ -34,8 +34,6 @@ def filter_product(request, products, **kwargs):
         'products': products,
         'form': form,
     }
-    # if kwargs['s']:
-    #     context['s'] = kwargs['s']
     return context
 
 

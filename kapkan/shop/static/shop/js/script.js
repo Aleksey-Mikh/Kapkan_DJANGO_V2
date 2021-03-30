@@ -4,13 +4,14 @@ $(document).ready(function() {
   owl.owlCarousel({
     items: 3,
     margin: 10,
-    loop: true,
+    loop: false,
+    rewind: true,
     nav: true,
     navClass: [ 'owl-prev', 'owl-next' ],
     mouseDrag: true,
     dots: true,
     autoplay: true,
-    autoplayTimeout: 3000,
+    autoplayTimeout: 5000,
     smartSpeed: 2000,
     autoplayHoverPause: true,
   });

@@ -3,6 +3,7 @@
 
 {% block style %}
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/cart.css' %}" ?>
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/ordered.css' %}" ?>
 {% endblock style %}
 
 {% block title %}
@@ -10,7 +11,7 @@ Your shopping cart
 {% endblock %}
 
 {% block content %}
-<section class="content-detail">
+<section class="cart-content-detail">
     {% if cart|length > 0 %}
     <h1>Ваша корзина</h1>
     <div class="table-cart">
@@ -74,7 +75,14 @@ Your shopping cart
         </div>
     </div>
     {% else %}
-    <h2>Ваша корзина пуста</h2>
+    <div class="div-content">
+        <div class="div-empty-cart">
+            <p class="title-empty-cart">Ваша корзина пуста</p>
+        </div>
+        <div class="div-basket-empty">
+            <img src="{% static 'shop/images/basket_05.png' %}" alt="" class="image-basket-empty">
+        </div>
+    </div>
     {% endif %}
 
 </section>
