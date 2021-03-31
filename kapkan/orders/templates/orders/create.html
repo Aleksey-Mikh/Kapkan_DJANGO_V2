@@ -4,12 +4,21 @@
 {% block title %}Checkout{% endblock %}
 
 {% block style %}
-<link rel="stylesheet" type="text/css" href="{% static 'shop/css/cart.css' %}" ?>
-<link rel="stylesheet" type="text/css" href="{% static 'shop/css/form.css' %}" ?>
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/cart.css' %}?" ?>
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/form.css' %}?" ?>
 {% endblock style %}
 
+{% block breadcrumbs %}
+<div class="my-breadcrumbs">
+    <div class="my-breadcrumbs-div"><a href="{% url 'home' %}">Главная</a>
+        <p>»</p>
+    </div>
+    <div class="my-breadcrumbs-div">Оформление заказа</div>
+</div>
+{% endblock %}
+
 {% block content %}
-<section class="content-detail">
+<section class="cart-content-detail">
 
     <div class="table-cart">
         <h1 class="h1-form">Оформление заказа</h1>

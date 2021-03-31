@@ -13,6 +13,40 @@ body {
   overflow-x: hidden
 }
 
+.my-breadcrumbs {
+  width: 80%;
+  height: 30px;
+  background-color: #4CAF50;
+  padding: 6px 0 0 10px;
+  margin: 10px auto;
+  font-size: 0
+}
+
+.my-breadcrumbs-div {
+  height: 100%;
+  font-size: 16px;
+  color: #000;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.my-breadcrumbs-div p{
+  font-size: 16px;
+  color: #FFF;
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 5px;
+}
+
+.my-breadcrumbs-div a:link, .my-breadcrumbs-div a:visited {
+  color: #FFF;
+  text-decoration: none;
+}
+
+.my-breadcrumbs-div a:hover, .my-breadcrumbs-div a:active {
+  color: #4169E1;
+}
+
 .background {
   background: #ffffff url(../images/background_body.jpg) no-repeat;
   background-size: cover;

@@ -12,9 +12,16 @@
 {% endblock %}
 
 {% block breadcrumbs %}
-<div class=""><a href="{% url 'home' %}">Главная »</a></div>
-<div class=""><a href="{% url 'category' slug=product.category.slug %}">{{ product.category.name }}</a></div>
-<div class="">{{ title }}</div>
+<div class="my-breadcrumbs">
+    <div class="my-breadcrumbs-div"><a href="{% url 'home' %}">Главная</a>
+        <p>»</p>
+    </div>
+    <div class="my-breadcrumbs-div">
+        <a href="{% url 'category' slug=product.category.slug %}">{{ product.category.name }}</a>
+        <p>»</p>
+    </div>
+    <div class="my-breadcrumbs-div">{{ title }}</div>
+</div>
 {% endblock %}
 
 {% block content %}

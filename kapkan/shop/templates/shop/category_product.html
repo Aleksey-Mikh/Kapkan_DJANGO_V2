@@ -4,15 +4,19 @@
 {% block title %}{{ title }} | {{ block.super }}{% endblock %}
 
 {% block style %}
-<link rel="stylesheet" type="text/css" href="{% static 'shop/css/category.css' %}?" ?>
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/category.css' %}" >
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/cart.css' %}" ?>
-<link rel="stylesheet" type="text/css" href="{% static 'shop/css/form.css' %}?" ?>
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/form.css' %}" ?>
 
 {% endblock %}
 
 {% block breadcrumbs %}
-<div class=""><a href="{% url 'home' %}">Главная »</a></div>
-<div class="">{{ title }}</div>
+<div class="my-breadcrumbs">
+    <div class="my-breadcrumbs-div"><a href="{% url 'home' %}">Главная</a>
+        <p>»</p>
+    </div>
+    <div class="my-breadcrumbs-div">{{ title }}</div>
+</div>
 {% endblock %}
 
 {% block content %}

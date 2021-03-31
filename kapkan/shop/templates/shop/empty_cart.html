@@ -8,6 +8,15 @@
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/ordered.css' %}" ?>
 {% endblock %}
 
+{% block breadcrumbs %}
+<div class="my-breadcrumbs">
+    <div class="my-breadcrumbs-div"><a href="{% url 'home' %}">Главная</a>
+        <p>»</p>
+    </div>
+    <div class="my-breadcrumbs-div">Корзина</div>
+</div>
+{% endblock %}
+
 {% block content %}
 <section class="content-detail">
     <div class="div-content">
