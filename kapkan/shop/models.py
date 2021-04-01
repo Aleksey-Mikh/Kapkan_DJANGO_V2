@@ -17,6 +17,8 @@ class Product(models.Model):
     category = models.ForeignKey('Category', verbose_name='Категория', on_delete=models.PROTECT, related_name='product')
     title = models.CharField(max_length=255, verbose_name="Наименование")
     slug = models.SlugField(unique=True)
+    manufacturer = models.CharField(max_length=255, verbose_name="Производитель", blank=True)
+    model = models.CharField(max_length=255, verbose_name="Модель", blank=True)
     image = models.ImageField(upload_to='photos/%Y/%m', verbose_name='Основное изображение')
     description = models.TextField(verbose_name='Описание', null=True)
     price = models.DecimalField(max_digits=9, decimal_places=2, verbose_name='Цена')
@@ -28,6 +30,7 @@ class Product(models.Model):
     is_new = models.BooleanField(default=True, verbose_name='NEW')
     is_hit = models.BooleanField(default=False, verbose_name='ХИТ')
     is_recommend = models.BooleanField(default=False, verbose_name='Рекомендованно')
+    views = models.PositiveIntegerField(default=0, verbose_name='Просмотры')
 
     def get_absolute_url(self):
         return reverse('product_detail', kwargs={'slug': self.slug})

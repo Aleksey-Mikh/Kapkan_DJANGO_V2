@@ -31,35 +31,21 @@ class ProductResource(resources.ModelResource):
 
 class ProductAdmin(ImportExportActionModelAdmin):
     resource_class = ProductResource
-    list_display = ('title', 'price', 'category', 'is_published',)
+    list_display = ('title', 'price', 'category', 'is_published', 'views')
     search_fields = ('title', )
     list_editable = ('is_published',)
+    readonly_fields = ('views', )
     list_filter = ('is_published', 'category')
     prepopulated_fields = {'slug': ('title',)}
 
     fieldsets = (
-        (None, {'fields': ('category', 'title', 'slug', 'image', 'description', 'price', 'is_published', 'status')}),
+        (None, {'fields': ('category', 'title', 'slug', 'manufacturer', 'model', 'image', 'views',
+                           'description', 'price', 'is_published', 'status')}),
         (('Ярлыки'), {
             'fields': ('is_new', 'is_hit', 'is_recommend'),
         }),
     )
     inlines = [RecommendProductItemInline, GalleryProductInline, ]
-
-
-# class ProductAdmin(admin.ModelAdmin):
-#     list_display = ('title', 'price', 'category', 'is_published',)
-#     search_fields = ('title', )
-#     list_editable = ('is_published',)
-#     list_filter = ('is_published', 'category')
-#     prepopulated_fields = {'slug': ('title',)}
-#
-#     fieldsets = (
-#         (None, {'fields': ('category', 'title', 'slug', 'image', 'description', 'price', 'is_published', 'status')}),
-#         (('Ярлыки'), {
-#             'fields': ('is_new', 'is_hit', 'is_recommend'),
-#         }),
-#     )
-#     inlines = [RecommendProductItemInline, GalleryProductInline, ]
 
 
 class CategoryAdmin(admin.ModelAdmin):
