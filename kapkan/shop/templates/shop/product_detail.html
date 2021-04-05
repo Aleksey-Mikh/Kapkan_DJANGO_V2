@@ -175,6 +175,33 @@
 </div>
 {% endif %}
 
+{% if last_products_in_temple %}
+<div class="content-category mg-auto pd-50-0">
+    <div class="result-search">
+        <p class="p-search-result center">Просмотренные товары:</p>
+    </div>
+    <div class="owl-carousel owl-theme">
+        {% for last_product in last_products_in_temple %}
+        {% for last_product in last_product %}
+        <div class="card-category">
+            <a href="{{ last_product.get_absolute_url }}">
+                <img src="{{ last_product.image.url }}"
+                     class="card-image" alt="картинка {{ last_product.title }}">
+            </a>
+            <h2 class="card-title-category">{{ last_product.title }}</h2>
+            <div class="Price"><p>{{ last_product.price }} руб.</p></div>
+            <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                <div class="hidden-block">{{ cart_product_form }}</div>
+                {% csrf_token %}
+                <input type="submit" value="Добавить в корзину" class="button-check">
+            </form>
+        </div>
+        {% endfor %}
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
 {% endblock %}
 {% block js %}
 <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>

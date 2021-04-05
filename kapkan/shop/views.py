@@ -101,9 +101,21 @@ class ProductDetailView(DetailView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         cart_product_form = CartAddProductForm()
-        context['title'] = Product.objects.get(slug=self.kwargs['slug'])
+        product = Product.objects.get(slug=self.kwargs['slug'])
+        context['title'] = product
         context['cart_product_form'] = cart_product_form
-        print(self.request.session)
+        empty_last_product = list()
+        last_products = self.request.session.get('last_products', empty_last_product)
+        if product.id not in last_products:
+            last_products.insert(0, product.id)
+        if len(last_products) >= 5:
+            last_products = last_products[:5]
+        self.request.session['last_products'] = last_products
+        if last_products:
+            last_products_in_temple = []
+            for last in last_products:
+                last_products_in_temple.append(Product.objects.filter(id=last))
+            context['last_products_in_temple'] = last_products_in_temple
         return context
 
 
