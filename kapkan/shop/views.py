@@ -103,6 +103,7 @@ class ProductDetailView(DetailView):
         cart_product_form = CartAddProductForm()
         context['title'] = Product.objects.get(slug=self.kwargs['slug'])
         context['cart_product_form'] = cart_product_form
+        print(self.request.session)
         return context
 
 

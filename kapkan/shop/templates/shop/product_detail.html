@@ -6,7 +6,7 @@
 {% block style %}
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/owl.carousel.min.css' %}" ?>
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/owl.theme.default.min.css' %}?" ?>
-<link rel="stylesheet" type="text/css" href="{% static 'shop/css/detail.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/detail.css' %}?">
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/category.css' %}?" ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
 {% endblock %}
@@ -61,15 +61,21 @@
                 <div class="detail-empty-div"></div>
 
                 <div class="detail-availability-div">
-                    <p>Наличие: </p>
+                    {% if product.manufacturer %}
+                    <p>Производитель: {{ product.manufacturer }}</p>
+                    {% endif %}
+                    <p>Наличие:
                     {% if "unavailable" in product.status %}
-                    <p style="color: #B22222;">нет в наличии</p>
+                    <span style="color: #B22222;">нет в наличии</span>
                     {% else %}
                     {% if "available" in product.status %}
-                    <p style="color: #4CAF50;">есть в наличии</p>
+                    <span style="color: #4CAF50;">есть в наличии</span>
                     {% else %}
-                    <p style="color: #FFA500;">ожидаются поставки</p>
+                    <span style="color: #FFA500;">ожидаются поставки</span>
                     {% endif %}
+                    {% endif %}</p>
+                    {% if product.model %}
+                    <p>Модель: {{ product.model }}</p>
                     {% endif %}
                 </div>
 
