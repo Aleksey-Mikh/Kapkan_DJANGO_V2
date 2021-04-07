@@ -1,29 +1,32 @@
 .content-category {
-  display: inline-block;
   font-size: 0;
   width: 1020px;
-  margin: 0 3px;
+  margin: 0 0 0 5px;
   padding-bottom: 0;
   padding-top: 60px;
+  display: inline-block;
 }
-
-.card-category {
+.category-card {
   width: 320px;
-  min-height: 400px;
+  height: 450px;
   margin: 0 10px 40px 10px;
   display: inline-block;
   background-color: #FFF;
 }
 
-.card-div {
-  height: 80%;
-  width: 70%;
-  margin: 30px auto;
+.category-gl-card-div {
+  height: 100%;
+  width: 100%;
+  font-size: 0;
+  padding: 20px 20px 0 20px;
 }
 
-.card-div-image {
+.category-card-div-img {
+  height: 45%;
   width: 100%;
-  }
+  display: inline-block;
+  vertical-align: top;
+}
 
 .position-sticker {
     position: absolute;
@@ -64,27 +67,64 @@
     transform: rotate(-45deg);
 }
 
-.Price {
-  color: #444;
-  margin: 0 0 10px;
-  text-align: center;
-  margin-bottom: 5px;
+.category-card-div-img-content {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  vertical-align: top;
 }
 
-.Price p {
-  background: #ffe400;
+.category-card-div-image {
+  height: 100%;
+  width: 100%;
+}
+
+.category-card-image {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.category-card-div-title {
+  height: 20%;
+  width: 100%;
+  font-size: 20px;
+  text-align: center;
+  padding-top: 10px;
   display: inline-block;
+  vertical-align: top;
+}
+
+.height-15 {
+    height: 15%;
+}
+
+.category-card-div-price {
+  height: 35%;
+  width: 100%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+
+.category-card-div-Price {
+  width: 100%;
+  height: 50%;
+  text-align: center;
+  padding-top: 25px;
+}
+
+.category-card-div-Price span{
+  background: #ffe400;
   font-size: 20px;
   padding: 7px 15px;
-  margin-top: 20px;
 }
 
-.card-title-category {
-  font-size: 22px;
-  font-weight: 500;
-  margin-bottom: 10px;
-  padding-top: 0px;
+.category-card-div-button {
+  width: 100%;
+  height: 50%;
   text-align: center;
+  padding-top: 9px;
 }
 
 .div-search {
@@ -122,30 +162,6 @@
     height: 410px;
     margin: auto;
     margin-bottom: 160px;
-}
-
-.owl-prev, .owl-next {
-    background-color: #000;
-    height: 30px;
-    width: 30px;
-    margin-left: -60px;
-}
-.owl-prev, .owl-next {
-    position: absolute;
-    top: 35%;
-}
-.owl-prev {
-    left: 5px;
-}
-.owl-next {
-    right: 5px;
-}
-
-.owl-prev span, .owl-next span {
-  display: inline-block;
-  font-size: 24px;
-  text-align: center;
-  margin-bottom: 10px;
 }
 
 .mg-auto {

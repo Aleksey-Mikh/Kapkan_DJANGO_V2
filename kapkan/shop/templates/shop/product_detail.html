@@ -8,6 +8,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/owl.theme.default.min.css' %}?" ?>
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/detail.css' %}?">
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/category.css' %}?" ?>
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/owl.css' %}?" ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
 {% endblock %}
 
@@ -65,15 +66,15 @@
                     <p>Производитель: {{ product.manufacturer }}</p>
                     {% endif %}
                     <p>Наличие:
-                    {% if "unavailable" in product.status %}
-                    <span style="color: #B22222;">нет в наличии</span>
-                    {% else %}
-                    {% if "available" in product.status %}
-                    <span style="color: #4CAF50;">есть в наличии</span>
-                    {% else %}
-                    <span style="color: #FFA500;">ожидаются поставки</span>
-                    {% endif %}
-                    {% endif %}</p>
+                        {% if "unavailable" in product.status %}
+                        <span style="color: #B22222;">нет в наличии</span>
+                        {% else %}
+                        {% if "available" in product.status %}
+                        <span style="color: #4CAF50;">есть в наличии</span>
+                        {% else %}
+                        <span style="color: #FFA500;">ожидаются поставки</span>
+                        {% endif %}
+                        {% endif %}</p>
                     {% if product.model %}
                     <p>Модель: {{ product.model }}</p>
                     {% endif %}
@@ -157,18 +158,53 @@
     </div>
     <div class="owl-carousel owl-theme">
         {% for product_rec in product.main_product.all %}
-        <div class="card-category">
-            <a href="{{ product_rec.recommend_product.get_absolute_url }}">
-                <img src="{{ product_rec.recommend_product.image.url }}"
-                     class="card-image" alt="картинка {{ product_rec.recommend_product.title }}">
-            </a>
-            <h2 class="card-title-category">{{ product_rec.recommend_product.title }}</h2>
-            <div class="Price"><p>{{ product_rec.recommend_product.price }} руб.</p></div>
-            <form action="{% url 'cart:cart_add' product.id %}" method="post">
-                <div class="hidden-block">{{ cart_product_form }}</div>
-                {% csrf_token %}
-                <input type="submit" value="Добавить в корзину" class="button-check">
-            </form>
+        <div class="category-card">
+            <div class="category-gl-card-div">
+                <div class="category-card-div-img">
+                    <div class="category-card-div-img-content">
+                        {% if product_rec.recommend_product.is_new %}
+                        <div class="position-sticker">
+                            <div class="stickers-top"><span class="diamont_st">new</span></div>
+                        </div>
+                        {% else %}
+                        {% if product_rec.recommend_product.is_hit %}
+                        <div class="position-sticker">
+                            <div class="stickers-top hit"><span class="diamont_st">хит</span></div>
+                        </div>
+                        {% endif %}
+                        {% endif %}
+                        <div class="category-card-div-image">
+                            <a href="{{ product_rec.recommend_product.get_absolute_url }}">
+                                <img src="{{ product_rec.recommend_product.image.url }}" class="category-card-image"
+                                     alt="картинка {{ product_rec.recommend_product.title }}">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% if last_product.title|length < 55 %}
+                <div class="category-card-div-title height-15">
+                    <h1><span>{{ product_rec.recommend_product.title }}</span></h1>
+                </div>
+                {% else %}
+                <div class="category-card-div-title">
+                    <h1><span>{{ product_rec.recommend_product.title }}</span></h1>
+                </div>
+                {% endif %}
+
+                <div class="category-card-div-price">
+                    <div class="category-card-div-Price">
+                        <h3><span>{{ product_rec.recommend_product.price }} руб.</span></h3>
+                    </div>
+
+                    <div class="category-card-div-button">
+                        <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                            <div class="hidden-block">{{ cart_product_form }}</div>
+                            {% csrf_token %}
+                            <input type="submit" value="Добавить в корзину" class="button-check">
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
         {% endfor %}
     </div>
@@ -183,18 +219,53 @@
     <div class="owl-carousel owl-theme">
         {% for last_product in last_products_in_temple %}
         {% for last_product in last_product %}
-        <div class="card-category">
-            <a href="{{ last_product.get_absolute_url }}">
-                <img src="{{ last_product.image.url }}"
-                     class="card-image" alt="картинка {{ last_product.title }}">
-            </a>
-            <h2 class="card-title-category">{{ last_product.title }}</h2>
-            <div class="Price"><p>{{ last_product.price }} руб.</p></div>
-            <form action="{% url 'cart:cart_add' product.id %}" method="post">
-                <div class="hidden-block">{{ cart_product_form }}</div>
-                {% csrf_token %}
-                <input type="submit" value="Добавить в корзину" class="button-check">
-            </form>
+        <div class="category-card">
+            <div class="category-gl-card-div">
+                <div class="category-card-div-img">
+                    <div class="category-card-div-img-content">
+                        {% if last_product.is_new %}
+                        <div class="position-sticker">
+                            <div class="stickers-top"><span class="diamont_st">new</span></div>
+                        </div>
+                        {% else %}
+                        {% if last_product.is_hit %}
+                        <div class="position-sticker">
+                            <div class="stickers-top hit"><span class="diamont_st">хит</span></div>
+                        </div>
+                        {% endif %}
+                        {% endif %}
+                        <div class="category-card-div-image">
+                            <a href="{{ last_product.get_absolute_url }}">
+                                <img src="{{ last_product.image.url }}" class="category-card-image"
+                                     alt="картинка {{ last_product.title }}">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% if last_product.title|length < 55 %}
+                <div class="category-card-div-title height-15">
+                    <h1><span>{{ last_product.title }}</span></h1>
+                </div>
+                {% else %}
+                <div class="category-card-div-title">
+                    <h1><span>{{ last_product.title }}</span></h1>
+                </div>
+                {% endif %}
+
+                <div class="category-card-div-price">
+                    <div class="category-card-div-Price">
+                        <h3><span>{{ last_product.price }} руб.</span></h3>
+                    </div>
+
+                    <div class="category-card-div-button">
+                        <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                            <div class="hidden-block">{{ cart_product_form }}</div>
+                            {% csrf_token %}
+                            <input type="submit" value="Добавить в корзину" class="button-check">
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
         {% endfor %}
         {% endfor %}
