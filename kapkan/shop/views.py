@@ -1,6 +1,5 @@
 from datetime import datetime, timezone
 
-from django.core.paginator import Paginator
 from django.db.models import Count, F, Q
 from django.shortcuts import render, get_object_or_404
 from django.utils.decorators import method_decorator
@@ -149,3 +148,5 @@ class SearchView(ListView):
         return context
 
 
+def about_us(request):
+    return render(request, 'shop/about_us.html')
