@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block style %}
-<link rel="stylesheet" type="text/css" href="{% static 'shop/css/cart.css' %}?" ?>
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/cart.css' %}" >
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/ordered.css' %}" ?>
 {% endblock style %}
 
@@ -22,7 +22,9 @@ Your shopping cart
 {% block content %}
 <section class="cart-content-detail">
     {% if cart|length > 0 %}
-    <h1>Ваша корзина</h1>
+    <div class="cart-div-title">
+        <h3>Ваша корзина</h3>
+    </div>
     <div class="table-cart">
         <table class="table-cart">
             <tr>

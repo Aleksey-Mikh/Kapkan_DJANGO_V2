@@ -5,8 +5,8 @@
 
 {% block style %}
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/detail.css' %}?" ?>
-<link rel="stylesheet" type="text/css" href="{% static 'shop/css/cart.css' %}?" ?>
-<link rel="stylesheet" type="text/css" href="{% static 'shop/css/form.css' %}?" ?>
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/cart.css' %}" >
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/form.css' %}?" >
 {% endblock %}
 
 {% block breadcrumbs %}
@@ -20,50 +20,54 @@
 
 {% block content %}
 <section class="content-detail">
-    <h1 class="h1-form">Личный кабинет</h1>
-    <div class="div-form-60">
-        <p>Вы можете изменить ваши данные при помощи этой формы:</p>
-        <br>
-        <form action="." method="post" enctype="multipart/form-data">
-            {% for field in user_form %}
-            <div class="div-form-label">{{ field.label_tag }}</div>
-            <p>{{ field }}</p>
-            {% if field.errors%}
-            {% for error in field.errors %}
-            <div class="alert">
-                {{error}}
+    <div class="profile-div-gl-form">
+        <div class="profile-div-form">
+            <h1 class="profile-h1-form">Личный кабинет</h1>
+            <div class="div-form-60">
+                <p>Вы можете изменить ваши данные при помощи этой формы:</p>
+                <br>
+                <form action="." method="post" enctype="multipart/form-data">
+                    {% for field in user_form %}
+                    <div class="div-form-label">{{ field.label_tag }}</div>
+                    <p>{{ field }}</p>
+                    {% if field.errors%}
+                    {% for error in field.errors %}
+                    <div class="alert">
+                        {{error}}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endfor %}
+                    {% for field in profile_form %}
+                    <div class="div-form-label">{{ field.label_tag }}</div>
+                    <p>{{ field }}</p>
+                    {% if field.errors%}
+                    {% for error in field.errors %}
+                    <div class="alert">
+                        {{error}}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endfor %}
+                    {% csrf_token %}
+                    <p><input type="submit" class="button-check" value="Сохранить изменения"></p>
+                </form>
             </div>
-            {% endfor %}
-            {% endif %}
-            {% endfor %}
-            {% for field in profile_form %}
-            <div class="div-form-label">{{ field.label_tag }}</div>
-            <p>{{ field }}</p>
-            {% if field.errors%}
-            {% for error in field.errors %}
-            <div class="alert">
-                {{error}}
-            </div>
-            {% endfor %}
-            {% endif %}
-            {% endfor %}
-            {% csrf_token %}
-            <p><input type="submit" class="button-check" value="Сохранить изменения"></p>
-        </form>
+        </div>
     </div>
     <br>
     <br>
+    <div class="profile-gl-div-order-search">
+        <div class="profile-div-order-search">
+            <p class="profile-p-search center">Ваши заказы</p>
+        </div>
+    </div>
 
+    {% if customer %}
     {% for order in customer %}
 
     <div class="table-cart">
         <h2 class="h1-form">Номер заказа: {{ order.pk }}</h2>
-        <h2>Коментарий: {% if order.comment_for_order %}
-            {{ order.comment_for_order }}
-            {% else %}
-            Нет коменнтария к заказу
-            {% endif %}</h2>
-        <br>
         <h2>Статус:
             {% if "new" in order.status %}
             Новый заказ
@@ -73,6 +77,12 @@
             {% else %}
             Заказ готов
             {% endif %}
+            {% endif %}</h2>
+        <br>
+        <h2>Коментарий: {% if order.comment_for_order %}
+            {{ order.comment_for_order|linebreaks }}
+            {% else %}
+            Нет коменнтария к заказу
             {% endif %}</h2>
         <br>
         <table>
@@ -90,7 +100,7 @@
                     </a>
                 </td>
                 <td>
-                    <a href="{{ item.product.get_absolute_url }}">
+                    <a href="{{ item.product.get_absolute_url }}" class="profile-table-link">
                         {{ item.product.title }}
                     </a>
                 </td>
@@ -108,8 +118,13 @@
         </table>
     </div>
     <br>
-    <br>
+    <hr>
     {% endfor %}
+    {% else %}
+    <div class="profile-search-empty">
+        <p>В данный момент у Вас нет заказов</p>
+    </div>
+    {% endif %}
 
 </section>
 {% endblock %}

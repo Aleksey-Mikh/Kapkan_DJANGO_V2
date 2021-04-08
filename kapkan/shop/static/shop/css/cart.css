@@ -29,6 +29,18 @@ button {
 	width: 1200px;
 	margin: auto;
 	background-color: #FFF;
+	margin-top: 40px;
+}
+
+.cart-div-title {
+    width: 100%;
+	padding: 20px;
+	text-align: center;
+}
+
+.cart-div-title h3{
+    font-size: 20px;
+    font-weight: 700;
 }
 
 .table-cart {
@@ -39,7 +51,7 @@ button {
 .cart-image {
 	width: 200px;
 	height: 150px;
-	object-fit: cover;
+	object-fit: contain;
 }
 
 .total-price {

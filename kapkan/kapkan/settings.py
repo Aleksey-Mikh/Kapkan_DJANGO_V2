@@ -152,3 +152,8 @@ EMAIL_USE_SSL = False
 EMAIL_FILE_PATH = str(BASE_DIR . joinpath('sent_emails'))
 
 AUTH_USER_MODEL = 'user_reg_log.CustomUser'
+
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SAMESITE = 'None'

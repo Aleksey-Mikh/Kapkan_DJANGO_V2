@@ -7,7 +7,7 @@
     <link rel="icon" type="image" href="https://code.s3.yandex.net/web-code/playlist-favicon.ico">
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'shop/css/header.css' %}" ?>
-    <link rel="stylesheet" type="text/css" href="{% static 'shop/css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'shop/css/main.css' %}?">
     <link rel="stylesheet" type="text/css" href="{% static 'shop/css/footer.css' %}?" ?>
     <link rel="stylesheet" type="text/css" href="{% static 'shop/css/button.css' %}?" ?>
     <link rel="stylesheet" media="screen,projection" href="{% static 'shop/css/ui.totop.css' %}?"/>
@@ -147,13 +147,26 @@
             </div>
         </div>
         <div class="second-menu">
-            <a href="" class="menu-link">Видео</a>
-            <a href="" class="menu-link">Контакты</a>
+            <div class="second-menu-div border-right">
+                <a href="" class="menu-link">Видео</a>
+            </div>
+            <div class="second-menu-div border-right">
+                <a href="" class="menu-link">Контакты</a>
+            </div>
             {% if request.user.is_authenticated %}
-            Добро пожаловать, {{ user.username }} | <a href="{% url 'logout' %}" class="menu-link">Выход</a>
+            <div class="second-menu-div border-right">
+                <a href="{% url 'profile' %}" class="menu-link">Добро пожаловать, {{ user.username }}</a>
+            </div>
+            <div class="second-menu-div">
+                <a href="{% url 'logout' %}" class="menu-link">Выход</a>
+            </div>
             {% else %}
-            <a href="{% url 'register' %}" class="menu-link">Регистрация</a>
-            <a href="{% url 'login' %}" class="menu-link">Авторизация</a>
+            <div class="second-menu-div border-right">
+                <a href="{% url 'register' %}" class="menu-link">Регистрация</a>
+            </div>
+            <div class="second-menu-div">
+                <a href="{% url 'login' %}" class="menu-link">Авторизация</a>
+            </div>
             {% endif %}
         </div>
         {% with total_items=cart|length %}
@@ -342,6 +355,7 @@
   $().UItoTop({ easingType: 'easeOutQuart' });
 
   });
+
 </script>
 </body>
 </html>
