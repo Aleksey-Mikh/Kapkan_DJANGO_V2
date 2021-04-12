@@ -163,6 +163,13 @@
 	color: #000;
 }
 
+.priceproduct-old{
+  font-size: 24px;
+  color: #d10000;
+  text-decoration: line-through;
+  margin-left: 15px;
+}
+
 .detail-price-div input{
 	height: 30px;
 	width: 60px;

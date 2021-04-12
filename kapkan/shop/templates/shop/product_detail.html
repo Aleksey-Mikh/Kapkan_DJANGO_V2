@@ -6,8 +6,8 @@
 {% block style %}
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/owl.carousel.min.css' %}" ?>
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/owl.theme.default.min.css' %}?" ?>
-<link rel="stylesheet" type="text/css" href="{% static 'shop/css/detail.css' %}?">
-<link rel="stylesheet" type="text/css" href="{% static 'shop/css/category.css' %}?" ?>
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/detail.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/category.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/owl.css' %}?" ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
 {% endblock %}
@@ -85,7 +85,7 @@
                         <p>Специальные предложения:</p>
                     </div>
                     <div class="detail-position-sticker">
-                        {% if product.is_new or product.is_hit %}
+                        {% if product.is_new or product.is_hit or product.product_with_sale.all %}
                         {% if product.is_new %}
                         <div class="detail-stiker">
                             <div class="stickers-top"><span class="diamont_st">new</span></div>
@@ -96,6 +96,13 @@
                             <div class="stickers-top hit"><span class="diamont_st">хит</span></div>
                         </div>
                         {% endif %}
+                        {% if product.product_with_sale.all %}
+                        <div class="detail-stiker">
+                            <div class="stickers-top hit" style="background-color: #B22222">
+                                <span class="diamont_st">{{ product.product_with_sale.first.sale }}%</span>
+                            </div>
+                        </div>
+                        {% endif %}
                         {% else %}
                         <p>Для данного товара нет специальных предложений</p>
                         {% endif %}
@@ -103,7 +110,11 @@
                 </div>
                 <form action="{% url 'cart:cart_add' product.id %}" method="post">
                     <div class="detail-price-div">
-                        <p>{{ product.price }} руб.</p>
+                        <p>{{ product.get_price }} руб.
+                            {% if product.product_with_sale.all %}
+                            <span class="priceproduct-old">{{ product.price }} руб.</span>
+                            {% endif %}
+                        </p>
                         <input type="number" min="1" name="quantity" value="1" class="quantity-cart">
                     </div>
                     {{ item.update_quantity_form.update }}
@@ -162,14 +173,31 @@
             <div class="category-gl-card-div">
                 <div class="category-card-div-img">
                     <div class="category-card-div-img-content">
-                        {% if product_rec.recommend_product.is_new %}
+                        {% if product.is_new %}
                         <div class="position-sticker">
                             <div class="stickers-top"><span class="diamont_st">new</span></div>
                         </div>
                         {% else %}
-                        {% if product_rec.recommend_product.is_hit %}
+                        {% if product.is_hit %}
                         <div class="position-sticker">
                             <div class="stickers-top hit"><span class="diamont_st">хит</span></div>
+                        </div>
+                        {% endif %}
+                        {% endif %}
+                        {% if not product.is_new and not product.is_hit %}
+                        {% if product.product_with_sale.all %}
+                        <div class="position-sticker">
+                            <div class="stickers-top hit" style="background-color: #B22222">
+                                <span class="diamont_st">{{ product.product_with_sale.first.sale }}%</span>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% elif product.is_new or product.is_hit %}
+                        {% if product.product_with_sale.all %}
+                        <div class="position-sticker pd-50">
+                            <div class="stickers-top hit" style="background-color: #B22222">
+                                <span class="diamont_st">{{ product.product_with_sale.first.sale }}%</span>
+                            </div>
                         </div>
                         {% endif %}
                         {% endif %}
@@ -193,7 +221,14 @@
 
                 <div class="category-card-div-price">
                     <div class="category-card-div-Price">
-                        <h3><span>{{ product_rec.recommend_product.price }} руб.</span></h3>
+                        <div class="category-card-div-Price-div">
+                            <h3><span>{{ product_rec.recommend_product.get_price }} руб.</span></h3>
+                        </div>
+                        {% if product.product_with_sale.all %}
+                        <div class="category-card-div-Price-div-old">
+                            <span class="priceproduct-old">{{ product_rec.recommend_product.price }} руб.</span>
+                        </div>
+                        {% endif %}
                     </div>
 
                     <div class="category-card-div-button">
@@ -234,6 +269,23 @@
                         </div>
                         {% endif %}
                         {% endif %}
+                        {% if not last_product.is_new and not last_product.is_hit %}
+                        {% if last_product.product_with_sale.all %}
+                        <div class="position-sticker">
+                            <div class="stickers-top hit" style="background-color: #B22222">
+                                <span class="diamont_st">{{ last_product.product_with_sale.first.sale }}%</span>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% elif last_product.is_new or last_product.is_hit %}
+                        {% if last_product.product_with_sale.all %}
+                        <div class="position-sticker pd-50">
+                            <div class="stickers-top hit" style="background-color: #B22222">
+                                <span class="diamont_st">{{ last_product.product_with_sale.first.sale }}%</span>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endif %}
                         <div class="category-card-div-image">
                             <a href="{{ last_product.get_absolute_url }}">
                                 <img src="{{ last_product.image.url }}" class="category-card-image"
@@ -254,7 +306,14 @@
 
                 <div class="category-card-div-price">
                     <div class="category-card-div-Price">
-                        <h3><span>{{ last_product.price }} руб.</span></h3>
+                        <div class="category-card-div-Price-div">
+                            <h3><span>{{ last_product.get_price }} руб.</span></h3>
+                        </div>
+                        {% if last_product.product_with_sale.all %}
+                        <div class="category-card-div-Price-div-old">
+                            <span class="priceproduct-old">{{ last_product.price }} руб.</span>
+                        </div>
+                        {% endif %}
                     </div>
 
                     <div class="category-card-div-button">

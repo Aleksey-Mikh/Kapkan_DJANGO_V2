@@ -4,7 +4,7 @@
 {% block title %}Поиск | {{ block.super }}{% endblock %}
 
 {% block style %}
-<link rel="stylesheet" type="text/css" href="{% static 'shop/css/category.css' %}?" ?>
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/category.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/cart.css' %}" ?>
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/form.css' %}?" ?>
 {% endblock %}
@@ -59,7 +59,14 @@
 
             <div class="category-card-div-price">
                 <div class="category-card-div-Price">
-                    <h3><span>{{ product.price }} руб.</span></h3>
+                    <div class="category-card-div-Price-div">
+                        <h3><span>{{ product.get_price }} руб.</span></h3>
+                    </div>
+                    {% if product.product_with_sale.all %}
+                    <div class="category-card-div-Price-div-old">
+                        <span class="priceproduct-old">{{ product.price }} руб.</span>
+                    </div>
+                    {% endif %}
                 </div>
 
                 <div class="category-card-div-button">

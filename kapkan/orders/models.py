@@ -62,8 +62,8 @@ class OrderItem(models.Model):
         return self.price * self.quantity
 
     def save(self, *args, **kwargs):
-        self.price = self.product.price
-        self.price_x_items = self.quantity * self.product.price
+        self.price = self.product.get_price()
+        self.price_x_items = self.quantity * self.product.get_price()
         super().save(*args, **kwargs)
         # вызов изменения общей цены
         oder_total = self.order.order_total_price.all()
@@ -95,3 +95,4 @@ class OrderTotalPrice(models.Model):
 
     class Meta:
         verbose_name = 'Общая цена заказа'
+        verbose_name_plural = 'Общая цена заказа'

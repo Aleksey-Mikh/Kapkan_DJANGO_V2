@@ -1,5 +1,19 @@
+import decimal
+
 from django.db import models
 from django.urls import reverse
+
+
+class ProductSale(models.Model):
+    product_with_sale = models.ForeignKey('Product', on_delete=models.CASCADE, related_name='product_with_sale')
+    sale = models.IntegerField(verbose_name='Скидка, %')
+
+    def __str__(self):
+        return f'Скидка {self.sale} %'
+
+    class Meta:
+        verbose_name = 'Скидка'
+        verbose_name_plural = 'Скидки'
 
 
 class Product(models.Model):
@@ -38,6 +52,13 @@ class Product(models.Model):
     def __str__(self):
         return self.title
 
+    def get_price(self):
+        sale = self.product_with_sale.first()
+        if sale:
+            price = self.price - self.price * decimal.Decimal((sale.sale / 100))
+            return round(price, 2)
+        return self.price
+
     class Meta:
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
@@ -66,7 +87,7 @@ class RecommendProduct(models.Model):
     recommend_product = models.ForeignKey(
         Product,
         related_name='recommend_product',
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
         verbose_name='Рекомендованный товар')
 
     def __str__(self):

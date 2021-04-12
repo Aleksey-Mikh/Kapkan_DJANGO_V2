@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Category, RecommendProduct, ProductGallery
+from .models import Product, Category, RecommendProduct, ProductGallery, ProductSale
 
 from import_export.admin import ImportExportActionModelAdmin
 from import_export import resources
@@ -22,6 +22,11 @@ class GalleryProductInline(admin.TabularInline):
     extra = 0
 
 
+class SaleProductInline(admin.TabularInline):
+    model = ProductSale
+    extra = 0
+
+
 class ProductResource(resources.ModelResource):
     category = fields.Field(column_name='category', attribute='category', widget=ForeignKeyWidget(Category, 'name'))
 
@@ -31,21 +36,21 @@ class ProductResource(resources.ModelResource):
 
 class ProductAdmin(ImportExportActionModelAdmin):
     resource_class = ProductResource
-    list_display = ('title', 'price', 'category', 'is_published', 'views')
+    list_display = ('title', 'get_price', 'category', 'is_published', 'views')
     search_fields = ('title', )
     list_editable = ('is_published',)
-    readonly_fields = ('views', )
+    readonly_fields = ('views', 'get_price')
     list_filter = ('is_published', 'category')
     prepopulated_fields = {'slug': ('title',)}
 
     fieldsets = (
         (None, {'fields': ('category', 'title', 'slug', 'manufacturer', 'model', 'image', 'views',
-                           'description', 'price', 'is_published', 'status')}),
+                           'description', 'price', 'get_price', 'is_published', 'status')}),
         (('Ярлыки'), {
             'fields': ('is_new', 'is_hit', 'is_recommend'),
         }),
     )
-    inlines = [RecommendProductItemInline, GalleryProductInline, ]
+    inlines = [RecommendProductItemInline, GalleryProductInline, SaleProductInline]
 
 
 class CategoryAdmin(admin.ModelAdmin):
