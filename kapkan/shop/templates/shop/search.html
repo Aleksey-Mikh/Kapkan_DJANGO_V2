@@ -39,6 +39,23 @@
                     </div>
                     {% endif %}
                     {% endif %}
+                    {% if not product.is_new and not product.is_hit %}
+                    {% if product.product_with_sale.all %}
+                    <div class="position-sticker">
+                        <div class="stickers-top hit" style="background-color: #B22222">
+                            <span class="diamont_st">-{{ product.product_with_sale.first.sale }}%</span>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% elif product.is_new or product.is_hit %}
+                    {% if product.product_with_sale.all %}
+                    <div class="position-sticker pd-50">
+                        <div class="stickers-top hit" style="background-color: #B22222">
+                            <span class="diamont_st">-{{ product.product_with_sale.first.sale }}%</span>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endif %}
                     <div class="category-card-div-image">
                         <a href="{{ product.get_absolute_url }}">
                             <img src="{{ product.image.url }}" class="category-card-image"

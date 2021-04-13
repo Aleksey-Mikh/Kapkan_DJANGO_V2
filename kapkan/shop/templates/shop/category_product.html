@@ -92,7 +92,7 @@
                     {% if product.product_with_sale.all %}
                     <div class="position-sticker">
                         <div class="stickers-top hit" style="background-color: #B22222">
-                            <span class="diamont_st">{{ product.product_with_sale.first.sale }}%</span>
+                            <span class="diamont_st">-{{ product.product_with_sale.first.sale }}%</span>
                         </div>
                     </div>
                     {% endif %}
@@ -100,7 +100,7 @@
                     {% if product.product_with_sale.all %}
                     <div class="position-sticker pd-50">
                         <div class="stickers-top hit" style="background-color: #B22222">
-                            <span class="diamont_st">{{ product.product_with_sale.first.sale }}%</span>
+                            <span class="diamont_st">-{{ product.product_with_sale.first.sale }}%</span>
                         </div>
                     </div>
                     {% endif %}
