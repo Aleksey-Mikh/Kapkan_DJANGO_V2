@@ -1,0 +1,70 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}О нас | {{ block.super }}{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/contacts.css' %}?">
+{% endblock %}
+
+{% block breadcrumbs %}
+<div class="my-breadcrumbs">
+    <div class="my-breadcrumbs-div"><a href="{% url 'home' %}">Главная</a>
+        <p>»</p>
+    </div>
+    <div class="my-breadcrumbs-div">Контакты</div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="kontakt-gl-section">
+    <div class="kontakt-gl-div-title">
+        <h2>Контакты</h2>
+    </div>
+
+    <div class="kontakt-gl-div-description">
+        <div class="kontakt-div-description-title">
+            <h3><span>C нами можно связаться:</span></h3>
+        </div>
+        <div class="kontakt-div-description-body">
+            <h4>- По контактным телефонам:</h4>
+            <p>+375 29 383-45-45</p>
+            <p>+375 33 383-45-45</p>
+            <h4>- По электронной почте:</h4>
+            <p>info@viprest.by</p>
+        </div>
+
+        <div class="kontakt-div-description-title">
+            <h3><span>Режим работы:</span></h3>
+        </div>
+        <div class="kontakt-div-description-body">
+            <h4>- Магазин (г. Минск, пр. Пушкина 33-611):</h4>
+            <p><span class="kontakt-time">Пн-Пт: 10:00-18:00</span></p>
+            <p><span class="kontakt-time">Сб-Вс: Выходной</span></p>
+        </div>
+
+        <div class="kontakt-div-description-title">
+            <h3><span>Самовывоз в г. Минске:</span></h3>
+        </div>
+        <div class="kontakt-div-description-body">
+            <h4>- Самовывоз:</h4>
+            <p>пр. Пушкина 33 <span class="kontakt-time">с 10:00-18:00 Пн-Пт.</span></p>
+            <p>пер. Ангарский 78 <span class="kontakt-time">с 18:00-21:00 Пн-Пт, и с 9:00-21:00 Сб-Вс.</span></p>
+            <h4>Перед поездкой уточняйте наличие в пункте самовывоза.</h4>
+        </div>
+    </div>
+
+    <div class="kontakt-gl-div-map">
+        <div class="kontakt-div-map-title">
+            <h3>Наш магазин находится по адресу: г. Минск пр. Пушкина 33 (500 метров от ст.м. Пушкинская), вход со
+                двора, возле пятого подъезда.</h3>
+        </div>
+
+        <div class="kontakt-div-map-body">
+            <iframe src="https://www.google.com/maps/d/embed?mid=1tyPkEGZxcK1j0rkcP6pGtoKNQddfnCzh" width="800"
+                    height="450"></iframe>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

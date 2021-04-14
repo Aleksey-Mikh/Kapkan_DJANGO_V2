@@ -150,3 +150,7 @@ class SearchView(ListView):
 
 def about_us(request):
     return render(request, 'shop/about_us.html')
+
+
+def contacts(request):
+    return render(request, 'shop/contacts.html')

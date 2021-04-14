@@ -7,6 +7,15 @@
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/about_us.css' %}?" >
 {% endblock %}
 
+{% block breadcrumbs %}
+<div class="my-breadcrumbs">
+    <div class="my-breadcrumbs-div"><a href="{% url 'home' %}">Главная</a>
+        <p>»</p>
+    </div>
+    <div class="my-breadcrumbs-div">О нас</div>
+</div>
+{% endblock %}
+
 {% block content %}
 <div class="about-us-gl-section">
 

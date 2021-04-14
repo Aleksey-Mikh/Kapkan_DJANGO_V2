@@ -44,7 +44,7 @@ body {
 }
 
 .my-breadcrumbs-div a:hover, .my-breadcrumbs-div a:active {
-  color: #4169E1;
+  color: #134ab2;
 }
 
 .background {
@@ -223,7 +223,7 @@ body {
   padding: 45px 45px 70px;
   display: inline-block;
   background-color: #FFF;
-  box-shadow: 7px 7px  #1FF;
+  box-shadow: 7px 7px  #4169E1;
 }
 
 .Price {

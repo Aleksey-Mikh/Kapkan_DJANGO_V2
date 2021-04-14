@@ -1,12 +1,13 @@
 import decimal
 
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.urls import reverse
 
 
 class ProductSale(models.Model):
     product_with_sale = models.ForeignKey('Product', on_delete=models.CASCADE, related_name='product_with_sale')
-    sale = models.IntegerField(verbose_name='Скидка, %')
+    sale = models.IntegerField(verbose_name='Скидка, %', validators=[MinValueValidator(0), MaxValueValidator(100)])
 
     def __str__(self):
         return f'Скидка {self.sale} %'

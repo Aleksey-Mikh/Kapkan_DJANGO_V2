@@ -16,15 +16,26 @@ button {
 	text-align: center;
 	border: none;
 	background-color: #4169E1;
+	cursor: pointer;
+}
+
+.button-check:hover {
+	background-color: #134ab2;
 }
 
 .button-danger {
 	background-color: #FF0000;
+	cursor: pointer;
+}
+
+.button-danger:hover {
+	background-color: #c90d07;
 }
 
 .button-footer-cart {
 	margin: 15px 0 0 15px;
 	display: inline-block;
+	cursor: pointer;
 }
 
 input {

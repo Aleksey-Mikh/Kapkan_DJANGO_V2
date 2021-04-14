@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image" href="https://code.s3.yandex.net/web-code/playlist-favicon.ico">
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'shop/css/header.css' %}" ?>
+    <link rel="stylesheet" type="text/css" href="{% static 'shop/css/header.css' %}?">
     <link rel="stylesheet" type="text/css" href="{% static 'shop/css/main.css' %}?">
     <link rel="stylesheet" type="text/css" href="{% static 'shop/css/footer.css' %}?" ?>
-    <link rel="stylesheet" type="text/css" href="{% static 'shop/css/button.css' %}?" ?>
+    <link rel="stylesheet" type="text/css" href="{% static 'shop/css/button.css' %}" >
     <link rel="stylesheet" media="screen,projection" href="{% static 'shop/css/ui.totop.css' %}?"/>
     {% block style %}
     {% endblock %}
@@ -143,7 +143,7 @@
                 </a>
                 {% endfor %}
                 <a href="">Видео</a>
-                <a href="">Контакты</a>
+                <a href="{% url 'contacts' %}">Контакты</a>
             </div>
         </div>
         <div class="second-menu">
@@ -151,7 +151,7 @@
                 <a href="" class="menu-link">Видео</a>
             </div>
             <div class="second-menu-div border-right">
-                <a href="" class="menu-link">Контакты</a>
+                <a href="{% url 'contacts' %}" class="menu-link">Контакты</a>
             </div>
             {% if request.user.is_authenticated %}
             <div class="second-menu-div border-right">
@@ -267,7 +267,7 @@
             <h2 class="h-text">
                 <img src="{% static 'shop/images/icon-geo-position.png' %}" class="footer-icon" alt=""> АДРЕС
             </h2>
-            <p class="p-text">г. Минск, пр. Пушкина 33-61</p>
+            <p class="p-text">г. Минск, пр. Пушкина 33-611</p>
         </div>
 
         <div class="footer-div">
