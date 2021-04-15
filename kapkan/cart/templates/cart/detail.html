@@ -68,11 +68,16 @@ Your shopping cart
             {% endfor %}
             <tr class="total">
                 <th colspan="6" class="total-price">Общая цена</th>
-                <th>{{ cart.get_total_price }} руб.</th>
+                <th>{{ cart.get_total_price_after_discount|floatformat:"2" }} руб.</th>
             </tr>
         </table>
 
         <div class="footer-cart">
+            <div class="button-footer-cart">
+                <a href="{% url 'cart:get_bonus_points' %}" class="button light">
+                    <button class="button-check">Использовать бонусные баллы</button>
+                </a>
+            </div>
             <div class="button-footer-cart">
                 <a href="{% url 'home' %}" class="button light">
                     <button class="button-check">В магазин</button>

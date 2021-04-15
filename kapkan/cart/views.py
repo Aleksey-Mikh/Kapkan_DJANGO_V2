@@ -33,3 +33,8 @@ def cart_detail(request):
             'update': True,
         })
     return render(request, 'cart/detail.html', {'cart': cart})
+
+
+def get_bonus_points(request):
+    request.session['user_id'] = request.user.id
+    return redirect('cart:cart_detail')

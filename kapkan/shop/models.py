@@ -46,6 +46,7 @@ class Product(models.Model):
     is_hit = models.BooleanField(default=False, verbose_name='ХИТ')
     is_recommend = models.BooleanField(default=False, verbose_name='Рекомендованно')
     views = models.PositiveIntegerField(default=0, verbose_name='Просмотры')
+    bonus_points = models.PositiveIntegerField(default=0, verbose_name='Бонусные баллы')
 
     def get_absolute_url(self):
         return reverse('product_detail', kwargs={'slug': self.slug})

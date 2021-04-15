@@ -1,4 +1,7 @@
+from decimal import Decimal
+
 from django.db import models
+
 from shop.models import Product
 
 
@@ -26,6 +29,7 @@ class Order(models.Model):
         max_length=100, verbose_name='Статус заказа', choices=STATUS_CHOICES, default=STATUS_NEW
     )
     comment_for_order = models.TextField(blank=True, null=True, verbose_name='Комментарий к заказу')
+    discount = models.DecimalField(default=0, max_digits=9, decimal_places=2, verbose_name='Скидка')
 
     class Meta:
         ordering = ('-created',)
@@ -36,7 +40,8 @@ class Order(models.Model):
         return 'Order {}'.format(self.id)
 
     def get_total_cost(self):
-        return sum(item.get_cost() for item in self.items.all())
+        total_cost = sum(item.get_cost() for item in self.items.all())
+        return total_cost - self.discount
 
 
 class OrderItem(models.Model):

@@ -19,16 +19,6 @@ class UserEditForm(forms.ModelForm):
         }
 
 
-class ProfileEditForm(forms.ModelForm):
-
-    class Meta:
-        model = Profile
-        fields = ('date_of_birth', )
-        widgets = {
-            'date_of_birth': forms.TextInput(attrs={'class': 'my-field-form'}),
-        }
-
-
 class UserLoginForm(AuthenticationForm):
     username = forms.CharField(label='Имя пользователя', widget=forms.TextInput(
         attrs={'class': 'my-field-form'}
