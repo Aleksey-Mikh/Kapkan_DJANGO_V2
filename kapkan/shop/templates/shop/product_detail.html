@@ -44,10 +44,10 @@
                     </div>
                     <div class="detail-img-main-empty"></div>
                 </div>
-                {% if product.images.all %}
+                {% if product_images %}
                 <div class="detail-gallery-div">
                     <div class="owl-carousel owl-theme ">
-                        {% for image in product.images.all %}
+                        {% for image in product_images %}
                         <a data-fancybox="images" href="{{ image.image_gallery.url }}" data-caption="fox1">
                             <img src="{{ image.image_gallery.url }}" class="detail-gallery-img"
                                  alt="картинка {{ product.title }}">
@@ -85,7 +85,7 @@
                         <p>Специальные предложения:</p>
                     </div>
                     <div class="detail-position-sticker">
-                        {% if product.is_new or product.is_hit or product.product_with_sale.all %}
+                        {% if product.is_new or product.is_hit or product_sale %}
                         {% if product.is_new %}
                         <div class="detail-stiker">
                             <div class="stickers-top"><span class="diamont_st">new</span></div>
@@ -96,10 +96,10 @@
                             <div class="stickers-top hit"><span class="diamont_st">хит</span></div>
                         </div>
                         {% endif %}
-                        {% if product.product_with_sale.all %}
+                        {% if product_sale %}
                         <div class="detail-stiker">
                             <div class="stickers-top hit" style="background-color: #B22222">
-                                <span class="diamont_st">-{{ product.product_with_sale.first.sale }}%</span>
+                                <span class="diamont_st">-{{ product_sale }}%</span>
                             </div>
                         </div>
                         {% endif %}
@@ -111,7 +111,7 @@
                 <form action="{% url 'cart:cart_add' product.id %}" method="post">
                     <div class="detail-price-div">
                         <p>{{ product.get_price }} руб.
-                            {% if product.product_with_sale.all %}
+                            {% if product_sale %}
                             <span class="priceproduct-old">{{ product.price }} руб.</span>
                             {% endif %}
                         </p>
@@ -162,41 +162,41 @@
     </div>
 </div>
 
-{% if product.main_product.all %}
+{% if recommend_products %}
 <div class="content-category mg-auto pd-50-0">
     <div class="result-search">
         <p class="p-search-result center">C этим товаром также покупают:</p>
     </div>
     <div class="owl-carousel owl-theme">
-        {% for product_rec in product.main_product.all %}
+        {% for product_rec in recommend_products %}
         <div class="category-card">
             <div class="category-gl-card-div">
                 <div class="category-card-div-img">
                     <div class="category-card-div-img-content">
-                        {% if product.is_new %}
+                        {% if product_rec.recommend_product.is_new %}
                         <div class="position-sticker">
                             <div class="stickers-top"><span class="diamont_st">new</span></div>
                         </div>
                         {% else %}
-                        {% if product.is_hit %}
+                        {% if product_rec.recommend_product.is_hit %}
                         <div class="position-sticker">
                             <div class="stickers-top hit"><span class="diamont_st">хит</span></div>
                         </div>
                         {% endif %}
                         {% endif %}
-                        {% if not product.is_new and not product.is_hit %}
-                        {% if product.product_with_sale.all %}
+                        {% if not product_rec.recommend_product.is_new and not product_rec.recommend_product.is_hit %}
+                        {% if product_rec.recommend_product.product_with_sale.first %}
                         <div class="position-sticker">
                             <div class="stickers-top hit" style="background-color: #B22222">
-                                <span class="diamont_st">-{{ product.product_with_sale.first.sale }}%</span>
+                                <span class="diamont_st">-{{ product_rec.recommend_product.product_with_sale.first.sale }}%</span>
                             </div>
                         </div>
                         {% endif %}
-                        {% elif product.is_new or product.is_hit %}
-                        {% if product.product_with_sale.all %}
+                        {% elif product_rec.recommend_product.is_new or product_rec.recommend_product.is_hit %}
+                        {% if product_rec.recommend_product.product_with_sale.first %}
                         <div class="position-sticker pd-50">
                             <div class="stickers-top hit" style="background-color: #B22222">
-                                <span class="diamont_st">-{{ product.product_with_sale.first.sale }}%</span>
+                                <span class="diamont_st">-{{ product_rec.recommend_product.product_with_sale.first.sale }}%</span>
                             </div>
                         </div>
                         {% endif %}
@@ -209,7 +209,7 @@
                         </div>
                     </div>
                 </div>
-                {% if last_product.title|length < 55 %}
+                {% if product_rec.title|length < 55 %}
                 <div class="category-card-div-title height-15">
                     <h1><span>{{ product_rec.recommend_product.title }}</span></h1>
                 </div>
@@ -224,7 +224,7 @@
                         <div class="category-card-div-Price-div">
                             <h3><span>{{ product_rec.recommend_product.get_price }} руб.</span></h3>
                         </div>
-                        {% if product.product_with_sale.all %}
+                        {% if product_rec.recommend_product.product_with_sale.first %}
                         <div class="category-card-div-Price-div-old">
                             <span class="priceproduct-old">{{ product_rec.recommend_product.price }} руб.</span>
                         </div>
@@ -270,7 +270,7 @@
                         {% endif %}
                         {% endif %}
                         {% if not last_product.is_new and not last_product.is_hit %}
-                        {% if last_product.product_with_sale.all %}
+                        {% if last_product.product_with_sale.first %}
                         <div class="position-sticker">
                             <div class="stickers-top hit" style="background-color: #B22222">
                                 <span class="diamont_st">-{{ last_product.product_with_sale.first.sale }}%</span>
@@ -278,7 +278,7 @@
                         </div>
                         {% endif %}
                         {% elif last_product.is_new or last_product.is_hit %}
-                        {% if last_product.product_with_sale.all %}
+                        {% if last_product.product_with_sale.first %}
                         <div class="position-sticker pd-50">
                             <div class="stickers-top hit" style="background-color: #B22222">
                                 <span class="diamont_st">-{{ last_product.product_with_sale.first.sale }}%</span>
@@ -331,6 +331,7 @@
     </div>
 </div>
 {% endif %}
+
 <br>
 <br>
 {% endblock %}

@@ -1,11 +1,12 @@
 from datetime import datetime, timezone
 
+from django.db.models.query import Prefetch
 from django.db.models import Count, F, Q
 from django.shortcuts import render, get_object_or_404
 from django.utils.decorators import method_decorator
 from django.views.generic import ListView, DetailView
 
-from .models import Product, Category
+from .models import Product, Category, RecommendProduct
 from cart.forms import CartAddProductForm
 from .forms import ProductFilterForm
 from .decorators import counted
@@ -46,7 +47,7 @@ class IndexView(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
-        context['products'] = Product.objects.filter(is_recommend=True)
+        context['products'] = Product.objects.prefetch_related('product_with_sale').filter(is_recommend=True)
         context['title'] = 'Главная'
         cart_product_form = CartAddProductForm()
         context['cart_product_form'] = cart_product_form
@@ -66,8 +67,8 @@ class CategoryDetailView(ListView):
     paginate_by = 12
 
     def get_queryset(self):
-        category = get_object_or_404(Category, slug=self.kwargs['slug'])
-        products = Product.objects.filter(Q(is_new=True) & Q(category=category))
+        self.category = get_object_or_404(Category, slug=self.kwargs['slug'])
+        products = Product.objects.filter(Q(is_new=True) & Q(category=self.category))
         if products:
             time_now = datetime.now(timezone.utc)
             for product in products:
@@ -76,15 +77,14 @@ class CategoryDetailView(ListView):
                 if (time_delta.total_seconds() // 3600) > TIME_IS_NEW:
                     product.is_new = False
                     product.save()
-        return category.product.filter(is_published=True).select_related('category')
+        return self.category.product.filter(is_published=True).select_related('category')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         cart_product_form = CartAddProductForm()
-        context['title'] = Category.objects.get(slug=self.kwargs['slug'])
+        context['title'] = self.category
         context['cart_product_form'] = cart_product_form
-        category = get_object_or_404(Category, slug=self.kwargs['slug'])
-        products = category.product.filter(is_published=True).select_related('category')
+        products = self.category.product.filter(is_published=True).select_related('category')
         context_2 = filter_product(self.request, products)
         context.update(context_2)
         return context
@@ -103,17 +103,28 @@ class ProductDetailView(DetailView):
         product = Product.objects.get(slug=self.kwargs['slug'])
         context['title'] = product
         context['cart_product_form'] = cart_product_form
+        print(product)
+        product_sale = product.product_with_sale.first()
+        if product_sale:
+            context['product_sale'] = product_sale.sale
+        product_images = product.images.all()
+        if product_images:
+            context['product_images'] = product_images
+        recommend_products = RecommendProduct.objects.select_related('recommend_product').filter(main_product=product)
+        if recommend_products:
+            context['recommend_products'] = recommend_products
+
         empty_last_product = list()
         last_products = self.request.session.get('last_products', empty_last_product)
-        if product.id not in last_products:
-            last_products.insert(0, product.id)
+        if product.pk not in last_products:
+            last_products.insert(0, product.pk)
         if len(last_products) >= 5:
             last_products = last_products[:5]
         self.request.session['last_products'] = last_products
         if last_products:
             last_products_in_temple = []
             for last in last_products:
-                last_products_in_temple.append(Product.objects.filter(id=last))
+                last_products_in_temple.append(Product.objects.prefetch_related('product_with_sale').filter(id=last))
             context['last_products_in_temple'] = last_products_in_temple
         return context
 
@@ -137,7 +148,7 @@ class SearchView(ListView):
                 if (time_delta.total_seconds() // 3600) > TIME_IS_NEW:
                     product.is_new = False
                     product.save()
-        return Product.objects.filter(title__icontains=self.request.GET.get('s'))
+        return Product.objects.prefetch_related('product_with_sale').filter(title__icontains=self.request.GET.get('s'))
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -154,3 +165,8 @@ def about_us(request):
 
 def contacts(request):
     return render(request, 'shop/contacts.html')
+
+
+def video(request):
+
+    return render(request, 'shop/video.html')

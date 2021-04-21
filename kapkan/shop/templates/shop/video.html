@@ -1,0 +1,27 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}{{ title }} | {{ block.super }}{% endblock %}
+
+{% block style %}
+
+{% endblock %}
+
+{% block breadcrumbs %}
+<div class="my-breadcrumbs">
+    <div class="my-breadcrumbs-div"><a href="{% url 'home' %}">Главная</a>
+        <p>»</p>
+    </div>
+    <div class="my-breadcrumbs-div">{{ title }}</div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/6K83dgjkQNw"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+</iframe>
+
+{% endblock %}

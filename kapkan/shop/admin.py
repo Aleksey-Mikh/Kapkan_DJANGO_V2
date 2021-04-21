@@ -45,7 +45,7 @@ class ProductAdmin(ImportExportActionModelAdmin):
 
     fieldsets = (
         (None, {'fields': ('category', 'title', 'slug', 'manufacturer', 'model', 'image', 'views',
-                           'description', 'price', 'get_price', 'bonus_points', 'is_published', 'status')}),
+                           'description', 'price', 'get_price', 'is_published', 'status')}),
         (('Ярлыки'), {
             'fields': ('is_new', 'is_hit', 'is_recommend'),
         }),

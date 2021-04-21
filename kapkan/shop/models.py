@@ -46,7 +46,6 @@ class Product(models.Model):
     is_hit = models.BooleanField(default=False, verbose_name='ХИТ')
     is_recommend = models.BooleanField(default=False, verbose_name='Рекомендованно')
     views = models.PositiveIntegerField(default=0, verbose_name='Просмотры')
-    bonus_points = models.PositiveIntegerField(default=0, verbose_name='Бонусные баллы')
 
     def get_absolute_url(self):
         return reverse('product_detail', kwargs={'slug': self.slug})
@@ -117,3 +116,16 @@ class Category(models.Model):
         verbose_name_plural = 'Категории'
         ordering = ('name',)
 
+
+class ShopVideo(models.Model):
+
+    video_title = models.CharField(max_length=255, verbose_name='Название видео')
+    video_link = models.CharField(max_length=255, verbose_name='Ссылка на видео')
+    video_description = models.TextField(verbose_name='Описание', null=True)
+
+    def __str__(self):
+        return self.video_title
+
+    class Meta:
+        verbose_name = 'Видео'
+        verbose_name_plural = 'Видео'

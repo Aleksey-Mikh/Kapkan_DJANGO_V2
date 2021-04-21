@@ -1,9 +1,8 @@
 from django.shortcuts import render, get_object_or_404
-from django.db.models import F
+from .models import OrderItem, Order, OrderTotalPrice
+from .forms import OrderCreateForm
 from django.core.mail import send_mail
 
-from .models import OrderItem, OrderTotalPrice
-from .forms import OrderCreateForm
 from cart.cart import Cart
 from confedencial import EMAIL_USER_CONFED
 from user_reg_log.models import Profile
@@ -18,10 +17,6 @@ def order_create(request):
         form = OrderCreateForm(request.POST)
         if form.is_valid():
             order = form.save()
-            if cart.coupon:
-                order.discount = cart.get_discount()
-                print(order.discount)
-                order.save()
             OrderTotalPrice.objects.create(order_id=order)
             for item in cart:
                 OrderItem.objects.create(order=order,
@@ -30,10 +25,6 @@ def order_create(request):
                                          price_x_items=item['total_price'],
                                          quantity=item['quantity'],)
                 dictionary[str(item['product'])] = item['quantity']
-                pt = item['product']
-                if request.user.is_authenticated:
-                    customer.bonus_points = F('bonus_points') + pt.bonus_points
-                    customer.save()
             if request.user.is_authenticated:
                 customer.orders.add(order)
             # очистка корзины
