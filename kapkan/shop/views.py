@@ -1,12 +1,11 @@
 from datetime import datetime, timezone
 
-from django.db.models.query import Prefetch
 from django.db.models import Count, F, Q
 from django.shortcuts import render, get_object_or_404
 from django.utils.decorators import method_decorator
 from django.views.generic import ListView, DetailView
 
-from .models import Product, Category, RecommendProduct
+from .models import Product, Category, RecommendProduct, ShopVideo
 from cart.forms import CartAddProductForm
 from .forms import ProductFilterForm
 from .decorators import counted
@@ -168,5 +167,4 @@ def contacts(request):
 
 
 def video(request):
-
     return render(request, 'shop/video.html')

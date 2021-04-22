@@ -13,7 +13,14 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 
-from confedencial import SECRET_KEY_CONFED, EMAIL_USER_PASSWORD_CONFED, EMAIL_USER_CONFED
+from confedencial import (
+    SECRET_KEY_CONFED,
+    EMAIL_USER_PASSWORD_CONFED,
+    EMAIL_USER_CONFED,
+    DATABASES_NAME,
+    DATABASES_USER,
+    DATABASES_PASSWORD,
+)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -88,8 +95,12 @@ WSGI_APPLICATION = 'kapkan.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': DATABASES_NAME,
+        'USER': DATABASES_USER,
+        'PASSWORD': DATABASES_PASSWORD,
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
