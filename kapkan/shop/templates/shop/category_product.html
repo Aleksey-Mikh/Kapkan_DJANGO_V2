@@ -6,7 +6,7 @@
 {% block style %}
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/category.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/cart.css' %}" ?>
-<link rel="stylesheet" type="text/css" href="{% static 'shop/css/form.css' %}" ?>
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/form.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/button.css' %}" ?>
 
 {% endblock %}
@@ -21,134 +21,137 @@
 {% endblock %}
 
 {% block content %}
+<div class="gl-div-filter">
+    <div class="filter-div">
+        <form action="" method="get">
 
-<div class="filter-div">
-    <form action="" method="get">
-
-        <div class="filter-label">
-            <p>Фильтр</p>
-        </div>
-        <div class="filter-price">
-            <div class="filter-p-price">
-                <p>Минимальная цена </p>
-                <p class="p-kursiv">(BYN)</p>
+            <div class="filter-label">
+                <p>Фильтр</p>
             </div>
-            <div class="global-div-filter-form-price">
-                <div class="div-filter-form-price">
-                    <label for="{{ form.is_new.id_for_label }}">От </label>
-                    {{ form.min_price }}
+            <div class="filter-price">
+                <div class="filter-p-price">
+                    <p>Минимальная цена </p>
+                    <p class="p-kursiv">(BYN)</p>
                 </div>
-                <div class="div-separator"></div>
-                <div class="div-filter-form-price">
-                    <label for="{{ form.is_new.id_for_label }}">До </label>
-                    {{ form.max_price }}
-                </div>
-            </div>
-        </div>
-        <div class="filter-mark">
-            <div class="filter-mark-p">
-                <p>Специальные предложения</p>
-            </div>
-
-            <div class="div-filter-checkbox">
-                <div class="div-filter-checkbox-in">
-                    {{ form.is_new }}
-                    <label for="{{ form.is_new.id_for_label }}">NEW</label>
-                </div>
-                <div class="div-filter-checkbox-in">
-                    {{ form.is_hit }}
-                    <label for="{{ form.is_hit.id_for_label }}">ХИТ</label>
-                </div>
-                <div class="div-filter-checkbox-in">
-                    {{ form.is_recommend }}
-                    <label for="{{ form.is_recommend.id_for_label }}">Рекомендованно</label>
+                <div class="global-div-filter-form-price">
+                    <div class="div-filter-form-price">
+                        <label for="{{ form.is_new.id_for_label }}">От </label>
+                        {{ form.min_price }}
+                    </div>
+                    <div class="div-separator"></div>
+                    <div class="div-filter-form-price">
+                        <label for="{{ form.is_new.id_for_label }}">До </label>
+                        {{ form.max_price }}
+                    </div>
                 </div>
             </div>
-        </div>
-        <br>
-        <p><input type="submit" value="Перейти к товарам" class="button-check"></p>
+            <div class="filter-mark">
+                <div class="filter-mark-p">
+                    <p>Специальные предложения</p>
+                </div>
 
-    </form>
+                <div class="div-filter-checkbox">
+                    <div class="div-filter-checkbox-in">
+                        {{ form.is_new }}
+                        <label for="{{ form.is_new.id_for_label }}">NEW</label>
+                    </div>
+                    <div class="div-filter-checkbox-in">
+                        {{ form.is_hit }}
+                        <label for="{{ form.is_hit.id_for_label }}">ХИТ</label>
+                    </div>
+                    <div class="div-filter-checkbox-in">
+                        {{ form.is_recommend }}
+                        <label for="{{ form.is_recommend.id_for_label }}">Рекомендованно</label>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <p><input type="submit" value="Перейти к товарам" class="button-check"></p>
+
+        </form>
+    </div>
 </div>
 
-<div class="content-category">
-    {% for product in products %}
-    <div class="category-card">
-        <div class="category-gl-card-div">
-            <div class="category-card-div-img">
-                <div class="category-card-div-img-content">
-                    {% if product.is_new %}
-                    <div class="position-sticker">
-                        <div class="stickers-top"><span class="diamont_st">new</span></div>
-                    </div>
-                    {% else %}
-                    {% if product.is_hit %}
-                    <div class="position-sticker">
-                        <div class="stickers-top hit"><span class="diamont_st">хит</span></div>
-                    </div>
-                    {% endif %}
-                    {% endif %}
-                    {% if not product.is_new and not product.is_hit %}
-                    {% if product.product_with_sale.all %}
-                    <div class="position-sticker">
-                        <div class="stickers-top hit" style="background-color: #B22222">
-                            <span class="diamont_st">-{{ product.product_with_sale.first.sale }}%</span>
+<div class="gl-content-category">
+    <div class="content-category">
+        {% for product in products %}
+        <div class="category-card">
+            <div class="category-gl-card-div">
+                <div class="category-card-div-img">
+                    <div class="category-card-div-img-content">
+                        {% if product.is_new %}
+                        <div class="position-sticker">
+                            <div class="stickers-top"><span class="diamont_st">new</span></div>
+                        </div>
+                        {% else %}
+                        {% if product.is_hit %}
+                        <div class="position-sticker">
+                            <div class="stickers-top hit"><span class="diamont_st">хит</span></div>
+                        </div>
+                        {% endif %}
+                        {% endif %}
+                        {% if not product.is_new and not product.is_hit %}
+                        {% if product.product_with_sale.all %}
+                        <div class="position-sticker">
+                            <div class="stickers-top hit" style="background-color: #B22222">
+                                <span class="diamont_st">-{{ product.product_with_sale.first.sale }}%</span>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% elif product.is_new or product.is_hit %}
+                        {% if product.product_with_sale.all %}
+                        <div class="position-sticker pd-50">
+                            <div class="stickers-top hit" style="background-color: #B22222">
+                                <span class="diamont_st">-{{ product.product_with_sale.first.sale }}%</span>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endif %}
+                        <div class="category-card-div-image">
+                            <a href="{{ product.get_absolute_url }}">
+                                <img src="{{ product.image.url }}" class="category-card-image"
+                                     alt="картинка {{ product.title }}">
+                            </a>
                         </div>
                     </div>
-                    {% endif %}
-                    {% elif product.is_new or product.is_hit %}
-                    {% if product.product_with_sale.all %}
-                    <div class="position-sticker pd-50">
-                        <div class="stickers-top hit" style="background-color: #B22222">
-                            <span class="diamont_st">-{{ product.product_with_sale.first.sale }}%</span>
+                </div>
+                {% if product.title|length < 55 %}
+                <div class="category-card-div-title height-15">
+                    <h1><span>{{ product.title }}</span></h1>
+                </div>
+                {% else %}
+                <div class="category-card-div-title">
+                    <h1><span>{{ product.title }}</span></h1>
+                </div>
+                {% endif %}
+
+                <div class="category-card-div-price">
+                    <div class="category-card-div-Price">
+                        <div class="category-card-div-Price-div">
+                            <h3><span>{{ product.get_price }} руб.</span></h3>
                         </div>
+                        {% if product.product_with_sale.all %}
+                        <div class="category-card-div-Price-div-old">
+                            <span class="priceproduct-old">{{ product.price }} руб.</span>
+                        </div>
+                        {% endif %}
                     </div>
-                    {% endif %}
-                    {% endif %}
-                    <div class="category-card-div-image">
-                        <a href="{{ product.get_absolute_url }}">
-                            <img src="{{ product.image.url }}" class="category-card-image"
-                                 alt="картинка {{ product.title }}">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            {% if product.title|length < 55 %}
-            <div class="category-card-div-title height-15">
-                <h1><span>{{ product.title }}</span></h1>
-            </div>
-            {% else %}
-            <div class="category-card-div-title">
-                <h1><span>{{ product.title }}</span></h1>
-            </div>
-            {% endif %}
 
-            <div class="category-card-div-price">
-                <div class="category-card-div-Price">
-                    <div class="category-card-div-Price-div">
-                        <h3><span>{{ product.get_price }} руб.</span></h3>
+                    <div class="category-card-div-button">
+                        <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                            <div class="hidden-block">{{ cart_product_form }}</div>
+                            {% csrf_token %}
+                            <input type="submit" value="Добавить в корзину" class="button-check">
+                        </form>
                     </div>
-                    {% if product.product_with_sale.all %}
-                    <div class="category-card-div-Price-div-old">
-                        <span class="priceproduct-old">{{ product.price }} руб.</span>
-                    </div>
-                    {% endif %}
-                </div>
-
-                <div class="category-card-div-button">
-                    <form action="{% url 'cart:cart_add' product.id %}" method="post">
-                        <div class="hidden-block">{{ cart_product_form }}</div>
-                        {% csrf_token %}
-                        <input type="submit" value="Добавить в корзину" class="button-check">
-                    </form>
                 </div>
             </div>
         </div>
+        {% empty %}
+        <div class="div-search">
+            <p class="p-search">По вашему запросу ничего не найденно...</p>
+        </div>
+        {% endfor %}
     </div>
-    {% empty %}
-    <div class="div-search">
-        <p class="p-search">По вашему запросу ничего не найденно...</p>
-    </div>
-    {% endfor %}
 </div>
 {% endblock %}

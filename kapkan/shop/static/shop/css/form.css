@@ -144,8 +144,14 @@ label {
   color: #4CAF50;
 }
 
+.gl-div-filter {
+    display: inline-block;
+	vertical-align: top;
+	height: 100%;
+	width: 25%;
+}
+
 .filter-div {
-	display: inline-block;
 	background-color: #FFF;
 	vertical-align: top;
 	width: 300px;
@@ -301,4 +307,49 @@ input {
     font-size: 20px;
     font-weight: 700;
     color: #000;
+}
+
+@media screen and (max-width: 986px) {
+    .filter-div {
+        width: 450px;
+        margin: 0 auto;
+    }
+
+    .gl-div-filter {
+        width: 100%;
+        text-align: center;
+    }
+
+}
+
+@media screen and (max-width: 986px) {
+    .filter-div {
+        width: 400px;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .filter-div {
+        width: 280px;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 340px) {
+    .filter-div {
+        width: 250px;
+        margin: 0 auto;
+    }
+
+    .filter-mark-p {
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 340px) {
+    .filter-div {
+        width: 220px;
+        margin: 0 auto;
+    }
 }

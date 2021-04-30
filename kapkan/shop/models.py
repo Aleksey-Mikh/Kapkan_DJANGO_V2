@@ -119,12 +119,18 @@ class Category(models.Model):
 
 class ShopVideo(models.Model):
 
-    video_title = models.CharField(max_length=255, verbose_name='Название видео')
-    video_link = models.CharField(max_length=255, verbose_name='Ссылка на видео')
-    video_description = models.TextField(verbose_name='Описание', null=True)
+    title = models.CharField(max_length=255, verbose_name='Название видео')
+    link = models.CharField(max_length=255, verbose_name='Ссылка на видео')
+    templates_link = models.CharField(max_length=255, verbose_name='Ссылка на видео для шаблона', blank=True)
+    description = models.TextField(verbose_name='Описание', null=True, blank=True)
 
     def __str__(self):
-        return self.video_title
+        return self.title
+
+    def save(self, *args, **kwargs):
+        link_name = self.link.split('/')
+        self.templates_link = link_name[-1]
+        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = 'Видео'

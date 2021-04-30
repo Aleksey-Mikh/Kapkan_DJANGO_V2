@@ -1,0 +1,48 @@
+.video-gl-section {
+	width: 1024px;
+	height: 100%;
+	margin: 40px auto;
+	padding: 10px;
+	background-color: #FFF;
+	font-size: 0;
+}
+
+.video-div-content {
+	display: inline-block;
+	vertical-align: top;
+	width: 100%;
+}
+
+.video-div-title {
+	display: inline-block;
+	vertical-align: top;
+	width: 100%;
+	text-align: center;
+	padding: 15px;
+	border-top: 1px solid #555;
+}
+
+.video-div-title h1 {
+	font-size: 22px;
+	font-weight: 600;
+}
+
+.video-div-video {
+	width: 564px;
+	height: 319px;
+	border: 2px solid #00BFFF;
+	margin: 10px auto 25px;
+}
+
+.video-div-description {
+	display: inline-block;
+	vertical-align: top;
+	width: 100%;
+	border-bottom: 1px solid #555;
+}
+
+.video-div-description h3 {
+	padding: 15px;
+	font-size: 16px;
+	color: #292929;
+}

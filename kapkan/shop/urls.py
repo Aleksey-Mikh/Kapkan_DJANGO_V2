@@ -1,5 +1,14 @@
 from django.urls import path
-from .views import IndexView, CategoryDetailView, ProductDetailView, empty_cart, SearchView, about_us, contacts
+from .views import (
+    IndexView,
+    CategoryDetailView,
+    ProductDetailView,
+    empty_cart,
+    SearchView,
+    about_us,
+    contacts,
+    video,
+)
 
 
 urlpatterns = [
@@ -9,5 +18,6 @@ urlpatterns = [
     path('empty_cart/', empty_cart, name='empty_cart'),
     path('about_us/', about_us, name='about_us'),
     path('contacts/', contacts, name='contacts'),
+    path('video/', video, name='video'),
     path('search/', SearchView.as_view(), name='search'),
 ]

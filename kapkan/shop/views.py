@@ -1,6 +1,6 @@
 from datetime import datetime, timezone
 
-from django.db.models import Count, F, Q
+from django.db.models import Count, F, Q, Prefetch
 from django.shortcuts import render, get_object_or_404
 from django.utils.decorators import method_decorator
 from django.views.generic import ListView, DetailView
@@ -67,7 +67,7 @@ class CategoryDetailView(ListView):
 
     def get_queryset(self):
         self.category = get_object_or_404(Category, slug=self.kwargs['slug'])
-        products = Product.objects.filter(Q(is_new=True) & Q(category=self.category))
+        products = Product.objects.filter(Q(is_new=True) & Q(category=self.category)).select_related('category')
         if products:
             time_now = datetime.now(timezone.utc)
             for product in products:
@@ -76,14 +76,14 @@ class CategoryDetailView(ListView):
                 if (time_delta.total_seconds() // 3600) > TIME_IS_NEW:
                     product.is_new = False
                     product.save()
-        return self.category.product.filter(is_published=True).select_related('category')
+        return self.category.product.filter(is_published=True)
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         cart_product_form = CartAddProductForm()
         context['title'] = self.category
         context['cart_product_form'] = cart_product_form
-        products = self.category.product.filter(is_published=True).select_related('category')
+        products = self.category.product.filter(is_published=True)
         context_2 = filter_product(self.request, products)
         context.update(context_2)
         return context
@@ -109,7 +109,12 @@ class ProductDetailView(DetailView):
         product_images = product.images.all()
         if product_images:
             context['product_images'] = product_images
-        recommend_products = RecommendProduct.objects.select_related('recommend_product').filter(main_product=product)
+        recommend_products = RecommendProduct.objects.select_related(
+            "recommend_product").filter(main_product=product)
+        # recommend_products = RecommendProduct.objects.prefetch_related(
+        #     Prefetch("main_product__recommend_product",
+        #              queryset=RecommendProduct.objects.filter(main_product=product))
+        # )
         if recommend_products:
             context['recommend_products'] = recommend_products
 
@@ -123,7 +128,7 @@ class ProductDetailView(DetailView):
         if last_products:
             last_products_in_temple = []
             for last in last_products:
-                last_products_in_temple.append(Product.objects.prefetch_related('product_with_sale').filter(id=last))
+                last_products_in_temple.append(Product.objects.prefetch_related().filter(id=last))
             context['last_products_in_temple'] = last_products_in_temple
         return context
 
@@ -167,4 +172,10 @@ def contacts(request):
 
 
 def video(request):
-    return render(request, 'shop/video.html')
+    title = 'Видео'
+    video_for_template = ShopVideo.objects.all()
+    context = {
+        'video_for_template': video_for_template,
+        'title': title,
+    }
+    return render(request, 'shop/video.html', context)

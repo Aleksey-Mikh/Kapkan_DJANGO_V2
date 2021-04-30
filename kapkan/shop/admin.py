@@ -59,6 +59,14 @@ class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
 
 
+class ShopVideoAdmin(admin.ModelAdmin):
+    list_display = ('title', 'link')
+    search_fields = ('title', )
+    fieldsets = (
+        (None, {'fields': ('title', 'link', 'description', )}),
+    )
+
+
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Category, CategoryAdmin)
-admin.site.register(ShopVideo)
+admin.site.register(ShopVideo, ShopVideoAdmin)

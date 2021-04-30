@@ -4,7 +4,7 @@
 {% block title %}{{ title }} | {{ block.super }}{% endblock %}
 
 {% block style %}
-
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/video.css' %}" >
 {% endblock %}
 
 {% block breadcrumbs %}
@@ -18,10 +18,30 @@
 
 {% block content %}
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/6K83dgjkQNw"
+<div class="video-gl-section">
+    {% for video in video_for_template %}
+    <div class="video-div-content">
+        <div class="video-div-title">
+            <h1><span>{{ video.title }}</span></h1>
+        </div>
+
+        <div class="video-div-video">
+
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ video.templates_link }}"
         title="YouTube video player" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen>
 </iframe>
+
+        </div>
+
+        <div class="video-div-description">
+            <h3>
+                {{ video.description }}
+            </h3>
+        </div>
+    </div>
+    {% endfor %}
+</div>
 
 {% endblock %}

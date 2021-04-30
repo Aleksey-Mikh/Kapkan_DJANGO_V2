@@ -7,7 +7,7 @@
     <link rel="icon" type="image" href="https://code.s3.yandex.net/web-code/playlist-favicon.ico">
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'shop/css/header.css' %}?">
-    <link rel="stylesheet" type="text/css" href="{% static 'shop/css/main.css' %}?">
+    <link rel="stylesheet" type="text/css" href="{% static 'shop/css/main.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'shop/css/footer.css' %}?" ?>
     <link rel="stylesheet" type="text/css" href="{% static 'shop/css/button.css' %}" >
     <link rel="stylesheet" media="screen,projection" href="{% static 'shop/css/ui.totop.css' %}?"/>
@@ -147,10 +147,10 @@
             </div>
         </div>
         <div class="second-menu">
-            <div class="second-menu-div border-right">
-                <a href="" class="menu-link">Видео</a>
+            <div class="second-menu-div border-right second-menu-video">
+                <a href="{% url 'video' %}" class="menu-link">Видео</a>
             </div>
-            <div class="second-menu-div border-right">
+            <div class="second-menu-div border-right second-menu-contacts">
                 <a href="{% url 'contacts' %}" class="menu-link">Контакты</a>
             </div>
             {% if request.user.is_authenticated %}
@@ -304,13 +304,13 @@
                     <a href="{% url 'about_us' %}" class="footer-a">О магазине</a>
                 </li>
                 <li class="li-footer">
-                    <a href="" class="footer-a">Контакты</a>
+                    <a href="{% url 'contacts' %}" class="footer-a">Контакты</a>
                 </li>
                 <li class="li-footer">
                     <a href="{% url 'home' %}" class="footer-a">Главная</a>
                 </li>
                 <li class="li-footer">
-                    <a href="" class="footer-a">Видео</a>
+                    <a href="{% url 'video' %}" class="footer-a">Видео</a>
                 </li>
             </ul>
         </div>

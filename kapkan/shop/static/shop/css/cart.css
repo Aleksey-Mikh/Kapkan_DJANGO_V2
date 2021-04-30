@@ -92,6 +92,9 @@ button {
 input[type="number"]{
 	height: 30px;
 	width: 60px;
-	margin-top: 10px;
 }
+}
+
+.th-name {
+    width: 150px;
 }

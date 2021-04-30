@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block style %}
-<link rel="stylesheet" type="text/css" href="{% static 'shop/css/cart.css' %}" >
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/cart.css' %}?" >
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/ordered.css' %}" ?>
 {% endblock style %}
 
@@ -29,7 +29,7 @@ Your shopping cart
         <table class="table-cart">
             <tr>
                 <th>Фото</th>
-                <th>Товар</th>
+                <th class="th-name">Товар</th>
                 <th>Изменить количество</th>
                 <th>Удалить</th>
                 <th>Количество</th>
