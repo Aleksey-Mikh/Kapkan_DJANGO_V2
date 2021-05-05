@@ -334,16 +334,9 @@ input {
         width: 280px;
         margin: 0 auto;
     }
-}
 
-@media screen and (max-width: 340px) {
-    .filter-div {
-        width: 250px;
-        margin: 0 auto;
-    }
-
-    .filter-mark-p {
-        margin-bottom: 20px;
+    .filter-price {
+        border-bottom: none;
     }
 }
 
@@ -351,5 +344,9 @@ input {
     .filter-div {
         width: 220px;
         margin: 0 auto;
+    }
+
+    .filter-mark-p {
+        margin-bottom: 20px;
     }
 }

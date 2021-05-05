@@ -356,3 +356,30 @@ body {
         display: none;
     }
 }
+
+@media screen and (max-width: 820px) {
+    .content {
+      width: 450px;
+      text-align: center;
+    }
+}
+
+@media screen and (max-width: 760px) {
+    .second-menu-user {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .basket-none {
+        display: none;
+    }
+
+    .basket {
+        width: 90px;
+    }
+
+    .my-breadcrumbs-div {
+       font-size: 14px;
+    }
+}

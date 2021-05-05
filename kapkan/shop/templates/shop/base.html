@@ -153,17 +153,17 @@
                 <a href="{% url 'contacts' %}" class="menu-link">Контакты</a>
             </div>
             {% if request.user.is_authenticated %}
-            <div class="second-menu-div border-right">
+            <div class="second-menu-div border-right second-menu-user">
                 <a href="{% url 'profile' %}" class="menu-link">Добро пожаловать, {{ user.username }}</a>
             </div>
-            <div class="second-menu-div">
+            <div class="second-menu-div second-menu-user">
                 <a href="{% url 'logout' %}" class="menu-link">Выход</a>
             </div>
             {% else %}
-            <div class="second-menu-div border-right">
+            <div class="second-menu-div border-right second-menu-user">
                 <a href="{% url 'register' %}" class="menu-link">Регистрация</a>
             </div>
-            <div class="second-menu-div">
+            <div class="second-menu-div second-menu-user">
                 <a href="{% url 'login' %}" class="menu-link">Авторизация</a>
             </div>
             {% endif %}
@@ -185,7 +185,7 @@
         <a href="{% url 'empty_cart' %}">
             <div class="basket">
                 <img src="{% static 'shop/images/basket.png' %}" alt="картинка корзины">
-                <div class="basket-text">
+                <div class="basket-text basket-none">
                     <p> Корзина</p>
                 </div>
                 <div class="basket-text">
@@ -352,13 +352,8 @@
   easingType: 'linear'
   };
   */
-
   $().UItoTop({ easingType: 'easeOutQuart' });
-
   });
-
-
-
 </script>
 </body>
 </html>

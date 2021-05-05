@@ -6,7 +6,7 @@
 {% block style %}
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/owl.carousel.min.css' %}" ?>
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/owl.theme.default.min.css' %}?" ?>
-<link rel="stylesheet" type="text/css" href="{% static 'shop/css/category.css' %}?" ?>
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/category.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/owl.css' %}?" ?>
 {% endblock %}
 
@@ -39,7 +39,7 @@
     </div>
     <div class="owl-carousel owl-theme">
         {% for product in products %}
-        <div class="category-card">
+        <div class="category-card" style="width: 280px;">
             <div class="category-gl-card-div">
                 <div class="category-card-div-img">
                     <div class="category-card-div-img-content">
@@ -120,5 +120,5 @@
 
 {% block js %}
 <script src="{% static 'shop/js/owl.carousel.min.js' %}" type="text/javascript"></script>
-<script src="{% static 'shop/js/script.js' %}" type="text/javascript"></script>
+<script src="{% static 'shop/js/script.js' %}?" type="text/javascript"></script>
 {% endblock %}
