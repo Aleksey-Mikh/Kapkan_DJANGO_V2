@@ -18,16 +18,10 @@
 	background-color: #FFF;
 }
 
-.top-line-text-line {
-	display: inline-block;
-	height: 100%;
-	width: 80%;
-}
-
 .top-line-icon-line {
 	display: inline-block;
-	height: 100%;
-	width: 20%;
+	position: absolute;
+    right: 45px;
 	vertical-align: top;
 	padding: 3px 0 0 5px;
 }
@@ -84,9 +78,11 @@
 }
 
 .logo-img {
-	height: 220px;
-	width: 220px;
+	height: 100%;
+	width: 100%;
+	min-width: 200px;
 	object-fit: contain;
+	margin-left: 10px;
 }
 
 .div-header-middle {
@@ -232,26 +228,54 @@
   color: #4CAF50;
 }
 
-/*
-<div class="logo">
-        
-</div>
+@media screen and (max-width: 915px) {
 
-<div class="div-header-middle">
-	<div class="div-header-info">
-	  
-	</div>
+    .hidden-header {
+        display: none;
+    }
 
-	<div class="div-header-search">	  
-	</div>
-</div>
+    .div-header-middle {
+        width: 70%;
+        float: right;
+    }
+}
 
-<div class="div-header-right">
-	<div class="div-header-over-profile">
-	  
-	</div>
+@media screen and (max-width: 720px) {
 
-	<div class="div-header-profile">
-	  
-	</div>
-</div> */
+    .div-header-search {
+        padding-top: 40px;
+    }
+
+    .info-time {
+         display: none;
+    }
+
+    .header-info {
+        width: 50%;
+    }
+}
+.div-header-info {
+	width: 100%;
+	height: 50%;
+}
+
+@media screen and (max-width: 720px) {
+
+    .div-header-info {
+        display: none;
+    }
+
+    .div-header-middle {
+        width: 100%;
+        height: 20%;
+    }
+
+    .logo {
+        width: 100%;
+        height: 70%;
+    }
+
+    .div-header-search {
+        padding-top: 10px;
+    }
+}

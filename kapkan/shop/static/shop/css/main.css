@@ -279,24 +279,11 @@ body {
   background-color: #DCDCDC;
 }
 
-.footer {
-  height: 200px;
-}
-
 .footer-description {
   height: 50%;
   width: 100%;
   background-color: #4682B4;
   margin-bottom: 20px;
-}
-
-.map {
-  width: 804px;
-  height: 250px;
-  text-align: center;
-  border: 2px solid #00BFFF;
-  display: flex;
-  margin: auto;
 }
 
 .pagination {
