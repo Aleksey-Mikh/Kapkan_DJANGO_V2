@@ -358,6 +358,12 @@ body {
     }
 }
 
+@media screen and (max-width: 860px) {
+    .second-menu-hello-user {
+      display: none;
+    }
+}
+
 @media screen and (max-width: 820px) {
     .content {
       width: 450px;

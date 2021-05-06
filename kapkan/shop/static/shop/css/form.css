@@ -81,7 +81,6 @@ label {
     border-color: #277bbc;
 }
 
-
 .content-form {
 	width: 800px;
 	margin: auto;
@@ -319,31 +318,37 @@ input {
         width: 100%;
         text-align: center;
     }
-
 }
 
-@media screen and (max-width: 986px) {
-    .filter-div {
-        width: 400px;
-        margin: 0 auto;
+@media screen and (max-width: 840px) {
+    .content-form {
+        width: 600px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .content-form {
+        width: 420px;
     }
 }
 
 @media screen and (max-width: 450px) {
     .filter-div {
         width: 280px;
-        margin: 0 auto;
     }
 
     .filter-price {
         border-bottom: none;
+    }
+
+    .content-form {
+        width: 300px;
     }
 }
 
 @media screen and (max-width: 340px) {
     .filter-div {
         width: 220px;
-        margin: 0 auto;
     }
 
     .filter-mark-p {

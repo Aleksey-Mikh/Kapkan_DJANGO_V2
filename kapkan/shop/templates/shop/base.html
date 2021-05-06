@@ -153,10 +153,10 @@
                 <a href="{% url 'contacts' %}" class="menu-link">Контакты</a>
             </div>
             {% if request.user.is_authenticated %}
-            <div class="second-menu-div border-right second-menu-user">
+            <div class="second-menu-div border-right second-menu-hello-user">
                 <a href="{% url 'profile' %}" class="menu-link">Добро пожаловать, {{ user.username }}</a>
             </div>
-            <div class="second-menu-div second-menu-user">
+            <div class="second-menu-div second-menu-user second-menu-hello-user">
                 <a href="{% url 'logout' %}" class="menu-link">Выход</a>
             </div>
             {% else %}

@@ -1,11 +1,10 @@
 .content-detail {
 	width: 1000px;
 	margin: auto;
-
 }
 
 .div-content {
-	margin: 40px;
+	margin: 40px 0;
 	background-color: #FFF;
 }
 
@@ -33,4 +32,44 @@
 	width: 400px;
 	height: 250px;
 	object-fit: cover;
+}
+
+@media screen and (max-width: 1050px) {
+    .content-detail {
+        width: 800px;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .content-detail {
+        width: 600px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .content-detail {
+        width: 500px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .content-detail {
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .content-detail {
+        width: 280px;
+    }
+
+    .image-basket-empty {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .div-basket-empty {
+        height: 400px;
+    }
 }
