@@ -7,7 +7,7 @@
     <link rel="icon" type="image" href="https://code.s3.yandex.net/web-code/playlist-favicon.ico">
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'shop/css/header.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'shop/css/main.css' %}?">
+    <link rel="stylesheet" type="text/css" href="{% static 'shop/css/main.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'shop/css/footer.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'shop/css/button.css' %}">
     <link rel="stylesheet" media="screen,projection" href="{% static 'shop/css/ui.totop.css' %}?"/>
@@ -141,7 +141,7 @@
                     {{ category.name }} ({{ category.cnt }})
                 </a>
                 {% endfor %}
-                <a href="">Видео</a>
+                <a href="{% url 'video' %}">Видео</a>
                 <a href="{% url 'contacts' %}">Контакты</a>
             </div>
         </div>
@@ -173,7 +173,7 @@
         <a href="{% url 'cart:cart_detail' %}">
             <div class="basket">
                 <img src="{% static 'shop/images/basket.png' %}" alt="картинка корзины">
-                <div class="basket-text">
+                <div class="basket-text basket-none">
                     <p> Корзина</p>
                 </div>
                 <div class="basket-text">

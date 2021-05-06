@@ -4,7 +4,7 @@
 {% block title %}О нас | {{ block.super }}{% endblock %}
 
 {% block style %}
-<link rel="stylesheet" type="text/css" href="{% static 'shop/css/contacts.css' %}?">
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/contacts.css' %}">
 {% endblock %}
 
 {% block breadcrumbs %}
@@ -61,8 +61,9 @@
         </div>
 
         <div class="kontakt-div-map-body">
-            <iframe src="https://www.google.com/maps/d/embed?mid=1tyPkEGZxcK1j0rkcP6pGtoKNQddfnCzh" width="800"
-                    height="450"></iframe>
+            <iframe class="kontakt-iframe-map"
+                    src="https://www.google.com/maps/d/embed?mid=1tyPkEGZxcK1j0rkcP6pGtoKNQddfnCzh">
+            </iframe>
         </div>
     </div>
 </div>
