@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block style %}
-<link rel="stylesheet" type="text/css" href="{% static 'shop/css/cart.css' %}?" >
+<link rel="stylesheet" type="text/css" href="{% static 'shop/css/cart.css' %}?">
 <link rel="stylesheet" type="text/css" href="{% static 'shop/css/ordered.css' %}" ?>
 {% endblock style %}
 
@@ -26,7 +26,7 @@ Your shopping cart
         <h3>Ваша корзина</h3>
     </div>
     <div class="table-cart">
-        <table class="table-cart">
+        <table class="table-cart table-cart-none">
             <tr>
                 <th>Фото</th>
                 <th class="th-name">Товар</th>
@@ -71,6 +71,81 @@ Your shopping cart
                 <th>{{ cart.get_total_price }} руб.</th>
             </tr>
         </table>
+
+
+        <table class="table-cart-small-media">
+            <tr>
+                <th></th>
+                <th></th>
+                <th>Общая цена</th>
+            </tr>
+            {% for item in cart %}
+            {% with product=item.product %}
+            <tr>
+                <td>Фото</td>
+                <td><a href="{{ product.get_absolute_url }}">
+                        <img src="{{ product.image.url }}" class="cart-image">
+                    </a>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Товар</td>
+                <td>{{ product.title }}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Изменить количество</td>
+                <td>
+                    <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                        <input type="number" min="1" name="quantity" value="{{ item.quantity }}" class="quantity-cart">
+                        {{ item.update_quantity_form.update }}
+                        <input type="submit" value="Обновить" class="button-check">
+                        {% csrf_token %}
+                    </form>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Удалить</td>
+                <td>
+                    <a href="{% url 'cart:cart_remove' product.id%}">
+                        <div>
+                            <button class="button-danger">Удалить</button>
+                        </div>
+                    </a>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Количество</td>
+                <td>{{ item.quantity }}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Цена за штуку</td>
+                <td>{{ item.price }} руб.</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Цена за штуку</td>
+                <td>{{ item.price }} руб.</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Общая стоймость руб.</td>
+                <td>{{ item.total_price }} руб.</td>
+                <td></td>
+            </tr>
+            {% endwith %}
+            {% endfor %}
+            <tr class="total">
+                <th></th>
+                <th></th>
+                <th>{{ cart.get_total_price }} руб.</th>
+            </tr>
+        </table>
+
 
         <div class="footer-cart">
             <div class="button-footer-cart">

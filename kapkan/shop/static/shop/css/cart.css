@@ -48,6 +48,12 @@ button {
 	padding: 20px;
 }
 
+.table-cart-small-media {
+    width: 100%;
+	padding: 20px;
+    display: none;
+}
+
 .cart-image {
 	width: 200px;
 	height: 150px;
@@ -99,9 +105,49 @@ input[type="number"]{
     width: 150px;
 }
 
+@media screen and (max-width: 1250px) {
+    .cart-content-detail {
+        width: 1000px;
+    }
+
+    .quantity-cart {
+        margin-bottom: 10px;
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    .cart-content-detail {
+        width: 800px;
+    }
+
+    .table-cart-none {
+        display: none;
+    }
+
+    .table-cart-small-media {
+        display: block;
+    }
+
+    td {
+        margin: 20px;
+        padding: 30px;
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .cart-content-detail {
+        width: 700px;
+    }
+}
+
 @media screen and (max-width: 750px) {
     .cart-image {
         width: 100px;
+    }
+
+    .cart-content-detail {
+        width: 500px;
     }
 }
 
@@ -113,6 +159,20 @@ input[type="number"]{
 
     td {
         padding: 10px 0;
+        font-size: 12px;
+    }
+
+    .cart-content-detail {
+        width: 400px;
+    }
+
+    .button-check {
+        padding: 5px 14px;
+        font-size: 12px;
+    }
+
+    button {
+        padding: 5px 14px;
         font-size: 12px;
     }
 }
@@ -130,5 +190,9 @@ input[type="number"]{
     th {
         padding: 10px 2px;
         font-size: 12px;
+    }
+
+    .cart-content-detail {
+        width: 300px;
     }
 }

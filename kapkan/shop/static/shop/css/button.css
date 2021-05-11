@@ -41,3 +41,10 @@ button {
 input {
     outline: none;
 }
+
+@media screen and (max-width: 550px) {
+    button {
+        padding: 5px 14px;
+        font-size: 12px;
+    }
+}

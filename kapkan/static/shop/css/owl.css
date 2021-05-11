@@ -1,0 +1,23 @@
+.owl-prev, .owl-next {
+    background-color: #000;
+    height: 30px;
+    width: 30px;
+    margin-left: -60px;
+}
+.owl-prev, .owl-next {
+    position: absolute;
+    top: 42%;
+}
+.owl-prev {
+    left: 5px;
+}
+.owl-next {
+    right: 5px;
+}
+
+.owl-prev span, .owl-next span {
+  display: inline-block;
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 10px;
+}

@@ -1,0 +1,141 @@
+.kontakt-gl-section {
+	width: 1024px;
+	height: 100%;
+	margin: 40px auto;
+	padding: 10px;
+	background-color: #FFF;
+	font-size: 0;
+}
+
+.kontakt-gl-div-title {
+	height: 40px;
+	width: 100%;
+	display: inline-block;
+	vertical-align: top;
+	padding: 7px 0 0 10px;
+	background-color: #4169E1;
+	margin-bottom: 15px;
+}
+
+.kontakt-gl-div-title h2 {
+	font-size: 22px;
+	color: #FFF;
+	font-weight: 600;
+}
+
+.kontakt-gl-div-description {
+	width: 100%;
+}
+
+.kontakt-div-description-title {
+	width: 100%;
+	display: inline-block;
+	vertical-align: top;
+	padding: 10px;
+}
+
+.kontakt-div-description-title h3{
+	font-size: 20px;
+	color: #292929;
+}
+
+.kontakt-div-description-body {
+	width: 100%;
+	display: inline-block;
+	vertical-align: top;
+	padding: 10px;
+	border-bottom: 1px solid #555;
+}
+
+.kontakt-div-description-body h4{
+	font-size: 18px;
+	margin-bottom: 9px;
+	color: #333;
+}
+
+.kontakt-div-description-body p{
+	font-size: 16px;
+	margin: 0 0 5px 15px;
+	color: #696969;
+}
+
+.kontakt-time {
+	color: #4169E1;
+}
+
+.kontakt-gl-div-map {
+	width: 100%;
+	margin-top: 15px;
+}
+
+.kontakt-div-map-title {
+	width: 100%;
+	display: inline-block;
+	vertical-align: top;
+	padding: 10px;
+}
+
+.kontakt-div-map-title h3{
+	font-size: 20px;
+	color: #292929;
+}
+
+.kontakt-div-map-body {
+	width: 100%;
+	display: inline-block;
+	vertical-align: top;
+	padding: 10px;
+	text-align: center;
+}
+
+.kontakt-iframe-map {
+    width: 800px;
+    height: 450px;
+}
+
+@media screen and (max-width: 1140px) {
+    .kontakt-gl-section {
+        width: 900px;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    .kontakt-gl-section {
+        width: 700px;
+    }
+
+    .kontakt-iframe-map {
+        width: 600px;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .kontakt-gl-section {
+        width: 500px;
+    }
+
+    .kontakt-iframe-map {
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .kontakt-gl-section {
+        width: 380px;
+    }
+
+    .kontakt-iframe-map {
+        width: 250px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .kontakt-gl-section {
+        width: 280px;
+    }
+
+    .kontakt-iframe-map {
+        width: 200px;
+        height: 300px;
+    }
+}

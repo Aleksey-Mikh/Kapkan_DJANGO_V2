@@ -1,10 +1,12 @@
+from django import forms
 from django.contrib import admin
-from .models import Product, Category, RecommendProduct, ProductGallery, ProductSale, ShopVideo
-
+from ckeditor.widgets import CKEditorWidget
 from import_export.admin import ImportExportActionModelAdmin
 from import_export import resources
 from import_export import fields
 from import_export.widgets import ForeignKeyWidget
+
+from .models import Product, Category, RecommendProduct, ProductGallery, ProductSale, ShopVideo
 
 
 class RecommendProductItemInline(admin.TabularInline):
@@ -34,7 +36,16 @@ class ProductResource(resources.ModelResource):
         model = Product
 
 
+class ProductAdminForm(forms.ModelForm):
+    description = forms.CharField(widget=CKEditorWidget())
+
+    class Meta:
+        model = Product
+        fields = '__all__'
+
+
 class ProductAdmin(ImportExportActionModelAdmin):
+    form = ProductAdminForm
     resource_class = ProductResource
     list_display = ('title', 'get_price', 'category', 'is_published', 'views')
     search_fields = ('title', )
