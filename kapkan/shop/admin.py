@@ -6,7 +6,7 @@ from import_export import resources
 from import_export import fields
 from import_export.widgets import ForeignKeyWidget
 
-from .models import Product, Category, RecommendProduct, ProductGallery, ProductSale, ShopVideo
+from .models import Product, Category, RecommendProduct, ProductGallery, ProductSale, ShopVideo, ShopAdminConst
 
 
 class RecommendProductItemInline(admin.TabularInline):
@@ -81,3 +81,4 @@ class ShopVideoAdmin(admin.ModelAdmin):
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(ShopVideo, ShopVideoAdmin)
+admin.site.register(ShopAdminConst)

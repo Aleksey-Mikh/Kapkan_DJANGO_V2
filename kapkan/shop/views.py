@@ -5,14 +5,14 @@ from django.shortcuts import render, get_object_or_404
 from django.utils.decorators import method_decorator
 from django.views.generic import ListView, DetailView
 
-from .models import Product, Category, RecommendProduct, ShopVideo
+from .models import Product, Category, RecommendProduct, ShopVideo, ShopAdminConst
 from cart.forms import CartAddProductForm
 from .forms import ProductFilterForm
 from .decorators import counted
 
 
-# Время (в часах) сколько товар будет стоять с ярлыком NEW
-TIME_IS_NEW = 20
+# The time while the product is in the "New" status
+TIME_IS_NEW = ShopAdminConst.objects.first().TIME_IS_NEW
 
 
 def filter_product(request, products, **kwargs):
@@ -111,10 +111,6 @@ class ProductDetailView(DetailView):
             context['product_images'] = product_images
         recommend_products = RecommendProduct.objects.select_related(
             "recommend_product").filter(main_product=product)
-        # recommend_products = RecommendProduct.objects.prefetch_related(
-        #     Prefetch("main_product__recommend_product",
-        #              queryset=RecommendProduct.objects.filter(main_product=product))
-        # )
         if recommend_products:
             context['recommend_products'] = recommend_products
 

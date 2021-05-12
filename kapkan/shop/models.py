@@ -135,3 +135,15 @@ class ShopVideo(models.Model):
     class Meta:
         verbose_name = 'Видео'
         verbose_name_plural = 'Видео'
+
+
+class ShopAdminConst(models.Model):
+
+    TIME_IS_NEW = models.PositiveIntegerField(verbose_name='Время (в часах) которое товар находится в статусе NEW')
+
+    def __str__(self):
+        return 'Константа на сайте может быть только одна'
+
+    class Meta:
+        verbose_name = 'Константа'
+        verbose_name_plural = 'Администрация констант сайта'
