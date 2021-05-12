@@ -129,8 +129,7 @@ input[type="number"]{
     }
 
     td {
-        margin: 20px;
-        padding: 30px;
+        padding: 30px 15px;
         font-size: 16px;
     }
 }
@@ -196,3 +195,4 @@ input[type="number"]{
         width: 300px;
     }
 }
+
