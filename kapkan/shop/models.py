@@ -39,7 +39,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=9, decimal_places=2, verbose_name='Цена')
     is_published = models.BooleanField(default=True, verbose_name='Статус публикации')
     status = models.CharField(
-        max_length=100, verbose_name='Статус заказа', choices=STATUS_CHOICES, default=STATUS_AVAILABLE
+        max_length=100, verbose_name='Статус товара', choices=STATUS_CHOICES, default=STATUS_AVAILABLE
     )
     created = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     is_new = models.BooleanField(default=True, verbose_name='NEW')
