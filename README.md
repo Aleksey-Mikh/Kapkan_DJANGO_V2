@@ -1,10 +1,9 @@
-<hr>
-Интернет магазин с использованием Django
 
+Интернет магазин с использованием Django
+<br>
 ![main_shop.png](kapkan/media/screenshots/main_shop.png "Главная страница сайта")
 
 <h2>О проекте</h2>
-<hr>
 Магазин выполненный на Django версии 3.1.8, python 3.8.5.
 С HTML5, JavaScript и собственным CSS для Frontend, ипользуемая база данных PostgreSQL.
 Магазин имеет такой функционал:
@@ -38,11 +37,9 @@
 </ol>
 
 <h2>Backend/Frontend разработчик</h2>
-<hr>
 <ul>
     <li>Михалькевич Алексей</li>
 </ul>
 
 <h2>License</h2>
-<hr>
 Этот проект находится под лицензией Apache License Version 2.0
