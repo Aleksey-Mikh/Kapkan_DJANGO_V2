@@ -1,7 +1,7 @@
 
 Интернет магазин с использованием Django
 <br>
-![main_shop.png](kapkan/media/screenshots/main_shop.png "Главная страница сайта")
+![main_shop.png](media/screenshots/main_shop.png "Главная страница сайта")
 
 <h2>О проекте</h2>
 Магазин выполненный на Django версии 3.1.8, python 3.8.5.

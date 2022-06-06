@@ -1,1 +1,8 @@
-kapkan/confedencial.py
+.idea/
+**/__pycache__/
+__pycache__/
+**/db.sqlite3
+venv/
+media/*
+static
+.env
