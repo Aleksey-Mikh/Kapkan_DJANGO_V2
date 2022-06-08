@@ -1,12 +1,12 @@
 from datetime import datetime, timezone
 
-from django.db.models import Count, F, Q, Prefetch
+from django.db.models import Count, F, Q
 from django.shortcuts import render, get_object_or_404
 from django.utils.decorators import method_decorator
 from django.views.generic import ListView, DetailView
 
-from .models import Product, Category, RecommendProduct, ShopVideo, ShopAdminConst
-from apps.cart.forms import CartAddProductForm
+from .models import Product, Category, RecommendProduct, ShopVideo
+from cart.forms import CartAddProductForm
 from .forms import ProductFilterForm
 from .decorators import counted
 

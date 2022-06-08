@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'captcha',
 
     # apps
-    'apps.cart',
+    'cart',
     'apps.orders',
     'apps.shop',
     'apps.user_reg_log',

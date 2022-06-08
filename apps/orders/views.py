@@ -1,9 +1,9 @@
-from django.shortcuts import render, get_object_or_404
-from .models import OrderItem, Order, OrderTotalPrice
+from django.shortcuts import render
+from .models import OrderItem, OrderTotalPrice
 from .forms import OrderCreateForm
 from django.core.mail import send_mail
 
-from apps.cart.cart import Cart
+from cart.cart import Cart
 from django.conf import settings
 from apps.user_reg_log.models import Profile
 
