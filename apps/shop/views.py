@@ -6,13 +6,13 @@ from django.utils.decorators import method_decorator
 from django.views.generic import ListView, DetailView
 
 from .models import Product, Category, RecommendProduct, ShopVideo, ShopAdminConst
-from apps.cart import CartAddProductForm
+from apps.cart.forms import CartAddProductForm
 from .forms import ProductFilterForm
 from .decorators import counted
 
 
 # The time while the product is in the "New" status
-TIME_IS_NEW = ShopAdminConst.objects.first().TIME_IS_NEW
+# TIME_IS_NEW = ShopAdminConst.objects.first().TIME_IS_NEW
 
 
 def filter_product(request, products, **kwargs):
@@ -73,7 +73,7 @@ class CategoryDetailView(ListView):
             for product in products:
                 time_then = product.created
                 time_delta = time_now - time_then
-                if (time_delta.total_seconds() // 3600) > TIME_IS_NEW:
+                if (time_delta.total_seconds() // 3600) > 0:
                     product.is_new = False
                     product.save()
         return self.category.product.filter(is_published=True)
@@ -145,7 +145,7 @@ class SearchView(ListView):
             for product in products:
                 time_then = product.created
                 time_delta = time_now - time_then
-                if (time_delta.total_seconds() // 3600) > TIME_IS_NEW:
+                if (time_delta.total_seconds() // 3600) > 0:
                     product.is_new = False
                     product.save()
         return Product.objects.prefetch_related('product_with_sale').filter(title__icontains=self.request.GET.get('s'))
