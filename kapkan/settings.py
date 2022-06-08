@@ -13,24 +13,24 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 
-from confedencial import (
-    SECRET_KEY_CONFED,
-    EMAIL_ADMIN_PASSWORD_CONFED,
-    EMAIL_ADMIN_CONFED,
-    DATABASES_NAME,
-    DATABASES_USER,
-    DATABASES_PASSWORD,
+import environ
+
+
+env = environ.Env(
+    DEBUG=(bool, False),
 )
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = f'{SECRET_KEY_CONFED}'
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -51,10 +51,12 @@ INSTALLED_APPS = [
     'ckeditor',
     'import_export',
     'captcha',
-    'shop.apps.ShopConfig',
-    'cart.apps.CartConfig',
-    'orders.apps.OrdersConfig',
-    'user_reg_log.apps.UserRegLogConfig',
+
+    # apps
+    'apps.cart',
+    'apps.orders',
+    'apps.shop',
+    'apps.user_reg_log',
 ]
 
 MIDDLEWARE = [
@@ -96,12 +98,12 @@ WSGI_APPLICATION = 'kapkan2.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': DATABASES_NAME,
-        'USER': DATABASES_USER,
-        'PASSWORD': DATABASES_PASSWORD,
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': env("DB_ENGINE"),
+        'NAME': env("DB_NAME"),
+        'USER': env("DB_USER"),
+        'PASSWORD': env("DB_PASSWORD"),
+        'HOST': env("DB_HOST"),
+        'PORT': env("DB_PORT"),
     }
 }
 
@@ -155,12 +157,12 @@ INTERNAL_IPS = [
     '127.0.0.1',
 ]
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = f'{EMAIL_ADMIN_CONFED}'
-EMAIL_HOST_PASSWORD = f'{EMAIL_ADMIN_PASSWORD_CONFED}'
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
+EMAIL_USE_TLS = env("EMAIL_USE_TLS")
+EMAIL_HOST = env("EMAIL_HOST")
+EMAIL_HOST_USER = env("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+EMAIL_PORT = env("EMAIL_PORT")
+
 
 #EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = str(BASE_DIR . joinpath('sent_emails'))
